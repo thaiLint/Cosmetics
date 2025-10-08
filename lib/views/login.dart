@@ -1,12 +1,15 @@
 import 'package:cosmetics/views/Sign_up.dart';
+import 'package:cosmetics/views/resetpassword.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/state_manager.dart';
 
 class Login extends StatelessWidget {
-   Login({super.key});
-   TextEditingController email = TextEditingController();
-   TextEditingController password = TextEditingController();
+  Login({super.key});
+  TextEditingController email = TextEditingController();
+ 
+  TextEditingController password = TextEditingController();
+  
 
   @override
   Widget build(BuildContext context) {
@@ -65,7 +68,6 @@ class Login extends StatelessWidget {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        // Email
                         Align(
                           alignment: Alignment.centerLeft,
                           child: Text(
@@ -74,10 +76,11 @@ class Login extends StatelessWidget {
                           ),
                         ),
                         const SizedBox(height: 5),
+
                         TextField(
                           controller: email,
                           decoration: InputDecoration(
-                            labelText: "Please enter your email",
+                            hintText: "Please enter your email",
 
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(10),
@@ -98,7 +101,7 @@ class Login extends StatelessWidget {
                           controller: password,
                           obscureText: true,
                           decoration: InputDecoration(
-                            labelText: "Please enter your password",
+                            hintText: "Please enter your password",
                             suffixIcon: const Icon(
                               Icons.visibility_off,
                               color: Colors.grey,
@@ -115,7 +118,9 @@ class Login extends StatelessWidget {
                         Align(
                           alignment: Alignment.centerRight,
                           child: TextButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              Get.to(Resetpassword());
+                            },
                             child: const Text(
                               "Forget password?",
                               style: TextStyle(
@@ -136,9 +141,14 @@ class Login extends StatelessWidget {
                           child: ElevatedButton(
                             onPressed: () {
                               Get.to(SignUp());
-                              },
+                            },
                             style: ElevatedButton.styleFrom(
-                              backgroundColor: const Color.fromARGB(255, 25, 130, 169),
+                              backgroundColor: const Color.fromARGB(
+                                255,
+                                25,
+                                130,
+                                169,
+                              ),
                               padding: const EdgeInsets.symmetric(vertical: 15),
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(25),
@@ -194,19 +204,36 @@ class Login extends StatelessWidget {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            GestureDetector(
-                              onTap: () {},
-                              child: Image.asset(
-                                "assets/images/google.png",
-                                height: 50,
+                            OutlinedButton.icon(
+                              onPressed: () {},
+                              icon: Image.asset("assets/images/google.png"),
+                              label: const Text(""),
+                              style: OutlinedButton.styleFrom(
+                                padding: EdgeInsets.all(12),
+
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(20),
+                                ),
                               ),
                             ),
-                            const SizedBox(width: 25),
-                            GestureDetector(
-                              onTap: () {},
-                              child: Image.asset(
+                            const SizedBox(width: 20),
+
+                            OutlinedButton.icon(
+                              onPressed: () {},
+                              icon: Image.asset(
                                 "assets/images/apple.png",
-                                height: 50,
+                                width: 20,
+                                height: 20,
+                              ),
+                              label: const Text(""),
+                              style: OutlinedButton.styleFrom(
+                                padding: EdgeInsets.symmetric(
+                                  horizontal: 20,
+                                  vertical: 12,
+                                ),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(20),
+                                ),
                               ),
                             ),
                           ],

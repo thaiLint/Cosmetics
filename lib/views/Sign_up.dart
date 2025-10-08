@@ -2,10 +2,16 @@ import 'package:flutter/material.dart';
 
 class SignUp extends StatelessWidget {
   SignUp({super.key});
-  TextEditingController ematctrl = TextEditingController();
-  TextEditingController usernamectrl = TextEditingController();
-  TextEditingController passwordctrl = TextEditingController();
-  TextEditingController confirmpwctrl = TextEditingController();
+  TextEditingController ematctrl = new TextEditingController();
+  TextEditingController usernamectrl = new TextEditingController();
+  TextEditingController passwordctrl = new TextEditingController();
+  TextEditingController confirmpwctrl = new TextEditingController();
+  String emailtext = "",
+      passwordtext = "",
+      usernametext = "",
+      confirmpwtext = "";
+
+  final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -61,129 +67,185 @@ class SignUp extends StatelessWidget {
                   width: 300,
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        // Email
-                        TextField(
-                          controller: ematctrl,
-                          decoration: InputDecoration(
-                            labelText: "Email",
-
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(10),
+                    child: Form(
+                      key: _formKey,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Container(
+                            padding: EdgeInsets.symmetric(
+                              horizontal: 30,
+                              vertical: 2.0,
                             ),
-                          ),
-                        ),
-                        const SizedBox(height: 20),
-
-                        // Username
-                        TextField(
-                          controller: usernamectrl,
-                          obscureText: true,
-                          decoration: InputDecoration(
-                            labelText: " Username",
-
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(10),
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(20),
                             ),
-                          ),
-                        ),
-                        const SizedBox(height: 20),
-                        // Password
-                        TextField(
-                          controller: passwordctrl,
-                          obscureText: true,
-                          decoration: InputDecoration(
-                            labelText: "Password",
-                            suffixIcon: const Icon(
-                              Icons.visibility_off,
-                              color: Colors.grey,
-                            ),
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                          ),
-                        ),
-                        const SizedBox(height: 20),
-                        // Confirm password
-                        TextField(
-                          controller: confirmpwctrl,
-                          obscureText: true,
-                          decoration: InputDecoration(
-                            labelText: " Comfirm  password",
-                            suffixIcon: const Icon(
-                              Icons.visibility_off,
-                              color: Colors.grey,
-                            ),
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                          ),
-                        ),
-
-                        const SizedBox(height: 20),
-
-                        // Sign Up button
-                        SizedBox(
-                          width: double.infinity,
-                          child: ElevatedButton(
-                            onPressed: () {},
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: const Color.fromARGB(
-                                255,
-                                25,
-                                130,
-                                169,
-                              ),
-                              padding: const EdgeInsets.symmetric(vertical: 15),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(25),
-                              ),
-                            ),
-                            child: const Text(
-                              "Sign Up",
-                              style: TextStyle(
-                                fontSize: 18,
-                                color: Colors.white,
+                            child: TextField(
+                              controller: usernamectrl,
+                              obscureText: true,
+                              decoration: InputDecoration(
+                                labelText: " Username",
+                                prefixIcon: Icon(Icons.person),
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                ),
                               ),
                             ),
                           ),
-                        ),
-                        const SizedBox(height: 20),
-
-                        // Divider (Or)
-                        Row(
-                          children: const [
-                            Expanded(child: Divider(thickness: 2)),
-                            Padding(
-                              padding: EdgeInsets.symmetric(horizontal: 10),
-                              child: Text("Or"),
+                      
+                          // Username
+                          const SizedBox(height: 20),
+                          Container(
+                            padding: EdgeInsets.symmetric(
+                              horizontal: 30,
+                              vertical: 2.0,
                             ),
-                            Expanded(child: Divider(thickness: 2)),
-                          ],
-                        ),
-
-                        const SizedBox(height: 20),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            InkWell(
-                              child: Image.asset(
-                                "assets/images/google.png",
-                                height: 50,
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(20),
+                            ),
+                            child: TextField(
+                              controller: ematctrl,
+                              decoration: InputDecoration(
+                                labelText: " Email",
+                                prefixIcon: Icon(Icons.email),
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                ),
                               ),
                             ),
-                            const SizedBox(width: 25),
-                            InkWell(
-                              child: Image.asset(
-                                "assets/images/apple.png",
-                                height: 50,
+                          ),
+                          const SizedBox(height: 20),
+                          Container(
+                            padding: EdgeInsets.symmetric(
+                              horizontal: 30,
+                              vertical: 2.0,
+                            ),
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(20),
+                            ),
+                            child: TextField(
+                              controller: passwordctrl,
+                              obscureText: true,
+                              decoration: InputDecoration(
+                                labelText: "Password",
+                                prefixIcon: Icon(Icons.lock),
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                ),
                               ),
                             ),
-                          ],
-                        ),
-                      ],
+                          ),
+                          const SizedBox(height: 20),
+                          Container(
+                            padding: EdgeInsets.symmetric(
+                              horizontal: 30,
+                              vertical: 2.0,
+                            ),
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(20),
+                            ),
+                            child: TextField(
+                              controller: confirmpwctrl,
+                              obscureText: true,
+                              decoration: InputDecoration(
+                                labelText: " Comfirm  password",
+                                prefixIcon: Icon(Icons.lock),
+                      
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                ),
+                              ),
+                            ),
+                          ),
+                      
+                          // Password
+                          const SizedBox(height: 20),
+                      
+                          // Sign Up button
+                          SizedBox(
+                            width: double.infinity,
+                            child: ElevatedButton(
+                              onPressed: () {},
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: const Color.fromARGB(
+                                  255,
+                                  25,
+                                  130,
+                                  169,
+                                ),
+                                padding: const EdgeInsets.symmetric(vertical: 15),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(25),
+                                ),
+                              ),
+                              child: const Text(
+                                "Sign Up",
+                                style: TextStyle(
+                                  fontSize: 18,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ),
+                          ),
+                          const SizedBox(height: 20),
+                      
+                          // Divider (Or)
+                          Row(
+                            children: const [
+                              Expanded(child: Divider(thickness: 2)),
+                              Padding(
+                                padding: EdgeInsets.symmetric(horizontal: 10),
+                                child: Text("Or"),
+                              ),
+                              Expanded(child: Divider(thickness: 2)),
+                            ],
+                          ),
+                      
+                          const SizedBox(height: 20),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              OutlinedButton.icon(
+                                onPressed: () {},
+                                icon: Image.asset(
+                                  "assets/images/google.png",
+                                  width: 20,
+                                  height: 20,
+                                ),
+                                label: const Text(""),
+                                style: OutlinedButton.styleFrom(
+                                  padding: EdgeInsets.all(12),
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(10),
+                                  ),
+                                ),
+                              ),
+                              const SizedBox(width: 20),
+                      
+                              OutlinedButton.icon(
+                                onPressed: () {},
+                                icon: Image.asset(
+                                  "assets/images/apple.png",
+                                  width: 30,
+                                  height: 30,
+                                ),
+                                label: const Text(""),
+                                style: OutlinedButton.styleFrom(
+                                  padding: EdgeInsets.all(12),
+                      
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(10),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ),
