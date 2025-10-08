@@ -1,15 +1,61 @@
+import 'package:cosmetics/services/auth.dart';
 import 'package:cosmetics/views/Sign_up.dart';
-import 'package:cosmetics/views/resetpassword.dart';
+import 'package:cosmetics/views/forget_password.dart';
+import 'package:cosmetics/views/homescreen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/state_manager.dart';
 
-class Login extends StatelessWidget {
+class Login extends StatefulWidget {
   Login({super.key});
-  TextEditingController email = TextEditingController();
- 
-  TextEditingController password = TextEditingController();
-  
+
+  @override
+  State<Login> createState() => _LoginState();
+}
+
+class _LoginState extends State<Login> {
+  String email = "";
+  String password = "";
+  TextEditingController emailctrl = new TextEditingController();
+  TextEditingController passwordctrl = new TextEditingController();
+  final _formKey = GlobalKey<FormState>();
+
+  userlogin() async {
+    try {
+      await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => Homescreen()),
+      );
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'user-not-found') {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            backgroundColor: Colors.orangeAccent,
+            content: Text(
+              "No User Found that Email",
+              style: TextStyle(fontSize: 18.0),
+            ),
+          ),
+        );
+      } else if (e.code == 'wrong-password') {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            backgroundColor: Colors.orangeAccent,
+            content: Text(
+              "Wrong Password Provided by User",
+              style: TextStyle(fontSize: 18.0),
+            ),
+          ),
+        );
+      }
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +75,7 @@ class Login extends StatelessWidget {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                const SizedBox(height: 20),
+                const SizedBox(height: 5),
 
                 // Logo
                 Container(
@@ -42,7 +88,7 @@ class Login extends StatelessWidget {
                   child: Image.asset("assets/images/logos.png"),
                 ),
 
-                const SizedBox(height: 20),
+                const SizedBox(height: 5),
 
                 // Title
                 const Text(
@@ -54,191 +100,238 @@ class Login extends StatelessWidget {
                   "Welcome back to your account!",
                   style: TextStyle(
                     fontSize: 18,
-                    color: Color.fromARGB(255, 122, 145, 156),
+                    color: Color.fromARGB(255, 11, 15, 17),
                   ),
                 ),
 
-                const SizedBox(height: 20),
+                const SizedBox(height: 5),
 
                 // Login form
                 SizedBox(
                   width: 300,
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Align(
-                          alignment: Alignment.centerLeft,
-                          child: Text(
-                            "Email",
-                            style: TextStyle(fontSize: 18, color: Colors.black),
-                          ),
-                        ),
-                        const SizedBox(height: 5),
-
-                        TextField(
-                          controller: email,
-                          decoration: InputDecoration(
-                            hintText: "Please enter your email",
-
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                          ),
-                        ),
-                        const SizedBox(height: 20),
-                        Align(
-                          alignment: Alignment.centerLeft,
-                          child: Text(
-                            "Password",
-                            style: TextStyle(fontSize: 18, color: Colors.black),
-                          ),
-                        ),
-                        const SizedBox(height: 5),
-                        // Password
-                        TextField(
-                          controller: password,
-                          obscureText: true,
-                          decoration: InputDecoration(
-                            hintText: "Please enter your password",
-                            suffixIcon: const Icon(
-                              Icons.visibility_off,
-                              color: Colors.grey,
-                            ),
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                          ),
-                        ),
-
-                        const SizedBox(height: 3),
-
-                        // Forget password
-                        Align(
-                          alignment: Alignment.centerRight,
-                          child: TextButton(
-                            onPressed: () {
-                              Get.to(Resetpassword());
-                            },
-                            child: const Text(
-                              "Forget password?",
+                    child: Form(
+                      key: _formKey,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Align(
+                            alignment: Alignment.centerLeft,
+                            child: Text(
+                              "Email",
                               style: TextStyle(
-                                color: Colors.redAccent,
-                                decoration: TextDecoration.underline,
-                                decorationColor: Colors.redAccent,
-                                decorationThickness: 1.5,
+                                fontSize: 16,
+                                color: Colors.black,
                               ),
                             ),
                           ),
-                        ),
-
-                        const SizedBox(height: 10),
-
-                        // Sign In button
-                        SizedBox(
-                          width: double.infinity,
-                          child: ElevatedButton(
-                            onPressed: () {
-                              Get.to(SignUp());
+                          const SizedBox(height: 5),
+                          TextFormField(
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return 'Enter enter the E-mail';
+                              }
+                              return null;
                             },
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: const Color.fromARGB(
-                                255,
-                                25,
-                                130,
-                                169,
-                              ),
-                              padding: const EdgeInsets.symmetric(vertical: 15),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(25),
-                              ),
-                            ),
-                            child: const Text(
-                              "Sign In",
-                              style: TextStyle(
-                                fontSize: 18,
-                                color: Colors.white,
+                            controller: emailctrl,
+
+                            decoration: InputDecoration(
+                              hintText: "Please enter your email",
+
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(10),
                               ),
                             ),
                           ),
-                        ),
+                          const SizedBox(height: 5),
+                          Align(
+                            alignment: Alignment.centerLeft,
+                            child: Text(
+                              "Password",
+                              style: TextStyle(
+                                fontSize: 16,
+                                color: Colors.black,
+                              ),
+                            ),
+                          ),
+                          const SizedBox(height: 3),
+                          // Password
+                          TextFormField(
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return 'Enter enter the password';
+                              }
+                              return null;
+                            },
+                            controller: passwordctrl,
+                            obscureText: true,
+                            decoration: InputDecoration(
+                              hintText: "Please enter your password",
+                              suffixIcon: const Icon(
+                                Icons.visibility_off,
+                                color: Colors.grey,
+                              ),
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                            ),
+                          ),
 
-                        const SizedBox(height: 20),
+                          const SizedBox(height: 3),
 
-                        // Sign up link
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            const Text("Don't have an account? "),
-                            GestureDetector(
-                              onTap: () {
-                                Get.to(SignUp());
+                          // Forget password
+                          Align(
+                            alignment: Alignment.centerRight,
+                            child: TextButton(
+                              onPressed: () {
+                                Get.to(ForgetPassword());
                               },
+                              child: GestureDetector(
+                                onTap: () {
+                                  Get.to(ForgetPassword());
+                                },
+                                child: Text(
+                                  "Forget password?",
+                                  style: TextStyle(
+                                    color: Colors.redAccent,
+                                    decoration: TextDecoration.underline,
+                                    decorationColor: Colors.redAccent,
+                                    decorationThickness: 1.5,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+
+                          const SizedBox(height: 5),
+
+                          // Sign In button
+                          SizedBox(
+                            width: double.infinity,
+                            height: 55,
+                            child: ElevatedButton(
+                              onPressed: () {
+                                if (_formKey.currentState?.validate() ??
+                                    false) {
+                                  setState(() {
+                                    email = emailctrl.text;
+                                    password = passwordctrl.text;
+                                  });
+                                  userlogin();
+                                }
+                              },
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: const Color.fromARGB(
+                                  255,
+                                  25,
+                                  130,
+                                  169,
+                                ),
+                                padding: const EdgeInsets.symmetric(
+                                  vertical: 15,
+                                ),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(15),
+                                ),
+                              ),
                               child: const Text(
-                                "Sign up",
+                                "Sign In",
                                 style: TextStyle(
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.bold,
+                                  fontSize: 18,
+                                  color: Colors.white,
                                 ),
                               ),
                             ),
-                          ],
-                        ),
+                          ),
 
-                        const SizedBox(height: 20),
+                          const SizedBox(height: 20),
 
-                        // Divider (Or)
-                        Row(
-                          children: const [
-                            Expanded(child: Divider(thickness: 2)),
-                            Padding(
-                              padding: EdgeInsets.symmetric(horizontal: 10),
-                              child: Text("Or"),
-                            ),
-                            Expanded(child: Divider(thickness: 2)),
-                          ],
-                        ),
-
-                        const SizedBox(height: 20),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            OutlinedButton.icon(
-                              onPressed: () {},
-                              icon: Image.asset("assets/images/google.png"),
-                              label: const Text(""),
-                              style: OutlinedButton.styleFrom(
-                                padding: EdgeInsets.all(12),
-
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(20),
+                          // Sign up link
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              const Text("Don't have an account? "),
+                              GestureDetector(
+                                onTap: () {
+                                  Get.to(SignUp());
+                                },
+                                child: const Text(
+                                  "Sign up",
+                                  style: TextStyle(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.bold,
+                                  ),
                                 ),
                               ),
-                            ),
-                            const SizedBox(width: 20),
+                            ],
+                          ),
 
-                            OutlinedButton.icon(
-                              onPressed: () {},
-                              icon: Image.asset(
-                                "assets/images/apple.png",
-                                width: 20,
-                                height: 20,
+                          const SizedBox(height: 10),
+
+                          // Divider (Or)
+                          Row(
+                            children: const [
+                              Expanded(child: Divider(thickness: 2)),
+                              Padding(
+                                padding: EdgeInsets.symmetric(horizontal: 10),
+                                child: Text("Or"),
                               ),
-                              label: const Text(""),
-                              style: OutlinedButton.styleFrom(
-                                padding: EdgeInsets.symmetric(
-                                  horizontal: 20,
-                                  vertical: 12,
-                                ),
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(20),
+                              Expanded(child: Divider(thickness: 2)),
+                            ],
+                          ),
+
+                          const SizedBox(height: 5),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              GestureDetector(
+                                onTap: () {
+                                  AuthMethods().signInWithGoogle(context);
+                                },
+                                child: OutlinedButton.icon(
+                                  onPressed: () {},
+                                  icon: Image.asset(
+                                    "assets/images/google.png",
+                                    width: 20,
+                                    height: 20,
+                                  ),
+                                  label: const Text(""),
+                                  style: OutlinedButton.styleFrom(
+                                    padding: EdgeInsets.all(12),
+
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(10),
+                                    ),
+                                  ),
                                 ),
                               ),
-                            ),
-                          ],
-                        ),
-                      ],
+                              const SizedBox(width: 20),
+
+                              OutlinedButton.icon(
+                                onPressed: () {},
+                                icon: Center(
+                                  child: Image.asset(
+                                    "assets/images/apple.png",
+                                    width: 20,
+                                    height: 20,
+                                  ),
+                                ),
+                                label: const Text(""),
+                                style: OutlinedButton.styleFrom(
+                                  padding: EdgeInsets.symmetric(
+                                    horizontal: 20,
+                                    vertical: 12,
+                                  ),
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(10),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ),
