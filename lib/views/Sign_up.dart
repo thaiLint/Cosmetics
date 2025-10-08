@@ -1,12 +1,11 @@
-import 'package:cosmetics/views/Sign_up.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:get/state_manager.dart';
 
-class Login extends StatelessWidget {
-   Login({super.key});
-   TextEditingController email = TextEditingController();
-   TextEditingController password = TextEditingController();
+class SignUp extends StatelessWidget {
+  SignUp({super.key});
+  TextEditingController ematctrl = TextEditingController();
+  TextEditingController usernamectrl = TextEditingController();
+  TextEditingController passwordctrl = TextEditingController();
+  TextEditingController confirmpwctrl = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +42,7 @@ class Login extends StatelessWidget {
 
                 // Title
                 const Text(
-                  "Sign In",
+                  "Sign Up",
                   style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
                 ),
                 const SizedBox(height: 10),
@@ -66,18 +65,10 @@ class Login extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         // Email
-                        Align(
-                          alignment: Alignment.centerLeft,
-                          child: Text(
-                            "Email",
-                            style: TextStyle(fontSize: 18, color: Colors.black),
-                          ),
-                        ),
-                        const SizedBox(height: 5),
                         TextField(
-                          controller: email,
+                          controller: ematctrl,
                           decoration: InputDecoration(
-                            labelText: "Please enter your email",
+                            labelText: "Email",
 
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(10),
@@ -85,20 +76,42 @@ class Login extends StatelessWidget {
                           ),
                         ),
                         const SizedBox(height: 20),
-                        Align(
-                          alignment: Alignment.centerLeft,
-                          child: Text(
-                            "Password",
-                            style: TextStyle(fontSize: 18, color: Colors.black),
-                          ),
-                        ),
-                        const SizedBox(height: 5),
-                        // Password
+
+                        // Username
                         TextField(
-                          controller: password,
+                          controller: usernamectrl,
                           obscureText: true,
                           decoration: InputDecoration(
-                            labelText: "Please enter your password",
+                            labelText: " Username",
+
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                          ),
+                        ),
+                        const SizedBox(height: 20),
+                        // Password
+                        TextField(
+                          controller: passwordctrl,
+                          obscureText: true,
+                          decoration: InputDecoration(
+                            labelText: "Password",
+                            suffixIcon: const Icon(
+                              Icons.visibility_off,
+                              color: Colors.grey,
+                            ),
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                          ),
+                        ),
+                        const SizedBox(height: 20),
+                        // Confirm password
+                        TextField(
+                          controller: confirmpwctrl,
+                          obscureText: true,
+                          decoration: InputDecoration(
+                            labelText: " Comfirm  password",
                             suffixIcon: const Icon(
                               Icons.visibility_off,
                               color: Colors.grey,
@@ -109,43 +122,27 @@ class Login extends StatelessWidget {
                           ),
                         ),
 
-                        const SizedBox(height: 3),
+                        const SizedBox(height: 20),
 
-                        // Forget password
-                        Align(
-                          alignment: Alignment.centerRight,
-                          child: TextButton(
-                            onPressed: () {},
-                            child: const Text(
-                              "Forget password?",
-                              style: TextStyle(
-                                color: Colors.redAccent,
-                                decoration: TextDecoration.underline,
-                                decorationColor: Colors.redAccent,
-                                decorationThickness: 1.5,
-                              ),
-                            ),
-                          ),
-                        ),
-
-                        const SizedBox(height: 10),
-
-                        // Sign In button
+                        // Sign Up button
                         SizedBox(
                           width: double.infinity,
                           child: ElevatedButton(
-                            onPressed: () {
-                              Get.to(SignUp());
-                              },
+                            onPressed: () {},
                             style: ElevatedButton.styleFrom(
-                              backgroundColor: const Color.fromARGB(255, 25, 130, 169),
+                              backgroundColor: const Color.fromARGB(
+                                255,
+                                25,
+                                130,
+                                169,
+                              ),
                               padding: const EdgeInsets.symmetric(vertical: 15),
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(25),
                               ),
                             ),
                             child: const Text(
-                              "Sign In",
+                              "Sign Up",
                               style: TextStyle(
                                 fontSize: 18,
                                 color: Colors.white,
@@ -153,29 +150,6 @@ class Login extends StatelessWidget {
                             ),
                           ),
                         ),
-
-                        const SizedBox(height: 20),
-
-                        // Sign up link
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            const Text("Don't have an account? "),
-                            GestureDetector(
-                              onTap: () {
-                                Get.to(SignUp());
-                              },
-                              child: const Text(
-                                "Sign up",
-                                style: TextStyle(
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-
                         const SizedBox(height: 20),
 
                         // Divider (Or)
@@ -194,16 +168,14 @@ class Login extends StatelessWidget {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            GestureDetector(
-                              onTap: () {},
+                            InkWell(
                               child: Image.asset(
                                 "assets/images/google.png",
                                 height: 50,
                               ),
                             ),
                             const SizedBox(width: 25),
-                            GestureDetector(
-                              onTap: () {},
+                            InkWell(
                               child: Image.asset(
                                 "assets/images/apple.png",
                                 height: 50,
