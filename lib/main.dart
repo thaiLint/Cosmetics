@@ -1,3 +1,4 @@
+import 'package:cosmetics/views/cart_screen.dart';
 import 'package:cosmetics/views/detail_screen.dart';
 import 'package:cosmetics/views/homescreen.dart';
 import 'package:cosmetics/views/login.dart';
@@ -24,7 +25,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: Homescreen(),
+      home: CartScreen(),
     );
   }
 }
