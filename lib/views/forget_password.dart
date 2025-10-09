@@ -108,7 +108,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                         onTap: () {
                           if (_formKey.currentState!.validate()) {
                             setState(() {
-                              email = emailctrl.text;
+                              email = emailctrl.text.trim();
                             });
                             resetPassword();
                           }
