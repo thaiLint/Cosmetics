@@ -1,9 +1,11 @@
 import 'package:cosmetics/views/homescreen.dart';
+import 'package:cosmetics/views/login.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class SignUp extends StatefulWidget {
-  SignUp({super.key});
+  const SignUp({super.key});
 
   @override
   State<SignUp> createState() => _SignUpState();
@@ -11,11 +13,8 @@ class SignUp extends StatefulWidget {
 
 class _SignUpState extends State<SignUp> {
   final TextEditingController ematctrl = TextEditingController();
-
   final TextEditingController usernamectrl = TextEditingController();
-
   final TextEditingController passwordctrl = TextEditingController();
-
   final TextEditingController confirmpwctrl = TextEditingController();
 
   final _formKey = GlobalKey<FormState>();
@@ -52,7 +51,7 @@ class _SignUpState extends State<SignUp> {
 
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => Homescreen()),
+        MaterialPageRoute(builder: (context) => const Homescreen()),
       );
     } on FirebaseAuthException catch (e) {
       String message = "";
@@ -119,13 +118,13 @@ class _SignUpState extends State<SignUp> {
                   ),
                 ),
 
-                const SizedBox(height: 5),
+                const SizedBox(height: 20),
 
-                // Login form
+                // Sign-up form
                 SizedBox(
                   width: 300,
                   child: Padding(
-                    padding: const EdgeInsets.all(8.0),
+                    padding: const EdgeInsets.all(20.0),
                     child: Form(
                       key: _formKey,
                       child: Column(
@@ -133,11 +132,12 @@ class _SignUpState extends State<SignUp> {
                         children: [
                           // Username
                           Container(
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 30,
-                              vertical: 2.0,
+                            width: double.infinity,
+                            height: 50,
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(15),
                             ),
-
                             child: TextFormField(
                               validator: (value) {
                                 if (value == null || value.isEmpty) {
@@ -147,7 +147,7 @@ class _SignUpState extends State<SignUp> {
                               },
                               controller: usernamectrl,
                               decoration: InputDecoration(
-                                labelText: " Username",
+                                labelText: " Enter your username",
                                 prefixIcon: const Icon(Icons.person),
                                 border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(10),
@@ -156,25 +156,26 @@ class _SignUpState extends State<SignUp> {
                             ),
                           ),
 
-                          const SizedBox(height: 5),
+                          const SizedBox(height: 20),
 
                           // Email
                           Container(
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 30,
-                              vertical: 2.0,
+                            width: double.infinity,
+                            height: 50,
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(15),
                             ),
-
                             child: TextFormField(
                               validator: (value) {
                                 if (value == null || value.isEmpty) {
-                                  return ' Enter your email';
+                                  return 'Enter your email';
                                 }
                                 return null;
                               },
                               controller: ematctrl,
                               decoration: InputDecoration(
-                                labelText: " Email",
+                                labelText: " Enter your email",
                                 prefixIcon: const Icon(Icons.email),
                                 border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(10),
@@ -183,27 +184,27 @@ class _SignUpState extends State<SignUp> {
                             ),
                           ),
 
-                          const SizedBox(height: 5),
+                          const SizedBox(height: 20),
 
                           // Password
                           Container(
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 30,
-                              vertical: 2.0,
+                            width: double.infinity,
+                            height: 50,
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(15),
                             ),
-
                             child: TextFormField(
                               controller: passwordctrl,
                               obscureText: _obscurePassword,
                               validator: (value) {
                                 if (value == null || value.isEmpty) {
-                                  return 'Enter enter the password';
+                                  return 'Enter the password';
                                 }
                                 return null;
                               },
-
                               decoration: InputDecoration(
-                                labelText: "Password",
+                                labelText: "Enter your password",
                                 prefixIcon: const Icon(Icons.lock),
                                 suffixIcon: IconButton(
                                   onPressed: () {
@@ -224,28 +225,40 @@ class _SignUpState extends State<SignUp> {
                             ),
                           ),
 
-                          const SizedBox(height: 5),
+                          const SizedBox(height: 20),
 
-                          // Confirm password
+                          // Confirm Password
                           Container(
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 30,
-                              vertical: 2.0,
+                            width: double.infinity,
+                            height: 50,
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(15),
                             ),
-
                             child: TextFormField(
+                              controller: confirmpwctrl,
+                              obscureText: _obscureConfirm,
                               validator: (value) {
                                 if (value == null || value.isEmpty) {
-                                  return 'Re enter the password';
+                                  return 'Re-enter the password';
                                 }
                                 return null;
                               },
-                              controller: confirmpwctrl,
-                              obscureText: true,
                               decoration: InputDecoration(
-                                labelText: " Confirm password",
+                                labelText: "Re-enter your password",
                                 prefixIcon: const Icon(Icons.lock),
-
+                                suffixIcon: IconButton(
+                                  onPressed: () {
+                                    setState(() {
+                                      _obscureConfirm = !_obscureConfirm;
+                                    });
+                                  },
+                                  icon: Icon(
+                                    _obscureConfirm
+                                        ? Icons.visibility_off
+                                        : Icons.visibility,
+                                  ),
+                                ),
                                 border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(10),
                                 ),
@@ -253,8 +266,9 @@ class _SignUpState extends State<SignUp> {
                             ),
                           ),
 
-                          const SizedBox(height: 5),
+                          const SizedBox(height: 25),
 
+                          // Sign up button
                           SizedBox(
                             width: double.infinity,
                             height: 55,
@@ -288,54 +302,76 @@ class _SignUpState extends State<SignUp> {
                             ),
                           ),
 
-                          const SizedBox(height: 5),
+                          const SizedBox(height: 25),
 
                           // Divider (Or)
-                          const Row(
-                            children: [
-                              Expanded(child: Divider(thickness: 2)),
-                              Padding(
-                                padding: EdgeInsets.symmetric(horizontal: 10),
-                                child: Text("Or"),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: const [
+                              Expanded(
+                                child: Divider(
+                                  thickness: 1.5,
+                                  color: Colors.grey,
+                                ),
                               ),
-                              Expanded(child: Divider(thickness: 2)),
+                              SizedBox(width: 10),
+                              Text(
+                                "Or",
+                                style: TextStyle(color: Colors.black54),
+                              ),
+                              SizedBox(width: 10),
+                              Expanded(
+                                child: Divider(
+                                  thickness: 1.5,
+                                  color: Colors.grey,
+                                ),
+                              ),
                             ],
                           ),
 
-                          const SizedBox(height: 5),
+                          const SizedBox(height: 25),
 
-                          // Social buttons (no change)
+                          // Social icons (no border)
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              OutlinedButton.icon(
-                                onPressed: () {},
-                                icon: Image.asset(
-                                  "assets/images/apple.png",
-                                  width: 20,
-                                  height: 20,
-                                ),
-                                label: const Text(""),
-                                style: OutlinedButton.styleFrom(
-                                  padding: const EdgeInsets.all(12),
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(10),
-                                  ),
+                              InkWell(
+                                borderRadius: BorderRadius.circular(12),
+                                onTap: () {},
+                                child: Image.asset(
+                                  "assets/images/google.png",
+                                  width: 40,
+                                  height: 40,
                                 ),
                               ),
-                              const SizedBox(width: 5),
-                              OutlinedButton.icon(
-                                onPressed: () {},
-                                icon: Image.asset(
+                              const SizedBox(width: 20),
+                              InkWell(
+                                borderRadius: BorderRadius.circular(12),
+                                onTap: () {},
+                                child: Image.asset(
                                   "assets/images/apple.png",
-                                  width: 30,
-                                  height: 30,
+                                  width: 40,
+                                  height: 40,
                                 ),
-                                label: const Text(""),
-                                style: OutlinedButton.styleFrom(
-                                  padding: const EdgeInsets.all(12),
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(10),
+                              ),
+                            ],
+                          ),
+
+                          const SizedBox(height: 10),
+
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              const Text("Already have an account? "),
+                              GestureDetector(
+                                onTap: () {
+                                  Get.to(Login());
+                                },
+                                child: const Text(
+                                  "Sign In",
+                                  style: TextStyle(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.bold,
                                   ),
                                 ),
                               ),

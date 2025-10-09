@@ -21,6 +21,8 @@ class _LoginState extends State<Login> {
   TextEditingController emailctrl = new TextEditingController();
   TextEditingController passwordctrl = new TextEditingController();
   final _formKey = GlobalKey<FormState>();
+  bool _obscurePassword = true;
+  bool _obscureConfirm = true;
 
   userlogin() async {
     try {
@@ -104,9 +106,9 @@ class _LoginState extends State<Login> {
                   ),
                 ),
 
-                const SizedBox(height: 5),
+                const SizedBox(height: 10),
 
-                // Login form
+               
                 SizedBox(
                   width: 300,
                   child: Padding(
@@ -127,23 +129,32 @@ class _LoginState extends State<Login> {
                             ),
                           ),
                           const SizedBox(height: 5),
-                          TextFormField(
-                            validator: (value) {
-                              if (value == null || value.isEmpty) {
-                                return 'Enter enter the E-mail';
-                              }
-                              return null;
-                            },
-                            controller: emailctrl,
+                          Container(
+                            width: double.infinity,
+                            height: 50,
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            child: TextFormField(
+                              validator: (value) {
+                                if (value == null || value.isEmpty) {
+                                  return 'Enter enter the E-mail';
+                                }
+                                return null;
+                              },
+                              controller: emailctrl,
 
-                            decoration: InputDecoration(
-                              hintText: "Please enter your email",
+                              decoration: InputDecoration(
+                                hintText: "Please enter your email",
 
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(10),
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                ),
                               ),
                             ),
                           ),
+
                           const SizedBox(height: 5),
                           Align(
                             alignment: Alignment.centerLeft,
@@ -156,31 +167,48 @@ class _LoginState extends State<Login> {
                             ),
                           ),
                           const SizedBox(height: 3),
-                          // Password
-                          TextFormField(
-                            validator: (value) {
-                              if (value == null || value.isEmpty) {
-                                return 'Enter enter the password';
-                              }
-                              return null;
-                            },
-                            controller: passwordctrl,
-                            obscureText: true,
-                            decoration: InputDecoration(
-                              hintText: "Please enter your password",
-                              suffixIcon: const Icon(
-                                Icons.visibility_off,
-                                color: Colors.grey,
-                              ),
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(10),
+
+                       
+                          Container(
+                            width: double.infinity,
+                            height: 50,
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            child: TextFormField(
+                              validator: (value) {
+                                if (value == null || value.isEmpty) {
+                                  return 'Please enter the password';
+                                }
+                                return null;
+                              },
+                              controller: passwordctrl,
+                              obscureText: _obscurePassword,
+                              decoration: InputDecoration(
+                                hintText: "Please enter your password",
+                                suffixIcon: IconButton(
+                                  onPressed: () {
+                                    setState(() {
+                                      _obscurePassword = !_obscurePassword;
+                                    });
+                                  },
+                                  icon: Icon(
+                                    _obscurePassword
+                                        ? Icons.visibility_off
+                                        : Icons.visibility,
+                                  ),
+                                ),
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                ),
                               ),
                             ),
                           ),
 
                           const SizedBox(height: 3),
 
-                          // Forget password
+                         
                           Align(
                             alignment: Alignment.centerRight,
                             child: TextButton(
@@ -206,7 +234,7 @@ class _LoginState extends State<Login> {
 
                           const SizedBox(height: 5),
 
-                          // Sign In button
+                         
                           SizedBox(
                             width: double.infinity,
                             height: 55,
@@ -245,31 +273,10 @@ class _LoginState extends State<Login> {
                             ),
                           ),
 
-                          const SizedBox(height: 20),
-
-                          // Sign up link
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              const Text("Don't have an account? "),
-                              GestureDetector(
-                                onTap: () {
-                                  Get.to(SignUp());
-                                },
-                                child: const Text(
-                                  "Sign up",
-                                  style: TextStyle(
-                                    color: Colors.black,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
+                         
 
                           const SizedBox(height: 10),
 
-                          // Divider (Or)
                           Row(
                             children: const [
                               Expanded(child: Divider(thickness: 2)),
@@ -286,45 +293,39 @@ class _LoginState extends State<Login> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               GestureDetector(
-                                onTap: () {
-                                  AuthMethods().signInWithGoogle(context);
-                                },
-                                child: OutlinedButton.icon(
-                                  onPressed: () {},
-                                  icon: Image.asset(
-                                    "assets/images/google.png",
-                                    width: 20,
-                                    height: 20,
-                                  ),
-                                  label: const Text(""),
-                                  style: OutlinedButton.styleFrom(
-                                    padding: EdgeInsets.all(12),
-
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(10),
-                                    ),
-                                  ),
+                                onTap: () {},
+                                child: Image.asset(
+                                  "assets/images/google.png",
+                                  width: 40,
+                                  height: 40,
                                 ),
                               ),
-                              const SizedBox(width: 20),
 
-                              OutlinedButton.icon(
-                                onPressed: () {},
-                                icon: Center(
-                                  child: Image.asset(
-                                    "assets/images/apple.png",
-                                    width: 20,
-                                    height: 20,
-                                  ),
+                              const SizedBox(width: 20),
+                              GestureDetector(
+                                onTap: () {},
+                                child: Image.asset(
+                                  "assets/images/apple.png",
+                                  width: 40,
+                                  height: 40,
                                 ),
-                                label: const Text(""),
-                                style: OutlinedButton.styleFrom(
-                                  padding: EdgeInsets.symmetric(
-                                    horizontal: 20,
-                                    vertical: 12,
-                                  ),
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(10),
+                              ),
+                            ],
+                          ),
+                           const SizedBox(height: 20),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              const Text("Don't have an account? "),
+                              GestureDetector(
+                                onTap: () {
+                                  Get.to(SignUp());
+                                },
+                                child: const Text(
+                                  "Sign up",
+                                  style: TextStyle(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.bold,
                                   ),
                                 ),
                               ),
