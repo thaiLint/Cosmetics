@@ -1,4 +1,7 @@
+
+
 import 'package:cosmetics/services/auth.dart';
+
 import 'package:cosmetics/views/homescreen.dart';
 import 'package:cosmetics/views/login.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -338,9 +341,13 @@ class _SignUpState extends State<SignUp> {
                             children: [
                               InkWell(
                                 borderRadius: BorderRadius.circular(12),
+
+                               
+
                                 onTap: () {
                                   AuthMethods().signInWithGoogle(context);
                                 },
+
                                 child: Image.asset(
                                   "assets/images/google.png",
                                   width: 40,
