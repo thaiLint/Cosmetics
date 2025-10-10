@@ -1,4 +1,5 @@
 
+import 'package:cosmetics/views/bottombart.dart';
 import 'package:cosmetics/views/categories.dart';
 import 'package:cosmetics/views/login.dart';
 
@@ -31,7 +32,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
 
-      home:ProfileSetting(),
+      home:Bottombart(),
     );
   }
 }
