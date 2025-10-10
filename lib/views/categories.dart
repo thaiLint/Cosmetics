@@ -49,12 +49,7 @@ class Categories extends StatelessWidget {
                           fit: BoxFit.cover,
                         ),
                         Text(addData.name, style: TextStyle(fontSize: 20)),
-                        Text("Remove"),
-                        Text("hello"),
-                        Text("hello"),
-                        Text("hello"),
-
-
+                        Icon(Icons.abc_sharp),
                       ],
                     ),
                   );
