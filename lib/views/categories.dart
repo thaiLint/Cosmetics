@@ -52,6 +52,8 @@ class Categories extends StatelessWidget {
                         Text("Remove"),
                         Text("hello"),
                         Text("hello"),
+                        Text("hello"),
+
 
                       ],
                     ),
