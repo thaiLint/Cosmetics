@@ -49,8 +49,7 @@ class Categories extends StatelessWidget {
                           fit: BoxFit.cover,
                         ),
                         Text(addData.name, style: TextStyle(fontSize: 20)),
-                        Text("Text Push"),
-                        Text("GitHub"),
+                        Text("Fale"),
                       ],
                     ),
                   );
