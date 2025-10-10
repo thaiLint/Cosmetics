@@ -50,6 +50,7 @@ class Categories extends StatelessWidget {
                         ),
                         Text(addData.name, style: TextStyle(fontSize: 20)),
                         Text("Remove"),
+                        Text("hello")
                       ],
                     ),
                   );
