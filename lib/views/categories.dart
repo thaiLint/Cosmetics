@@ -50,6 +50,7 @@ class Categories extends StatelessWidget {
                         ),
                         Text(addData.name, style: TextStyle(fontSize: 20)),
                         Icon(Icons.abc_sharp),
+                        Text("Hello pro"),
                       ],
                     ),
                   );
