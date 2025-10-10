@@ -293,9 +293,13 @@ class _LoginState extends State<Login> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               GestureDetector(
+
+                                
+
                                 onTap: () {
                                   AuthMethods().signInWithGoogle(context);
                                 },
+
                                 child: Image.asset(
                                   "assets/images/google.png",
                                   width: 40,
