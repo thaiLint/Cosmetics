@@ -1,0 +1,20 @@
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+
+# Setting PATH for Python 3.13
+# The original version is saved in .zprofile.pysave
+PATH="/Library/Frameworks/Python.framework/Versions/3.13/bin:${PATH}"
+export PATH
+
+##
+# Your previous /Users/phengpheakdey/.zprofile file was backed up as /Users/phengpheakdey/.zprofile.macports-saved_2025-07-05_at_14:50:29
+##
+
+# MacPorts Installer addition on 2025-07-05_at_14:50:29: adding an appropriate PATH variable for use with MacPorts.
+export PATH="/opt/local/bin:/opt/local/sbin:$PATH"
+# Finished adapting your PATH environment variable for use with MacPorts.
+
+# Add Visual Studio Code (code)
+export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
+eval "$(/usr/local/bin/brew shellenv)"
+eval "$(/usr/local/bin/brew shellenv)"

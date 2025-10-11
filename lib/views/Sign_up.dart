@@ -1,5 +1,3 @@
-
-
 import 'package:cosmetics/services/auth.dart';
 
 import 'package:cosmetics/views/homescreen.dart';
