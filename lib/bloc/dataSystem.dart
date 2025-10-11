@@ -7,8 +7,7 @@ class Datasystem {
 List<Datasystem> lisrtData = [
   Datasystem(
     name: "Pngtree—mock",
-    type:
-        "assets/Categories/—Pngtree—mock up cosmetic products for_15619191.png",
+    type: "assets/Categories/Pngtreemock up cosmetic products for_15619191.png",
   ),
   Datasystem(name: "Md", type: "assets/Categories/md-package-460-2.jpg"),
   Datasystem(name: "Mike", type: "assets/Categories/mike.png"),

@@ -1,12 +1,5 @@
 
 import 'package:cosmetics/views/categories.dart';
-import 'package:cosmetics/views/login.dart';
-
-import 'package:cosmetics/views/detail_screen.dart';
-import 'package:cosmetics/views/homescreen.dart';
-import 'package:cosmetics/views/login.dart';
-
-import 'package:cosmetics/views/profile_setting.dart';
 
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -31,7 +24,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
 
-      home:ProfileSetting(),
+      home:Categories(),
     );
   }
 }
