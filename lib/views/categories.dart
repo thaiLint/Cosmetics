@@ -282,7 +282,7 @@ class Categories extends StatelessWidget {
                                     Container(
                                       padding: EdgeInsets.all(4),
                                       child: Text(
-                                        "Hello",
+                                        "Hello Sister",
                                         style: TextStyle(
                                           color: const Color.fromARGB(
                                             226,
