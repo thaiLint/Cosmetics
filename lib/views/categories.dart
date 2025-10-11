@@ -1,4 +1,9 @@
-import 'package:cosmetics/views/detail_screen.dart';
+import 'package:cosmetics/views/dataCategories/screen_type.dart';
+import 'package:cosmetics/views/dataCategories/screen_type2.dart';
+import 'package:cosmetics/views/dataCategories/screen_type3.dart';
+import 'package:cosmetics/views/dataCategories/screen_type4.dart';
+import 'package:cosmetics/views/dataCategories/screen_type5.dart';
+import 'package:cosmetics/views/dataCategories/screen_type6.dart';
 import 'package:flutter/material.dart';
 
 class Categories extends StatelessWidget {
@@ -35,21 +40,17 @@ class Categories extends StatelessWidget {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => DetailScreen(),
+                              builder: (context) => ScreenType(),
                             ),
                           );
                         },
                         child: Padding(
-                          padding: const EdgeInsets.only(
-                            top: 10,
-                            left: 20,
-                            right: 20,
-                          ),
+                          padding: const EdgeInsets.only(left: 20, right: 20),
                           child: Column(
                             children: [
                               Container(
                                 width: 80,
-                                height: 160,
+                                height: 200,
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(20),
                                   image: DecorationImage(
@@ -88,21 +89,17 @@ class Categories extends StatelessWidget {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => DetailScreen(),
+                              builder: (context) => ScreenType2(),
                             ),
                           );
                         },
                         child: Padding(
-                          padding: const EdgeInsets.only(
-                            top: 10,
-                            left: 20,
-                            right: 20,
-                          ),
+                          padding: const EdgeInsets.only(left: 20, right: 20),
                           child: Column(
                             children: [
                               Container(
                                 width: 80,
-                                height: 160,
+                                height: 200,
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(20),
                                   image: DecorationImage(
@@ -141,21 +138,17 @@ class Categories extends StatelessWidget {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => DetailScreen(),
+                              builder: (context) => ScreenType3(),
                             ),
                           );
                         },
                         child: Padding(
-                          padding: const EdgeInsets.only(
-                            top: 10,
-                            left: 20,
-                            right: 20,
-                          ),
+                          padding: const EdgeInsets.only(left: 20, right: 20),
                           child: Column(
                             children: [
                               Container(
                                 width: 80,
-                                height: 160,
+                                height: 200,
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(20),
                                   image: DecorationImage(
@@ -199,21 +192,17 @@ class Categories extends StatelessWidget {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => DetailScreen(),
+                              builder: (context) => ScreenType4(),
                             ),
                           );
                         },
                         child: Padding(
-                          padding: const EdgeInsets.only(
-                            top: 10,
-                            left: 20,
-                            right: 20,
-                          ),
+                          padding: const EdgeInsets.only(left: 20, right: 20),
                           child: Column(
                             children: [
                               Container(
                                 width: 80,
-                                height: 160,
+                                height: 200,
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(20),
                                   image: DecorationImage(
@@ -252,21 +241,17 @@ class Categories extends StatelessWidget {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => DetailScreen(),
+                              builder: (context) => ScreenType5(),
                             ),
                           );
                         },
                         child: Padding(
-                          padding: const EdgeInsets.only(
-                            top: 10,
-                            left: 20,
-                            right: 20,
-                          ),
+                          padding: const EdgeInsets.only(left: 20, right: 20),
                           child: Column(
                             children: [
                               Container(
                                 width: 80,
-                                height: 160,
+                                height: 200,
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(20),
                                   image: DecorationImage(
@@ -305,21 +290,17 @@ class Categories extends StatelessWidget {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => DetailScreen(),
+                              builder: (context) => ScreenType6(),
                             ),
                           );
                         },
                         child: Padding(
-                          padding: const EdgeInsets.only(
-                            top: 10,
-                            left: 20,
-                            right: 20,
-                          ),
+                          padding: const EdgeInsets.only(left: 20, right: 20),
                           child: Column(
                             children: [
                               Container(
                                 width: 80,
-                                height: 160,
+                                height: 200,
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(20),
                                   image: DecorationImage(
