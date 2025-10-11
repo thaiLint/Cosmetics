@@ -352,17 +352,18 @@ class Categories extends StatelessWidget {
                             ],
                           ),
                         ),
+                      )
 
-                        Text(addData.name, style: TextStyle(fontSize: 20)),
-                        Text("Text Push"),
-                        Text("GitHub"),
-                        Text("Push"),
-                      ],
-                    ),
-                  );
-                },
+                //         Text(addData.name, style: TextStyle(fontSize: 20)),
+                //         Text("Text Push"),
+                //         Text("GitHub"),
+                //         Text("Push"),
+                //       ],
+                //     ),
+                //   );
+                // },
 
-                      ),
+                    
                     ],
                   ),
                 ],
