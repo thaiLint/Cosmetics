@@ -1,6 +1,8 @@
 
+
 import 'package:cosmetics/views/categories.dart';
 
+import 'package:cosmetics/views/profile_setting.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
