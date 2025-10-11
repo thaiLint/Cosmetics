@@ -1,5 +1,8 @@
 import 'dart:typed_data';
+import 'package:cosmetics/views/profile_detail.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:image_picker/image_picker.dart';
 
 class ProfileSetting extends StatefulWidget {
@@ -10,6 +13,8 @@ class ProfileSetting extends StatefulWidget {
 }
 
 class _ProfileSettingState extends State<ProfileSetting> {
+  int _selectedMenuIndex = -1;
+
   Uint8List? _image;
 
   Future<void> selectImage() async {
@@ -36,58 +41,80 @@ class _ProfileSettingState extends State<ProfileSetting> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const SizedBox(height: 20),
-              const Text(
-                "Profile Setting",
-                style: TextStyle(
-                  fontSize: 22,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black87,
+              Center(
+                child: const Text(
+                  "Profile Setting",
+                  style: TextStyle(
+                    fontSize: 22,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black87,
+                  ),
                 ),
               ),
 
               const SizedBox(height: 20),
-              Center(
-                child: Stack(
-                  children: [
-                    _image != null
-                        ? CircleAvatar(
-                            radius: 64,
-                            backgroundImage: MemoryImage(_image!),
-                          )
-                        : const CircleAvatar(
-                            radius: 64,
-                            backgroundImage: NetworkImage(
-                              "https://i.pinimg.com/736x/10/89/d2/1089d2ad6538747479e1f18a26ea462d.jpg",
+              Row(
+                children: [
+                  Stack(
+                    children: [
+                      _image != null
+                          ? SizedBox(
+                              width: 50,
+                              height: 50,
+                              child: ClipOval(
+                                child: Image.memory(_image!, fit: BoxFit.cover),
+                              ),
+                            )
+                          : SizedBox(
+                              width: 50,
+                              height: 50,
+                              child: ClipOval(
+                                child: Image.network(
+                                  "https://i.pinimg.com/736x/10/89/d2/1089d2ad6538747479e1f18a26ea462d.jpg",
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
                             ),
-                          ),
-                    Positioned(
-                      bottom: -10,
-                      left: 80,
-                      child: IconButton(
-                        onPressed: selectImage,
-                        icon: const Icon(
-                          Icons.add_a_photo,
-                          color: Colors.blueAccent,
+                      // Positioned(
+                      //   bottom: -15,
+                      //   right: 0,
+                      //   left: 20,
+                      //   child: IconButton(
+                      //     onPressed: selectImage,
+                      //     icon: const Icon(
+                      //       Icons.add_a_photo,
+                      //       color: Colors.pinkAccent,
+                      //       size: 20,
+                      //     ),
+                      //   ),
+                      // ),
+                    ],
+                  ),
+
+                  const SizedBox(width: 15),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Text(
+                        "Kim Minji",
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
                         ),
                       ),
-                    ),
-                  ],
-                ),
-              ),
-
-              const SizedBox(height: 15),
-              const Text(
-                "Ru Sunjae",
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-              ),
-              const Text(
-                "sunjearu@gmail.com",
-                style: TextStyle(color: Colors.grey),
+                      const Text(
+                        "pammin@gmail.com",
+                        style: TextStyle(color: Colors.grey),
+                      ),
+                    ],
+                  ),
+                ],
               ),
 
               const SizedBox(height: 20),
               const Divider(),
-              
+
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 15),
                 child: Row(
@@ -119,27 +146,54 @@ class _ProfileSettingState extends State<ProfileSetting> {
 
               const Divider(),
 
-              const MenuItem(icon: Icons.person_outline, text: "My Profile"),
-              const MenuItem(icon: Icons.lock_outline, text: "Reset Password"),
-              const MenuItem(icon: Icons.language, text: "Language"),
-              const MenuItem(
-                icon: Icons.file_copy_outlined,
-                text: "Term & Condition",
+              MenuItem(
+                icon: Icons.person_outline,
+                text: "My Profile",
+                index: 0,
+                selectedIndex: _selectedMenuIndex,
+                onTap: (i) => setState(() => _selectedMenuIndex = i),
+                onNavigate: () => Get.to(ProfileDetail()),
               ),
-              const MenuItem(icon: Icons.help_outline, text: "Help Center"),
+              MenuItem(
+                icon: Icons.lock_outline,
+                text: "Reset Password",
+                index: 1,
+                selectedIndex: _selectedMenuIndex,
+                onTap: (i) => setState(() => _selectedMenuIndex = i),
+              ),
+              MenuItem(
+                icon: Icons.language,
+                text: "Language",
+                index: 2,
+                selectedIndex: _selectedMenuIndex,
+                onTap: (i) => setState(() => _selectedMenuIndex = i),
+              ),
 
-              ListTile(
-                leading: const Icon(Icons.logout, color: Colors.redAccent),
-                title: const Text(
-                  "Log out",
-                  style: TextStyle(color: Colors.redAccent),
+              InkWell(
+                onTap: () {
+                  Get.to(ProfileDetail());
+                },
+                child: MenuItem(
+                  icon: Icons.file_copy_outlined,
+                  text: "Term & Condition",
+                  index: 3,
+                  selectedIndex: _selectedMenuIndex,
+                  onTap: (i) => setState(() => _selectedMenuIndex = i),
                 ),
-                trailing: const Icon(
-                  Icons.arrow_forward_ios,
-                  size: 16,
-                  color: Colors.redAccent,
-                ),
-                onTap: () {},
+              ),
+              MenuItem(
+                icon: Icons.help_outline,
+                text: "Help Center",
+                index: 4,
+                selectedIndex: _selectedMenuIndex,
+                onTap: (i) => setState(() => _selectedMenuIndex = i),
+              ),
+              MenuItem(
+                icon: Icons.logout,
+                text: "Log out",
+                index: 5,
+                selectedIndex: _selectedMenuIndex,
+                onTap: (i) => setState(() => _selectedMenuIndex = i),
               ),
 
               const SizedBox(height: 20),
@@ -185,16 +239,52 @@ class ActionIcon extends StatelessWidget {
 class MenuItem extends StatelessWidget {
   final IconData icon;
   final String text;
+  final int index;
+  final int selectedIndex;
+  final ValueChanged<int> onTap;
+  final VoidCallback? onNavigate;
 
-  const MenuItem({required this.icon, required this.text});
+  const MenuItem({
+    required this.icon,
+    required this.text,
+    required this.index,
+    required this.selectedIndex,
+    required this.onTap,
+    this.onNavigate,
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
+    final bool isSelected = index == selectedIndex;
+
     return ListTile(
-      leading: Icon(icon, color: Colors.blueAccent),
-      title: Text(text),
-      trailing: const Icon(Icons.arrow_forward_ios, size: 16),
-      onTap: () {},
+      leading: Icon(
+        icon,
+        color: isSelected ? Colors.blueAccent : Colors.grey[700],
+      ),
+      title: Text(
+        text,
+        style: TextStyle(
+          color: isSelected ? Colors.blueAccent : Colors.black87,
+          fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
+        ),
+      ),
+      trailing: IconButton(
+        icon: Icon(
+          Icons.arrow_forward_ios,
+          size: 16,
+          color: isSelected ? Colors.blueAccent : Colors.grey,
+        ),
+        onPressed: onNavigate,
+      ),
+
+      tileColor: isSelected ? Colors.blueAccent.withOpacity(0.1) : null,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+      onTap: () {
+        onTap(index);
+        if (onNavigate != null) onNavigate!();
+      },
     );
   }
 }
