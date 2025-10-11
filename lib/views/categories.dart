@@ -1,4 +1,4 @@
-import 'package:cosmetics/bloc/dataSystem.dart';
+import 'package:cosmetics/views/detail_screen.dart';
 import 'package:flutter/material.dart';
 
 class Categories extends StatelessWidget {
@@ -9,55 +9,356 @@ class Categories extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.amber,
-        title: Padding(
-          padding: const EdgeInsets.all(75.0),
-          child: Text(
-            "Categories",
-            style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
-          ),
+        centerTitle: true,
+        title: Text(
+          "Categories",
+          style: TextStyle(fontWeight: FontWeight.w600),
         ),
         leading: IconButton(
           onPressed: () {},
-          icon: Icon(Icons.arrow_back_ios_new),
+          icon: Icon(Icons.arrow_back_ios_new, size: 25),
         ),
       ),
+
       body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(10.0),
-          child: Column(
-            children: [
-              SizedBox(height: 10),
-              GridView.builder(
-                shrinkWrap: true,
-                itemCount: lisrtData.length,
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 3,
-                ),
-                itemBuilder: (context, index) {
-                  final addData = lisrtData[index];
-                  return Card(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Image.asset(
-                          addData.type,
-                          height: 100,
-                          width: double.infinity,
-                          fit: BoxFit.cover,
+        child: Column(
+          children: [
+            SingleChildScrollView(
+              // scrollDirection: Axis.horizontal,
+              child: Column(
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      InkWell(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => DetailScreen(),
+                            ),
+                          );
+                        },
+                        child: Padding(
+                          padding: const EdgeInsets.only(
+                            top: 10,
+                            left: 20,
+                            right: 20,
+                          ),
+                          child: Column(
+                            children: [
+                              Container(
+                                width: 80,
+                                height: 160,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(20),
+                                  image: DecorationImage(
+                                    image: AssetImage(
+                                      "assets/images/apple.png",
+                                    ),
+                                  ),
+                                ),
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  // ឲ្យអក្សរចុះក្រោម
+                                  children: [
+                                    Container(
+                                      padding: EdgeInsets.all(4),
+                                      child: Text(
+                                        "Hello",
+                                        style: TextStyle(
+                                          color: const Color.fromARGB(
+                                            226,
+                                            231,
+                                            7,
+                                            93,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
-                        Text(addData.name, style: TextStyle(fontSize: 20)),
-                        Text("Text Push"),
-                        Text("GitHub"),
-                      ],
-                    ),
-                  );
-                },
+                      ),
+                      InkWell(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => DetailScreen(),
+                            ),
+                          );
+                        },
+                        child: Padding(
+                          padding: const EdgeInsets.only(
+                            top: 10,
+                            left: 20,
+                            right: 20,
+                          ),
+                          child: Column(
+                            children: [
+                              Container(
+                                width: 80,
+                                height: 160,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(20),
+                                  image: DecorationImage(
+                                    image: AssetImage(
+                                      "assets/images/apple.png",
+                                    ),
+                                  ),
+                                ),
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  // ឲ្យអក្សរចុះក្រោម
+                                  children: [
+                                    Container(
+                                      padding: EdgeInsets.all(4),
+                                      child: Text(
+                                        "Hello",
+                                        style: TextStyle(
+                                          color: const Color.fromARGB(
+                                            226,
+                                            231,
+                                            7,
+                                            93,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      InkWell(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => DetailScreen(),
+                            ),
+                          );
+                        },
+                        child: Padding(
+                          padding: const EdgeInsets.only(
+                            top: 10,
+                            left: 20,
+                            right: 20,
+                          ),
+                          child: Column(
+                            children: [
+                              Container(
+                                width: 80,
+                                height: 160,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(20),
+                                  image: DecorationImage(
+                                    image: AssetImage(
+                                      "assets/images/apple.png",
+                                    ),
+                                  ),
+                                ),
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  // ឲ្យអក្សរចុះក្រោម
+                                  children: [
+                                    Container(
+                                      padding: EdgeInsets.all(4),
+                                      child: Text(
+                                        "Hello",
+                                        style: TextStyle(
+                                          color: const Color.fromARGB(
+                                            226,
+                                            231,
+                                            7,
+                                            93,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      InkWell(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => DetailScreen(),
+                            ),
+                          );
+                        },
+                        child: Padding(
+                          padding: const EdgeInsets.only(
+                            top: 10,
+                            left: 20,
+                            right: 20,
+                          ),
+                          child: Column(
+                            children: [
+                              Container(
+                                width: 80,
+                                height: 160,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(20),
+                                  image: DecorationImage(
+                                    image: AssetImage(
+                                      "assets/images/apple.png",
+                                    ),
+                                  ),
+                                ),
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  // ឲ្យអក្សរចុះក្រោម
+                                  children: [
+                                    Container(
+                                      padding: EdgeInsets.all(4),
+                                      child: Text(
+                                        "Hello",
+                                        style: TextStyle(
+                                          color: const Color.fromARGB(
+                                            226,
+                                            231,
+                                            7,
+                                            93,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      InkWell(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => DetailScreen(),
+                            ),
+                          );
+                        },
+                        child: Padding(
+                          padding: const EdgeInsets.only(
+                            top: 10,
+                            left: 20,
+                            right: 20,
+                          ),
+                          child: Column(
+                            children: [
+                              Container(
+                                width: 80,
+                                height: 160,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(20),
+                                  image: DecorationImage(
+                                    image: AssetImage(
+                                      "assets/images/apple.png",
+                                    ),
+                                  ),
+                                ),
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  // ឲ្យអក្សរចុះក្រោម
+                                  children: [
+                                    Container(
+                                      padding: EdgeInsets.all(4),
+                                      child: Text(
+                                        "Hello Sister",
+                                        style: TextStyle(
+                                          color: const Color.fromARGB(
+                                            226,
+                                            231,
+                                            7,
+                                            93,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      InkWell(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => DetailScreen(),
+                            ),
+                          );
+                        },
+                        child: Padding(
+                          padding: const EdgeInsets.only(
+                            top: 10,
+                            left: 20,
+                            right: 20,
+                          ),
+                          child: Column(
+                            children: [
+                              Container(
+                                width: 80,
+                                height: 160,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(20),
+                                  image: DecorationImage(
+                                    image: AssetImage(
+                                      "assets/images/apple.png",
+                                    ),
+                                  ),
+                                ),
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  // ឲ្យអក្សរចុះក្រោម
+                                  children: [
+                                    Container(
+                                      padding: EdgeInsets.all(4),
+                                      child: Text(
+                                        "Hello Pro",
+                                        style: TextStyle(
+                                          color: const Color.fromARGB(
+                                            226,
+                                            231,
+                                            7,
+                                            93,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
