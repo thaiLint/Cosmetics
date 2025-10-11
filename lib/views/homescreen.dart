@@ -366,15 +366,12 @@ class Homescreen extends StatelessWidget {
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
                         color: const Color.fromARGB(255, 255, 255, 255),
-                        border: Border.all(
-                          color: Colors.grey,
-                          width: 1
-                        )
+                        border: Border.all(color: Colors.grey, width: 1),
                       ),
                       child: Center(
-                        child: Image.asset(all[index].img,width: 200)),
+                        child: Image.asset(all[index].img, width: 200),
+                      ),
                     ),
-                    
                   );
                 },
               ),
@@ -382,7 +379,7 @@ class Homescreen extends StatelessWidget {
           ],
         ),
       ),
+     
     );
-
   }
 }

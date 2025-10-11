@@ -1,14 +1,15 @@
+import 'package:cosmetics/views/profile_setting.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 
 // 🔹 Import your Homescreen (you forgot this)
-import 'package:cosmetics/views/homescreen.dart'; // <-- change path if different
+import 'package:cosmetics/views/homescreen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  runApp(const MyApp()); 
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -22,7 +23,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home:  Homescreen(),
+      home: ProfileSetting(),
     );
   }
 }

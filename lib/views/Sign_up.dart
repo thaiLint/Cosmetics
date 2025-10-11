@@ -1,7 +1,7 @@
 import 'package:cosmetics/services/auth.dart';
 
 import 'package:cosmetics/views/homescreen.dart';
-import 'package:cosmetics/views/login.dart';
+import 'package:cosmetics/views/SignIn.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
