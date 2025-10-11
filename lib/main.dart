@@ -1,14 +1,12 @@
 
+<<<<<<< HEAD
 import 'package:cosmetics/views/bottombart.dart';
-import 'package:cosmetics/views/categories.dart';
-import 'package:cosmetics/views/login.dart';
+=======
 
-import 'package:cosmetics/views/detail_screen.dart';
-import 'package:cosmetics/views/homescreen.dart';
-import 'package:cosmetics/views/login.dart';
+>>>>>>> 8c1f49dff60b96bcdb5d4e78dd18ec0f39307a01
+import 'package:cosmetics/views/categories.dart';
 
 import 'package:cosmetics/views/profile_setting.dart';
-
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
@@ -32,7 +30,11 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
 
+<<<<<<< HEAD
       home:Bottombart(),
+=======
+      home:Categories(),
+>>>>>>> 8c1f49dff60b96bcdb5d4e78dd18ec0f39307a01
     );
   }
 }

@@ -3,14 +3,13 @@ import 'package:cosmetics/services/database.dart';
 import 'package:cosmetics/views/homescreen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 class AuthMethods {
   final FirebaseAuth auth = FirebaseAuth.instance;
 
   getCurrentUser() async {
-    return await auth.currentUser;
+    return auth.currentUser;
   }
 
   signInWithGoogle(BuildContext context) async {
@@ -31,21 +30,19 @@ class AuthMethods {
 
     User? userDetails = result.user;
 
-    if (result != null) {
-      Map<String, dynamic> userInfoMap = {
-        "email": userDetails!.email,
-        "name": userDetails.displayName,
-        "imgUrl": userDetails.photoURL,
-        "id": userDetails.uid
-      };
-      await DatabaseMethods()
-          .addUser(userDetails.uid, userInfoMap)
-          .then((value) {
-        Navigator.push(
-            context, MaterialPageRoute(builder: (context) =>Homescreen()));
-      });
+    Map<String, dynamic> userInfoMap = {
+      "email": userDetails!.email,
+      "name": userDetails.displayName,
+      "imgUrl": userDetails.photoURL,
+      "id": userDetails.uid
+    };
+    await DatabaseMethods()
+        .addUser(userDetails.uid, userInfoMap)
+        .then((value) {
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) =>Homescreen()));
+    });
     }
-  }
 }
 
  
