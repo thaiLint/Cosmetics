@@ -1,5 +1,9 @@
 
+<<<<<<< HEAD
+import 'package:cosmetics/views/bottombart.dart';
+=======
 
+>>>>>>> 8c1f49dff60b96bcdb5d4e78dd18ec0f39307a01
 import 'package:cosmetics/views/categories.dart';
 
 import 'package:cosmetics/views/profile_setting.dart';
@@ -26,7 +30,11 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
 
+<<<<<<< HEAD
+      home:Bottombart(),
+=======
       home:Categories(),
+>>>>>>> 8c1f49dff60b96bcdb5d4e78dd18ec0f39307a01
     );
   }
 }
