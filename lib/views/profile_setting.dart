@@ -1,5 +1,8 @@
 import 'dart:typed_data';
+import 'package:cosmetics/views/help_center.dart';
+import 'package:cosmetics/views/language.dart';
 import 'package:cosmetics/views/profile_detail.dart';
+import 'package:cosmetics/views/resetpaswor_profile.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
@@ -160,6 +163,7 @@ class _ProfileSettingState extends State<ProfileSetting> {
                 index: 1,
                 selectedIndex: _selectedMenuIndex,
                 onTap: (i) => setState(() => _selectedMenuIndex = i),
+                onNavigate: () => Get.to(ResetpasworProfile()),
               ),
               MenuItem(
                 icon: Icons.language,
@@ -167,6 +171,7 @@ class _ProfileSettingState extends State<ProfileSetting> {
                 index: 2,
                 selectedIndex: _selectedMenuIndex,
                 onTap: (i) => setState(() => _selectedMenuIndex = i),
+                onNavigate: () => Get.to(LanguageScreen()),
               ),
 
               InkWell(
@@ -179,6 +184,7 @@ class _ProfileSettingState extends State<ProfileSetting> {
                   index: 3,
                   selectedIndex: _selectedMenuIndex,
                   onTap: (i) => setState(() => _selectedMenuIndex = i),
+                  onNavigate: () => Get.to(Condition),
                 ),
               ),
               MenuItem(
@@ -187,6 +193,7 @@ class _ProfileSettingState extends State<ProfileSetting> {
                 index: 4,
                 selectedIndex: _selectedMenuIndex,
                 onTap: (i) => setState(() => _selectedMenuIndex = i),
+                onNavigate: () => Get.to(HelpCenter()),
               ),
               MenuItem(
                 icon: Icons.logout,

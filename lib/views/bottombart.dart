@@ -38,7 +38,7 @@ class _BottombartState extends State<Bottombart> {
         backgroundColor: Colors.redAccent,
         shape: const CircleBorder(),
         onPressed: () {
-          onItemTapped(2); 
+          onItemTapped(2);
         },
         child: const Icon(Icons.storefront, color: Colors.white),
       ),
