@@ -1,4 +1,10 @@
 
+import 'package:cosmetics/views/dataCategories/screen_type.dart';
+import 'package:cosmetics/views/dataCategories/screen_type2.dart';
+import 'package:cosmetics/views/dataCategories/screen_type3.dart';
+import 'package:cosmetics/views/dataCategories/screen_type4.dart';
+import 'package:cosmetics/views/dataCategories/screen_type5.dart';
+import 'package:cosmetics/views/dataCategories/screen_type6.dart';
 import 'package:flutter/material.dart';
 
 class Categories extends StatelessWidget {
@@ -281,9 +287,7 @@ class Categories extends StatelessWidget {
                             ],
                           ),
                         ),
-<<<<<<< HEAD
-                      ),
-=======
+
                       )
 
                 //         Text(addData.name, style: TextStyle(fontSize: 20)),
@@ -295,8 +299,7 @@ class Categories extends StatelessWidget {
                 //   );
                 // },
 
-                    
->>>>>>> dev
+
                     ],
                   ),
                 ],
