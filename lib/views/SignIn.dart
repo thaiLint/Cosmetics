@@ -1,3 +1,4 @@
+import 'package:cosmetics/main.dart';
 import 'package:cosmetics/services/auth.dart';
 import 'package:cosmetics/views/Sign_up.dart';
 import 'package:cosmetics/views/forget_password.dart';
@@ -7,6 +8,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/state_manager.dart';
+import 'package:cosmetics/main.dart';
 
 class Login extends StatefulWidget {
   Login({super.key});
@@ -24,15 +26,20 @@ class _LoginState extends State<Login> {
   bool _obscurePassword = true;
   bool _obscureConfirm = true;
 
+  void _login() {
+    Get.offAll(() => const BottomBarController());
+  }
+
   userlogin() async {
     try {
       await FirebaseAuth.instance.signInWithEmailAndPassword(
         email: email,
         password: password,
       );
-      Navigator.push(
+      // Navigate to BottomBarController instead of Homescreen
+      Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => Homescreen()),
+        MaterialPageRoute(builder: (context) => const BottomBarController()),
       );
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
@@ -108,7 +115,6 @@ class _LoginState extends State<Login> {
 
                 const SizedBox(height: 10),
 
-               
                 SizedBox(
                   width: 300,
                   child: Padding(
@@ -144,17 +150,14 @@ class _LoginState extends State<Login> {
                                 return null;
                               },
                               controller: emailctrl,
-
                               decoration: InputDecoration(
                                 hintText: "Please enter your email",
-
                                 border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(10),
                                 ),
                               ),
                             ),
                           ),
-
                           const SizedBox(height: 5),
                           Align(
                             alignment: Alignment.centerLeft,
@@ -167,8 +170,6 @@ class _LoginState extends State<Login> {
                             ),
                           ),
                           const SizedBox(height: 3),
-
-                       
                           Container(
                             width: double.infinity,
                             height: 50,
@@ -205,10 +206,7 @@ class _LoginState extends State<Login> {
                               ),
                             ),
                           ),
-
                           const SizedBox(height: 3),
-
-                         
                           Align(
                             alignment: Alignment.centerRight,
                             child: TextButton(
@@ -231,10 +229,7 @@ class _LoginState extends State<Login> {
                               ),
                             ),
                           ),
-
                           const SizedBox(height: 5),
-
-                         
                           SizedBox(
                             width: double.infinity,
                             height: 55,
@@ -272,11 +267,7 @@ class _LoginState extends State<Login> {
                               ),
                             ),
                           ),
-
-                         
-
                           const SizedBox(height: 10),
-
                           Row(
                             children: const [
                               Expanded(child: Divider(thickness: 2)),
@@ -287,26 +278,20 @@ class _LoginState extends State<Login> {
                               Expanded(child: Divider(thickness: 2)),
                             ],
                           ),
-
                           const SizedBox(height: 5),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               GestureDetector(
-
-                                
-
                                 onTap: () {
                                   AuthMethods().signInWithGoogle(context);
                                 },
-
                                 child: Image.asset(
                                   "assets/images/google.png",
                                   width: 40,
                                   height: 40,
                                 ),
                               ),
-
                               const SizedBox(width: 20),
                               GestureDetector(
                                 onTap: () {},
@@ -318,7 +303,7 @@ class _LoginState extends State<Login> {
                               ),
                             ],
                           ),
-                           const SizedBox(height: 20),
+                          const SizedBox(height: 20),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
