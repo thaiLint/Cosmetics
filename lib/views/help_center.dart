@@ -188,8 +188,6 @@ class _HelpCenterState extends State<HelpCenter> {
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
               const SizedBox(height: 10),
-
-              // Social Media Rows
               socialMediaRow(
                   imagePath: "assets/images/facebook.png",
                   name: "Facebook",

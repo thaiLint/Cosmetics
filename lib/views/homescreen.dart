@@ -93,7 +93,6 @@ class Homescreen extends StatelessWidget {
                               ),
                             ),
                           ),
-
                           Padding(
                             padding: const EdgeInsets.all(18.0),
                             child: Column(
@@ -131,7 +130,6 @@ class Homescreen extends StatelessWidget {
                                   ),
                                 ),
                                 SizedBox(height: 16),
-
                                 Container(
                                   padding: const EdgeInsets.symmetric(
                                     horizontal: 12,
@@ -168,7 +166,12 @@ class Homescreen extends StatelessWidget {
                     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
                   ),
                   Spacer(),
-                  TextButton(onPressed: () {}, child: Text("See all")),
+                  TextButton(
+                    onPressed: () {
+                    
+                    },
+                    child: Text("See all"),
+                  ),
                 ],
               ),
             ),
@@ -285,7 +288,6 @@ class Homescreen extends StatelessWidget {
                                     ),
                                     overflow: TextOverflow.ellipsis,
                                   ),
-
                                   Padding(
                                     padding: const EdgeInsets.all(8.0),
                                     child: Row(
@@ -578,7 +580,6 @@ class Homescreen extends StatelessWidget {
           ],
         ),
       ),
-     
     );
   }
 }
