@@ -1,6 +1,6 @@
-part of 'lib_bloc.dart';
+// part of 'lib_bloc.dart';
 
-@immutable
-sealed class LibState {}
+// @immutable
+// sealed class LibState {}
 
-final class LibInitial extends LibState {}
+// final class LibInitial extends LibState {}

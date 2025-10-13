@@ -1,11 +1,12 @@
 import 'dart:typed_data';
 import 'package:cosmetics/views/help_center.dart';
 import 'package:cosmetics/views/language.dart';
+import 'package:cosmetics/views/logout.dart';
 import 'package:cosmetics/views/profile_detail.dart';
 import 'package:cosmetics/views/resetpaswor_profile.dart';
+import 'package:cosmetics/views/condition.dart'; // <-- Add this import
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get.dart' hide Condition;
 import 'package:image_picker/image_picker.dart';
 
 class ProfileSetting extends StatefulWidget {
@@ -184,7 +185,7 @@ class _ProfileSettingState extends State<ProfileSetting> {
                   index: 3,
                   selectedIndex: _selectedMenuIndex,
                   onTap: (i) => setState(() => _selectedMenuIndex = i),
-                  onNavigate: () => Get.to(Condition),
+                 onNavigate: () => Get.to(Condition()),
                 ),
               ),
               MenuItem(
@@ -201,6 +202,7 @@ class _ProfileSettingState extends State<ProfileSetting> {
                 index: 5,
                 selectedIndex: _selectedMenuIndex,
                 onTap: (i) => setState(() => _selectedMenuIndex = i),
+                onNavigate: () => Get.to(Logout()),
               ),
 
               const SizedBox(height: 20),
