@@ -336,7 +336,7 @@ Widget CompletedOrder({
                     ),
                     child: Center(
                       child: Text(
-                        "Completed",
+                        "Leave Review",
                         style: TextStyle(
                             fontSize: 13,
                             fontWeight: FontWeight.bold,
