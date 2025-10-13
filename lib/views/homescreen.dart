@@ -557,7 +557,7 @@ class Homescreen extends StatelessWidget {
                                     color: const Color.fromARGB(255, 0, 0, 0),
                                   ),
                                 ),
-                                SizedBox(height: 4),
+                                SizedBox(height: 3),
                                 Text(
                                   see[index].describe,
                                   style: TextStyle(
