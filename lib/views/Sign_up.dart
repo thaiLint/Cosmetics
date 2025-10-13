@@ -1,7 +1,6 @@
+import 'package:cosmetics/main.dart';
 import 'package:cosmetics/services/auth.dart';
-
-import 'package:cosmetics/views/homescreen.dart';
-import 'package:cosmetics/views/login.dart';
+import 'package:cosmetics/views/SignIn.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -53,7 +52,7 @@ class _SignUpState extends State<SignUp> {
 
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => const Homescreen()),
+        MaterialPageRoute(builder: (context) => const BottomBarController()),
       );
     } on FirebaseAuthException catch (e) {
       String message = "";

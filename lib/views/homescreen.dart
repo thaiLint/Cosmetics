@@ -296,6 +296,7 @@ class Homescreen extends StatelessWidget {
                                           style: TextStyle(fontSize: 18),
                                         ),
                                         Spacer(),
+                                        //link to detail page
                                         Container(
                                           width: 30,
                                           height: 30,
@@ -577,6 +578,7 @@ class Homescreen extends StatelessWidget {
           ],
         ),
       ),
+     
     );
   }
 }

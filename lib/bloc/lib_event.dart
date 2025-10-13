@@ -1,4 +1,4 @@
-part of 'lib_bloc.dart';
+// part of 'lib_bloc.dart';
 
-@immutable
-sealed class LibEvent {}
+// @immutable
+// sealed class LibEvent {}
