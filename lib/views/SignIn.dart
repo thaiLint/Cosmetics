@@ -2,13 +2,11 @@ import 'package:cosmetics/main.dart';
 import 'package:cosmetics/services/auth.dart';
 import 'package:cosmetics/views/Sign_up.dart';
 import 'package:cosmetics/views/forget_password.dart';
-import 'package:cosmetics/views/homescreen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/state_manager.dart';
-import 'package:cosmetics/main.dart';
+
 
 class Login extends StatefulWidget {
   Login({super.key});

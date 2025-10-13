@@ -1,3 +1,6 @@
+
+import 'package:cosmetics/views/homescreen.dart';
+
 import 'package:cosmetics/views/SignIn.dart';
 import 'package:cosmetics/views/track_screen.dart';
 import 'package:cosmetics/views/order_screen.dart';
@@ -22,7 +25,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Cosmetics App',
+      title: 'Flutter Demo',
+      //home:Homescreen(),
       theme: ThemeData(primarySwatch: Colors.deepPurple),
       // If user already logged in, go to home
       home: FirebaseAuth.instance.currentUser == null
