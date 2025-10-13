@@ -33,8 +33,6 @@ class _ProfileDetailState extends State<ProfileDetail> {
     }
   }
 
-  // Upload image to firebase storage
-  // ignore: non_constant_identifier_names
   Future<String> UploadProfileImage(Uint8List imageBytes, String userid) async {
     final ref = FirebaseStorage.instance.ref().child(
       'profile_image/$userid.jpg',
