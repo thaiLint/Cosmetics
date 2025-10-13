@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:cosmetics/views/categories.dart';
+//import 'package:cosmetics/views/categories.dart';
 import 'package:cosmetics/views/detail_screen.dart';
 import 'package:cosmetics/views/homescreen.dart';
 import 'package:cosmetics/views/profile_setting.dart';
@@ -16,7 +16,7 @@ class _BottombartState extends State<Bottombart> {
 
   final List<Widget> screens = const [
     Homescreen(),
-    Categories(),
+    //Categories(),
     DetailScreen(),
     ProfileSetting(),
   ];
