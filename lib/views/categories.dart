@@ -40,21 +40,12 @@ class Categories extends StatelessWidget {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-
-                              builder: (context) => const DetailScreen(),
-
                               builder: (context) => ScreenType(),
-
                             ),
                           );
                         },
                         child: Padding(
-
-                          padding: const EdgeInsets.only(
-                              top: 10, left: 20, right: 20),
-
                           padding: const EdgeInsets.only(left: 20, right: 20),
-
                           child: Column(
                             children: [
                               Container(
@@ -90,18 +81,11 @@ class Categories extends StatelessWidget {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-
-                              builder: (context) => const DetailScreen(),
-
                               builder: (context) => ScreenType2(),
-
                             ),
                           );
                         },
                         child: Padding(
-                          padding: const EdgeInsets.only(
-                              top: 10, left: 20, right: 20),
-
                           padding: const EdgeInsets.only(left: 20, right: 20),
                           child: Column(
                             children: [
@@ -138,20 +122,12 @@ class Categories extends StatelessWidget {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                  builder: (context) => const DetailScreen(),
-
                               builder: (context) => ScreenType3(),
-
                             ),
                           );
                         },
                         child: Padding(
-
-                          padding: const EdgeInsets.only(
-                              top: 10, left: 20, right: 20),
-
                           padding: const EdgeInsets.only(left: 20, right: 20),
-
                           child: Column(
                             children: [
                               Container(
@@ -192,19 +168,12 @@ class Categories extends StatelessWidget {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-
-                              builder: (context) => const DetailScreen(),
-
                               builder: (context) => ScreenType4(),
 
                             ),
                           );
                         },
                         child: Padding(
-
-                          padding: const EdgeInsets.only(
-                              top: 10, left: 20, right: 20),
-
                           padding: const EdgeInsets.only(left: 20, right: 20),
                           child: Column(
                             children: [
@@ -241,15 +210,11 @@ class Categories extends StatelessWidget {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-
-                              builder: (context) => const DetailScreen(),
                               builder: (context) => ScreenType5(),
                             ),
                           );
                         },
                         child: Padding(
-                          padding: const EdgeInsets.only(
-                              top: 10, left: 20, right: 20),
                           padding: const EdgeInsets.only(left: 20, right: 20),
                           child: Column(
                             children: [
@@ -286,14 +251,11 @@ class Categories extends StatelessWidget {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => const DetailScreen(),
                               builder: (context) => ScreenType6(),
                             ),
                           );
                         },
                         child: Padding(
-                          padding: const EdgeInsets.only(
-                              top: 10, left: 20, right: 20),
                           padding: const EdgeInsets.only(left: 20, right: 20),
                           child: Column(
                             children: [
