@@ -4,6 +4,7 @@ import 'package:cosmetics/views/dataCategories/screen_type3.dart';
 import 'package:cosmetics/views/dataCategories/screen_type4.dart';
 import 'package:cosmetics/views/dataCategories/screen_type5.dart';
 import 'package:cosmetics/views/dataCategories/screen_type6.dart';
+import 'package:cosmetics/views/detail_screen.dart';
 import 'package:flutter/material.dart';
 
 class Categories extends StatelessWidget {
@@ -45,6 +46,7 @@ class Categories extends StatelessWidget {
                           );
                         },
                         child: Padding(
+                          //padding: const EdgeInsets.only(left: 20, right: 20),
                           padding: const EdgeInsets.only(left: 20, right: 20),
                           child: Column(
                             children: [
@@ -169,7 +171,6 @@ class Categories extends StatelessWidget {
                             context,
                             MaterialPageRoute(
                               builder: (context) => ScreenType4(),
-
                             ),
                           );
                         },
