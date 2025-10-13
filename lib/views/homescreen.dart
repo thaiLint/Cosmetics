@@ -1,7 +1,9 @@
 import 'package:cosmetics/model/brand_list.dart';
 import 'package:cosmetics/model/gride_home.dart';
 import 'package:cosmetics/model/home_image.dart';
+import 'package:cosmetics/model/list_blog.dart';
 import 'package:cosmetics/model/list_model.dart';
+import 'package:cosmetics/model/list_more.dart';
 import 'package:flutter/material.dart';
 
 class Homescreen extends StatelessWidget {
@@ -24,23 +26,12 @@ class Homescreen extends StatelessWidget {
         actions: [
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: Container(
-              width: 40,
-              height: 40,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(20),
-                color: const Color.fromARGB(255, 255, 255, 255),
-                boxShadow: [
-                  BoxShadow(
-                    offset: Offset(0.1, 0.2),
-                    blurRadius: 2,
-                    color: Colors.brown,
-                  ),
-                ],
-              ),
-              child: Icon(Icons.search),
-            ),
+            child: Icon(Icons.notification_add,size: 30,),
           ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Icon(Icons.menu,size: 30,),
+          ) 
         ],
       ),
       body: SingleChildScrollView(
@@ -366,15 +357,219 @@ class Homescreen extends StatelessWidget {
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
                         color: const Color.fromARGB(255, 255, 255, 255),
-                        border: Border.all(
-                          color: Colors.grey,
-                          width: 1
-                        )
+                        border: Border.all(color: Colors.grey, width: 1),
                       ),
                       child: Center(
-                        child: Image.asset(all[index].img,width: 200)),
+                        child: Image.asset(all[index].img, width: 200),
+                      ),
                     ),
-                    
+                  );
+                },
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 14, right: 8),
+              child: Row(
+                children: [
+                  Text(
+                    "Recommended for you",
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+                  ),
+                  Spacer(),
+                  TextButton(onPressed: () {}, child: Text("See all")),
+                ],
+              ),
+            ),
+            Container(
+              width: double.infinity,
+              height: 260,
+              child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+                itemCount: more.length,
+                itemBuilder: (context, index) {
+                  return Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Container(
+                      width: 170,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(15),
+                        color: Colors.white,
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black12,
+                            blurRadius: 6,
+                            offset: Offset(0, 3),
+                          ),
+                        ],
+                        border: Border.all(color: Colors.grey),
+                      ),
+                      child: Center(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            ClipRRect(
+                              borderRadius: const BorderRadius.vertical(
+                                top: Radius.circular(15),
+                              ),
+                              child: Image.asset(
+                                more[index].img,
+                                height: 140,
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 8.0,
+                                vertical: 6,
+                              ),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    more[index].title,
+                                    style: TextStyle(
+                                      color: const Color.fromARGB(
+                                        255,
+                                        152,
+                                        152,
+                                        152,
+                                      ),
+                                      fontSize: 12,
+                                    ),
+                                    maxLines: 1,
+                                    overflow: TextOverflow.ellipsis,
+                                  ),
+                                  Text(
+                                    more[index].subtitle,
+                                    style: TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                    overflow: TextOverflow.ellipsis,
+                                  ),
+
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Row(
+                                      children: [
+                                        Text(
+                                          "\$${more[index].price.toStringAsFixed(2)}" +
+                                              "USD",
+                                          style: TextStyle(fontSize: 18),
+                                        ),
+                                        Spacer(),
+                                        Container(
+                                          width: 30,
+                                          height: 30,
+                                          decoration: BoxDecoration(
+                                            borderRadius: BorderRadius.circular(
+                                              20,
+                                            ),
+                                            color: const Color.fromARGB(
+                                              255,
+                                              0,
+                                              0,
+                                              0,
+                                            ),
+                                          ),
+                                          child: Icon(
+                                            Icons.add,
+                                            color: Colors.white,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  );
+                },
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 14, right: 8),
+              child: Row(
+                children: [
+                  Text(
+                    "Blog",
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+                  ),
+                  Spacer(),
+                  TextButton(onPressed: () {}, child: Text("See all")),
+                ],
+              ),
+            ),
+            Container(
+              width: double.infinity,
+              height: 260, 
+              child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+                itemCount: see.length,
+                itemBuilder: (context, index) {
+                  return Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Container(
+                      width: 300,
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(20),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.grey.withOpacity(0.3),
+                            blurRadius: 6,
+                            offset: Offset(0, 4),
+                          ),
+                        ],
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          ClipRRect(
+                            borderRadius: BorderRadius.vertical(
+                              top: Radius.circular(20),
+                            ),
+                            child: Image.asset(
+                              see[index].img,
+                              height: 150,
+                              width: double.infinity,
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+
+                          Padding(
+                            padding: const EdgeInsets.all(10.0),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  see[index].title,
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 16,
+                                    color: const Color.fromARGB(255, 0, 0, 0),
+                                  ),
+                                ),
+                                SizedBox(height: 4),
+                                Text(
+                                  see[index].describe,
+                                  style: TextStyle(
+                                    fontSize: 13,
+                                    color: Colors.grey[700],
+                                  ),
+                                  maxLines: 2,
+                                  overflow: TextOverflow.ellipsis,
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
                   );
                 },
               ),
@@ -383,6 +578,5 @@ class Homescreen extends StatelessWidget {
         ),
       ),
     );
-
   }
 }
