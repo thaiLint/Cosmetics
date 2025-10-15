@@ -1,14 +1,10 @@
 
 import 'package:cosmetics/views/homescreen.dart';
-
-import 'package:cosmetics/views/SignIn.dart';
 import 'package:cosmetics/views/track_screen.dart';
 import 'package:cosmetics/views/order_screen.dart';
 import 'package:cosmetics/views/profile_setting.dart';
 import 'package:cosmetics/views/search_screen.dart';
-import 'package:cosmetics/views/homescreen.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -26,12 +22,12 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
-      //home:Homescreen(),
+      home:Homescreen(),
       theme: ThemeData(primarySwatch: Colors.deepPurple),
       // If user already logged in, go to home
-      home: FirebaseAuth.instance.currentUser == null
-          ? Login()
-          : BottomBarController(),
+      // home: FirebaseAuth.instance.currentUser == null
+      //     ? Login()
+      //     : BottomBarController(),
     );
   }
 }
