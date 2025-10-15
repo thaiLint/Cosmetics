@@ -131,8 +131,8 @@ class _DetailScreenState extends State<DetailScreen> {
                           border: Border.all(
                             color: isSelected
                                 ? Colors.lightGreen
-                                : Colors.grey, // green border if selected
-                            width: isSelected ? 2 : 1, // thicker if selected
+                                : Colors.grey, 
+                            width: isSelected ? 2 : 1, 
                           ),
                         ),
                         child: Center(
