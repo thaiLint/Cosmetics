@@ -1,4 +1,7 @@
+import 'package:cosmetics/views/review.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 
 class OrderScreen extends StatefulWidget {
   const OrderScreen({super.key});
@@ -327,20 +330,23 @@ Widget CompletedOrder({
                   const SizedBox(
                     width: 50,
                   ),
-                  Container(
-                    width: 100,
-                    height: 30,
-                    decoration: BoxDecoration(
-                      color: const Color.fromARGB(255, 233, 141, 172),
-                      borderRadius: BorderRadius.circular(15),
-                    ),
-                    child: Center(
-                      child: Text(
-                        "Leave Review",
-                        style: TextStyle(
-                            fontSize: 13,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white),
+                  InkWell(
+                    onTap: () => Get.to(Review()),
+                    child: Container(
+                      width: 100,
+                      height: 30,
+                      decoration: BoxDecoration(
+                        color: const Color.fromARGB(255, 233, 141, 172),
+                        borderRadius: BorderRadius.circular(15),
+                      ),
+                      child: Center(
+                        child: Text(
+                          "Leave Review",
+                          style: TextStyle(
+                              fontSize: 13,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white),
+                        ),
                       ),
                     ),
                   ),
