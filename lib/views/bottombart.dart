@@ -15,9 +15,9 @@ class _BottombartState extends State<Bottombart> {
   int selectedIndex = 0;
 
   final List<Widget> screens = const [
-    Homescreen(),
+    // Homescreen()
     //Categories(),
-    DetailScreen(),
+    //DetailScreen(),
     ProfileSetting(),
   ];
 

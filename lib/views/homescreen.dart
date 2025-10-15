@@ -4,10 +4,14 @@ import 'package:cosmetics/model/home_image.dart';
 import 'package:cosmetics/model/list_blog.dart';
 import 'package:cosmetics/model/list_model.dart';
 import 'package:cosmetics/model/list_more.dart';
+import 'package:cosmetics/views/detail_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/utils.dart';
 
 class Homescreen extends StatelessWidget {
-  const Homescreen({super.key});
+ Homescreen({super.key});
+  
 
   @override
   Widget build(BuildContext context) {
@@ -299,23 +303,28 @@ class Homescreen extends StatelessWidget {
                                         ),
                                         Spacer(),
                                         //link to detail page
-                                        Container(
-                                          width: 30,
-                                          height: 30,
-                                          decoration: BoxDecoration(
-                                            borderRadius: BorderRadius.circular(
-                                              20,
+                                        InkWell(
+                                          onTap: () {
+                                            Get.to(DetailScreen(shows:show[index]));
+                                          },
+                                          child: Container(
+                                            width: 30,
+                                            height: 30,
+                                            decoration: BoxDecoration(
+                                              borderRadius: BorderRadius.circular(
+                                                20,
+                                              ),
+                                              color: const Color.fromARGB(
+                                                255,
+                                                0,
+                                                0,
+                                                0,
+                                              ),
                                             ),
-                                            color: const Color.fromARGB(
-                                              255,
-                                              0,
-                                              0,
-                                              0,
+                                            child: Icon(
+                                              Icons.add,
+                                              color: Colors.white,
                                             ),
-                                          ),
-                                          child: Icon(
-                                            Icons.add,
-                                            color: Colors.white,
                                           ),
                                         ),
                                       ],
