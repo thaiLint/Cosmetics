@@ -16,12 +16,16 @@ dependencies:
   bloc: ^9.0.1
   google_sign_in: ^6.3.0
 
-  firebase_core: ^4.1.1
+  firebase_core: ^4.1.0
+
+  # Firebase packages (null-safe versions)
   firebase_auth: ^6.1.0
   firebase_storage: ^13.0.2
+
   cloud_firestore: ^6.0.2
 
   image_picker: ^0.8.7+5  
+
   easy_localization: ^3.0.5
   shared_preferences: ^2.2.0
   font_awesome_flutter: ^10.4.0
@@ -36,4 +40,3 @@ flutter:
 
   assets:
     - assets/images/
-    - assets/categories/
