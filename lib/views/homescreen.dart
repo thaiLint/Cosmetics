@@ -3,6 +3,8 @@ import 'package:cosmetics/model/gride_home.dart';
 import 'package:cosmetics/model/home_image.dart';
 import 'package:cosmetics/model/list_blog.dart';
 import 'package:cosmetics/model/list_model.dart';
+
+import 'package:cosmetics/views/categories.dart';
 import 'package:cosmetics/model/list_more.dart';
 import 'package:cosmetics/views/detail_screen.dart';
 import 'package:flutter/material.dart';
@@ -172,6 +174,7 @@ class Homescreen extends StatelessWidget {
                   Spacer(),
                   TextButton(
                     onPressed: () {
+                      Get.to(Categories());
                     
                     },
                     child: Text("See all"),
