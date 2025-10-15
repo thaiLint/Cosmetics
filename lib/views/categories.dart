@@ -1,3 +1,4 @@
+
 import 'package:cosmetics/views/dataCategories/screen_type.dart';
 import 'package:cosmetics/views/dataCategories/screen_type2.dart';
 import 'package:cosmetics/views/dataCategories/screen_type3.dart';
@@ -298,7 +299,19 @@ class Categories extends StatelessWidget {
                             ],
                           ),
                         ),
-                      ),
+
+                      )
+
+                //         Text(addData.name, style: TextStyle(fontSize: 20)),
+                //         Text("Text Push"),
+                //         Text("GitHub"),
+                //         Text("Push"),
+                //       ],
+                //     ),
+                //   );
+                // },
+
+
                     ],
                   ),
                 ],
