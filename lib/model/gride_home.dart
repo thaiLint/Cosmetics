@@ -1,9 +1,12 @@
+import 'package:get/get_connect/http/src/request/request.dart';
+
 class GrideHome {
   String img;
   String lettter;
   double price;
   String rate;
   String title;
+  String describe;
   List<String> images;
   String subtitle;
   int? qty;
@@ -15,6 +18,7 @@ class GrideHome {
     required this.title,
     required this.subtitle,
     required this.lettter,
+    required this.describe,
     required this.rate,
     this.qty,
   });
@@ -27,6 +31,8 @@ List<GrideHome> show = [
     title: "Aloe Vera Hydrating Cream",
     lettter: "CROSRX",
     rate: "4.8(128views)",
+    describe:
+        "Hydrates and soothes dry skin, leaving it soft and refreshed. Helps reduce redness and irritation.",
     subtitle: "Soothes dry skin and provides deep, lasting moisture.",
     images: [
       "assets/images/p9.png",
@@ -41,6 +47,8 @@ List<GrideHome> show = [
     title: "Aloe Vera Hydrating Cream",
     lettter: "CROSRX",
     rate: "2.8(100views)",
+    describe:
+        "A lightweight cream that calms irritation and locks in moisture for all-day comfort.",
     subtitle: "Soothes dry skin and provides deep, lasting moisture.",
     images: [
       "assets/images/6.png",
@@ -49,23 +57,14 @@ List<GrideHome> show = [
       "assets/images/p2.png",
     ],
   ),
-  // GrideHome(
-  //   img: "assets/images/3.png",
-  //   price: 34.10,
-  //   title: "Vitamin C Brightening Serum",
-  //   subtitle: "Evens out skin tone and restores natural radiance.",
-  //   images: [
-  //     "assets/images/3.png",
-  //     "assets/images/d3.png",
-  //     "assets/images/image.png",
-  //   ],
-  // ),
   GrideHome(
     img: "assets/images/7.png",
     price: 26.20,
     title: "Green Tea Facial Cleanser",
     lettter: "CROSRX",
     rate: "5.8(298views)",
+    describe:
+        "Gently removes dirt and impurities while balancing oil and calming the skin.",
     subtitle: "Removes impurities while keeping your skin fresh and soft.",
     images: [
       "assets/images/7.png",
@@ -79,6 +78,8 @@ List<GrideHome> show = [
     title: "Collagen Renewal Night Cream",
     lettter: "CROSRX",
     rate: "1.8(110views)",
+    describe:
+        "Boosts collagen production overnight for smoother, firmer, and youthful skin.",
     subtitle: "Reduces fine lines and improves skin elasticity overnight.",
     images: [
       "assets/images/p4.png",

@@ -429,6 +429,7 @@ class Homescreen extends StatelessWidget {
                                 fit: BoxFit.cover,
                               ),
                             ),
+                            
                             Padding(
                               padding: const EdgeInsets.symmetric(
                                 horizontal: 8.0,
