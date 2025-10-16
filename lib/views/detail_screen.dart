@@ -586,7 +586,7 @@ class _DetailScreenState extends State<DetailScreen> {
                   Spacer(),
                   InkWell(
                     onTap: () {
-                      Get.to(AddcartScreen());
+                      
                     },
                     child: Container(
                       width: 290,
