@@ -55,6 +55,11 @@ class _TrackScreenState extends State<TrackScreen> {
                     ),
                   ),
                   const SizedBox(width: 45),
+                  Container(
+                    width:100,
+                    height: 50,
+
+                  ),
                 ],
               ),
               const SizedBox(height: 20,),
