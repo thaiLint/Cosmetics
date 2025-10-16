@@ -16,7 +16,9 @@ dependencies:
   bloc: ^9.0.1
   google_sign_in: ^6.3.0
 
-  firebase_core: ^4.1.1
+  firebase_core: ^4.1.0
+
+  # Firebase packages (null-safe versions)
 
   firebase_auth: ^6.1.0
   firebase_storage: ^13.0.2
