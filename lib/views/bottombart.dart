@@ -1,11 +1,13 @@
+import 'package:cosmetics/model/gride_home.dart';
+import 'package:cosmetics/views/categories.dart';
 import 'package:flutter/material.dart';
-//import 'package:cosmetics/views/categories.dart';
+import 'package:cosmetics/views/categories.dart';
 import 'package:cosmetics/views/detail_screen.dart';
 import 'package:cosmetics/views/homescreen.dart';
 import 'package:cosmetics/views/profile_setting.dart';
 
 class Bottombart extends StatefulWidget {
-  const Bottombart({super.key});
+  Bottombart({super.key});
 
   @override
   State<Bottombart> createState() => _BottombartState();
@@ -15,9 +17,9 @@ class _BottombartState extends State<Bottombart> {
   int selectedIndex = 0;
 
   final List<Widget> screens = const [
-    // Homescreen()
-    //Categories(),
-    //DetailScreen(),
+    // Homescreen(),
+    Categories(),
+    // DetailScreen(),
     ProfileSetting(),
   ];
 
