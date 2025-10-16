@@ -18,6 +18,8 @@ class GrideHome {
     required this.rate,
     this.qty,
   });
+
+    String get describe => "$title - $subtitle";
 }
 
 List<GrideHome> show = [
