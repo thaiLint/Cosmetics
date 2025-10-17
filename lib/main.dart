@@ -24,10 +24,17 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
+<<<<<<< HEAD
      
       theme: ThemeData(primarySwatch: Colors.deepPurple),
       // If user already logged in, go to home
       home: FirebaseAuth.instance.currentUser == null
+=======
+
+      theme: ThemeData(primarySwatch: Colors.deepPurple),
+    // If user already logged in, go to home
+       home: FirebaseAuth.instance.currentUser == null
+>>>>>>> cbe3063a24fa0daa04cdc63f179a868fd38591f0
           ? Login()
           : BottomBarController(),
     );
