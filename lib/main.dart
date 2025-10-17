@@ -1,4 +1,3 @@
-
 import 'package:cosmetics/views/SignIn.dart';
 import 'package:cosmetics/views/homescreen.dart';
 import 'package:cosmetics/views/track_screen.dart';
@@ -23,20 +22,14 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
-<<<<<<< HEAD
-     
-      theme: ThemeData(primarySwatch: Colors.deepPurple),
-      // If user already logged in, go to home
+      title: 'Cosmetics App',
+      theme: ThemeData(
+        primarySwatch: Colors.deepPurple,
+      ),
+      // ✅ Fixed conditional navigation:
       home: FirebaseAuth.instance.currentUser == null
-=======
-
-      theme: ThemeData(primarySwatch: Colors.deepPurple),
-    // If user already logged in, go to home
-       home: FirebaseAuth.instance.currentUser == null
->>>>>>> cbe3063a24fa0daa04cdc63f179a868fd38591f0
-          ? Login()
-          : BottomBarController(),
+          ?  Login()
+          :  BottomBarController(),
     );
   }
 }
@@ -45,7 +38,7 @@ class BottomBarController extends StatefulWidget {
   const BottomBarController({super.key});
 
   @override
-  _BottomBarControllerState createState() => _BottomBarControllerState();
+  State<BottomBarController> createState() => _BottomBarControllerState();
 }
 
 class _BottomBarControllerState extends State<BottomBarController> {
@@ -53,10 +46,10 @@ class _BottomBarControllerState extends State<BottomBarController> {
 
   final List<Widget> _pages = [
     Homescreen(),
-    SearchScreen(),
-    TrackScreen(),
-    OrderScreen(),
-    ProfileSetting(),
+    const SearchScreen(),
+    const TrackScreen(),
+    const OrderScreen(),
+    const ProfileSetting(),
   ];
 
   @override
