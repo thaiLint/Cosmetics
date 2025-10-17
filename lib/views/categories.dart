@@ -56,7 +56,8 @@ class Categories extends StatelessWidget {
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(20),
                                   image: const DecorationImage(
-                                    image: AssetImage("assets/images/apple.png"),
+                                    image:
+                                        AssetImage("assets/images/apple.png"),
                                   ),
                                 ),
                                 child: Column(
@@ -67,7 +68,8 @@ class Categories extends StatelessWidget {
                                       child: Text(
                                         "Hello",
                                         style: TextStyle(
-                                          color: Color.fromARGB(226, 231, 7, 93),
+                                          color:
+                                              Color.fromARGB(226, 231, 7, 93),
                                         ),
                                       ),
                                     ),
@@ -97,7 +99,8 @@ class Categories extends StatelessWidget {
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(20),
                                   image: const DecorationImage(
-                                    image: AssetImage("assets/images/apple.png"),
+                                    image:
+                                        AssetImage("assets/images/apple.png"),
                                   ),
                                 ),
                                 child: Column(
@@ -108,7 +111,8 @@ class Categories extends StatelessWidget {
                                       child: Text(
                                         "Hello",
                                         style: TextStyle(
-                                          color: Color.fromARGB(226, 231, 7, 93),
+                                          color:
+                                              Color.fromARGB(226, 231, 7, 93),
                                         ),
                                       ),
                                     ),
@@ -138,7 +142,8 @@ class Categories extends StatelessWidget {
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(20),
                                   image: const DecorationImage(
-                                    image: AssetImage("assets/images/apple.png"),
+                                    image:
+                                        AssetImage("assets/images/apple.png"),
                                   ),
                                 ),
                                 child: Column(
@@ -149,7 +154,8 @@ class Categories extends StatelessWidget {
                                       child: Text(
                                         "Hello",
                                         style: TextStyle(
-                                          color: Color.fromARGB(226, 231, 7, 93),
+                                          color:
+                                              Color.fromARGB(226, 231, 7, 93),
                                         ),
                                       ),
                                     ),
@@ -184,7 +190,8 @@ class Categories extends StatelessWidget {
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(20),
                                   image: const DecorationImage(
-                                    image: AssetImage("assets/images/apple.png"),
+                                    image:
+                                        AssetImage("assets/images/apple.png"),
                                   ),
                                 ),
                                 child: Column(
@@ -195,7 +202,8 @@ class Categories extends StatelessWidget {
                                       child: Text(
                                         "Hello",
                                         style: TextStyle(
-                                          color: Color.fromARGB(226, 231, 7, 93),
+                                          color:
+                                              Color.fromARGB(226, 231, 7, 93),
                                         ),
                                       ),
                                     ),
@@ -225,7 +233,8 @@ class Categories extends StatelessWidget {
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(20),
                                   image: const DecorationImage(
-                                    image: AssetImage("assets/images/apple.png"),
+                                    image:
+                                        AssetImage("assets/images/apple.png"),
                                   ),
                                 ),
                                 child: Column(
@@ -236,7 +245,8 @@ class Categories extends StatelessWidget {
                                       child: Text(
                                         "Hello Sister",
                                         style: TextStyle(
-                                          color: Color.fromARGB(226, 231, 7, 93),
+                                          color:
+                                              Color.fromARGB(226, 231, 7, 93),
                                         ),
                                       ),
                                     ),
@@ -266,7 +276,8 @@ class Categories extends StatelessWidget {
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(20),
                                   image: const DecorationImage(
-                                    image: AssetImage("assets/images/apple.png"),
+                                    image:
+                                        AssetImage("assets/images/apple.png"),
                                   ),
                                 ),
                                 child: Column(
@@ -277,7 +288,8 @@ class Categories extends StatelessWidget {
                                       child: Text(
                                         "Hello Pro",
                                         style: TextStyle(
-                                          color: Color.fromARGB(226, 231, 7, 93),
+                                          color:
+                                              Color.fromARGB(226, 231, 7, 93),
                                         ),
                                       ),
                                     ),
