@@ -1,27 +1,105 @@
-class Datasystem {
+List<Datasystems> lisrtData = [
+  Datasystems(
+    name: "Pngtree—mock",
+    type: "assets/categories/Pngtreemock up cosmetic products for_15619191.png",
+    price: 20,
+  ),
+  Datasystems(
+    name: "Pngtree—mock",
+    type: "assets/categories/Pngtreemock up cosmetic products for_15619191.png",
+    price: 20,
+  ),
+  Datasystems(
+    name: "Pngtree—mock",
+    type: "assets/categories/Pngtreemock up cosmetic products for_15619191.png",
+    price: 20,
+  ),
+  Datasystems(
+    name: "Pngtree—mock",
+    type: "assets/categories/Pngtreemock up cosmetic products for_15619191.png",
+    price: 20,
+  ),
+  Datasystems(
+    name: "Pngtree—mock",
+    type: "assets/categories/Pngtreemock up cosmetic products for_15619191.png",
+    price: 20,
+  ),
+  Datasystems(
+    name: "Pngtree—mock",
+    type: "assets/categories/Pngtreemock up cosmetic products for_15619191.png",
+    price: 20,
+  ),
+];
+
+class Datasystems {
   String name;
   String type;
-  Datasystem({required this.name, required this.type});
+  double price;
+  Datasystems({required this.name, required this.type, required this.price});
 }
 
-List<Datasystem> lisrtData = [
-  Datasystem(
-    name: "Pngtree—mock",
-    type: "assets/Categories/Pngtreemock up cosmetic products for_15619191.png",
+List<Datasystems> listType2 = [
+  Datasystems(
+    name: "Two",
+    type: "assets/images/1.png",
+    price: 20,
   ),
-  Datasystem(name: "Md", type: "assets/Categories/md-package-460-2.jpg"),
-  Datasystem(name: "Mike", type: "assets/Categories/mike.png"),
-  Datasystem(
-    name: "chemical-skin",
-    type:
-        "assets/Categories/natural-versus-chemical-skin-care-which-is-better-feat.jpg",
+  Datasystems(
+    name: "Two",
+    type: "assets/images/1.png",
+    price: 20,
   ),
-  Datasystem(
-    name: "Skin-Care",
-    type: "assets/Categories/Private-Label-Skin-Care-in-Dubai.webp",
+  Datasystems(
+    name: "Two",
+    type: "assets/images/1.png",
+    price: 20,
   ),
-  Datasystem(
-    name: "Staminalis",
-    type: "assets/Categories/Staminalis_4small_1024x.webp",
+  Datasystems(
+    name: "Two",
+    type: "assets/images/1.png",
+    price: 20,
   ),
+  Datasystems(
+    name: "Two",
+    type: "assets/images/1.png",
+    price: 20,
+  ),
+  Datasystems(
+    name: "Two",
+    type: "assets/images/1.png",
+    price: 20,
+  ),
+];
+
+List<Datasystems> listType3 = [
+  Datasystems(name: "Three", type: "assets/images/2.png", price: 21),
+  Datasystems(name: "Three", type: "assets/images/2.png", price: 21),
+  Datasystems(name: "Three", type: "assets/images/2.png", price: 21),
+  Datasystems(name: "Three", type: "assets/images/2.png", price: 21),
+  Datasystems(name: "Three", type: "assets/images/2.png", price: 21),
+  Datasystems(name: "Three", type: "assets/images/2.png", price: 21),
+];
+List<Datasystems> listType4 = [
+  Datasystems(name: "Four", type: "assets/images/3.png", price: 22),
+  Datasystems(name: "Four", type: "assets/images/3.png", price: 22),
+  Datasystems(name: "Four", type: "assets/images/3.png", price: 22),
+  Datasystems(name: "Four", type: "assets/images/3.png", price: 22),
+  Datasystems(name: "Four", type: "assets/images/3.png", price: 22),
+  Datasystems(name: "Four", type: "assets/images/3.png", price: 22),
+];
+List<Datasystems> listType5 = [
+  Datasystems(name: "Five", type: "assets/images/4.png", price: 22),
+  Datasystems(name: "Five", type: "assets/images/4.png", price: 22),
+  Datasystems(name: "Five", type: "assets/images/4.png", price: 22),
+  Datasystems(name: "Five", type: "assets/images/4.png", price: 22),
+  Datasystems(name: "Five", type: "assets/images/4.png", price: 22),
+  Datasystems(name: "Five", type: "assets/images/4.png", price: 22),
+];
+List<Datasystems> listType6 = [
+  Datasystems(name: "Six", type: "assets/images/5.png", price: 23),
+  Datasystems(name: "Six", type: "assets/images/5.png", price: 23),
+  Datasystems(name: "Six", type: "assets/images/5.png", price: 23),
+  Datasystems(name: "Six", type: "assets/images/5.png", price: 23),
+  Datasystems(name: "Six", type: "assets/images/5.png", price: 23),
+  Datasystems(name: "Six", type: "assets/images/5.png", price: 23),
 ];
