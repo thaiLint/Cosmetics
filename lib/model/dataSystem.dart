@@ -1,3 +1,10 @@
+class Datasystems {
+  String name;
+  String type;
+  double price;
+  Datasystems({required this.name, required this.type, required this.price});
+}
+
 List<Datasystems> lisrtData = [
   Datasystems(
     name: "Pngtree—mock",
@@ -30,13 +37,6 @@ List<Datasystems> lisrtData = [
     price: 20,
   ),
 ];
-
-class Datasystems {
-  String name;
-  String type;
-  double price;
-  Datasystems({required this.name, required this.type, required this.price});
-}
 
 List<Datasystems> listType2 = [
   Datasystems(
@@ -96,6 +96,8 @@ List<Datasystems> listType5 = [
   Datasystems(name: "Five", type: "assets/images/4.png", price: 22),
 ];
 List<Datasystems> listType6 = [
+  Datasystems(name: "Six", type: "assets/images/5.png", price: 23),
+  Datasystems(name: "Six", type: "assets/images/5.png", price: 23),
   Datasystems(name: "Six", type: "assets/images/5.png", price: 23),
   Datasystems(name: "Six", type: "assets/images/5.png", price: 23),
   Datasystems(name: "Six", type: "assets/images/5.png", price: 23),
