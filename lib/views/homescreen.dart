@@ -10,8 +10,7 @@ import 'package:get/get.dart';
 import 'package:get/utils.dart';
 
 class Homescreen extends StatelessWidget {
- Homescreen({super.key});
-  
+  Homescreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -30,12 +29,18 @@ class Homescreen extends StatelessWidget {
         actions: [
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: Icon(Icons.notification_add,size: 30,),
+            child: Icon(
+              Icons.notification_add,
+              size: 30,
+            ),
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: Icon(Icons.menu,size: 30,),
-          ) 
+            child: Icon(
+              Icons.menu,
+              size: 30,
+            ),
+          )
         ],
       ),
       body: SingleChildScrollView(
@@ -171,9 +176,7 @@ class Homescreen extends StatelessWidget {
                   ),
                   Spacer(),
                   TextButton(
-                    onPressed: () {
-                    
-                    },
+                    onPressed: () {},
                     child: Text("See all"),
                   ),
                 ],
@@ -305,13 +308,15 @@ class Homescreen extends StatelessWidget {
                                         //link to detail page
                                         InkWell(
                                           onTap: () {
-                                            Get.to(DetailScreen(shows:show[index]));
+                                            Get.to(DetailScreen(
+                                                shows: show[index]));
                                           },
                                           child: Container(
                                             width: 30,
                                             height: 30,
                                             decoration: BoxDecoration(
-                                              borderRadius: BorderRadius.circular(
+                                              borderRadius:
+                                                  BorderRadius.circular(
                                                 20,
                                               ),
                                               color: const Color.fromARGB(
@@ -459,7 +464,6 @@ class Homescreen extends StatelessWidget {
                                     ),
                                     overflow: TextOverflow.ellipsis,
                                   ),
-
                                   Padding(
                                     padding: const EdgeInsets.all(8.0),
                                     child: Row(
@@ -518,7 +522,7 @@ class Homescreen extends StatelessWidget {
             ),
             Container(
               width: double.infinity,
-              height: 260, 
+              height: 260,
               child: ListView.builder(
                 scrollDirection: Axis.horizontal,
                 itemCount: see.length,
@@ -552,7 +556,6 @@ class Homescreen extends StatelessWidget {
                               fit: BoxFit.cover,
                             ),
                           ),
-
                           Padding(
                             padding: const EdgeInsets.all(10.0),
                             child: Column(
@@ -592,3 +595,163 @@ class Homescreen extends StatelessWidget {
     );
   }
 }
+
+
+// import 'package:cosmetics/model/home_image.dart';
+// import 'package:cosmetics/services/aip_product.dart';
+// // import 'package:cosmetics/views/api.dart';
+// import 'package:flutter/material.dart';
+// import 'package:get/get.dart';
+// // import 'product_model.dart'; // import your Product model
+// // import 'product_detail_screen.dart'; // a detail screen if needed
+
+// class Homescreen extends StatelessWidget {
+//   const Homescreen({super.key});
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       appBar: AppBar(
+//         title: Column(
+//           crossAxisAlignment: CrossAxisAlignment.start,
+//           children: [
+//             Text("Welcome back.", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+//             Text("Olivai"),
+//           ],
+//         ),
+//         actions: [
+//           Padding(padding: const EdgeInsets.all(8.0), child: Icon(Icons.notification_add, size: 30)),
+//           Padding(padding: const EdgeInsets.all(8.0), child: Icon(Icons.menu, size: 30)),
+//         ],
+//       ),
+//       body: SingleChildScrollView(
+//         child: Column(
+//           children: [
+//             // --- New Arrivals Section ---
+//             sectionTitle("New Arrivals"),
+//             SizedBox(
+//               height: 260,
+//               child: FutureBuilder<List<Product>>(
+//                 future: fetchProducts(),
+//                 builder: (context, snapshot) {
+//                   if (snapshot.connectionState == ConnectionState.waiting) {
+//                     return Center(child: CircularProgressIndicator());
+//                   } else if (snapshot.hasError) {
+//                     return Center(child: Text('Error: ${snapshot.error}'));
+//                   } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
+//                     return Center(child: Text('No products found'));
+//                   } else {
+//                     final products = snapshot.data!;
+//                     return ListView.builder(
+//                       scrollDirection: Axis.horizontal,
+//                       itemCount: products.length,
+//                       itemBuilder: (context, index) {
+//                         final product = products[index];
+//                         return productCard(product);
+//                       },
+//                     );
+//                   }
+//                 },
+//               ),
+//             ),
+
+//             // --- Recommended Section ---
+//             sectionTitle("Recommended for you"),
+//             SizedBox(
+//               height: 260,
+//               child: FutureBuilder<List<Product>>(
+//                 future: fetchProducts(),
+//                 builder: (context, snapshot) {
+//                   if (snapshot.connectionState == ConnectionState.waiting) {
+//                     return Center(child: CircularProgressIndicator());
+//                   } else if (snapshot.hasError) {
+//                     return Center(child: Text('Error: ${snapshot.error}'));
+//                   } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
+//                     return Center(child: Text('No products found'));
+//                   } else {
+//                     final products = snapshot.data!;
+//                     return ListView.builder(
+//                       scrollDirection: Axis.horizontal,
+//                       itemCount: products.length,
+//                       itemBuilder: (context, index) {
+//                         final product = products[index];
+//                         return productCard(product);
+//                       },
+//                     );
+//                   }
+//                 },
+//               ),
+//             ),
+//           ],
+//         ),
+//       ),
+//     );
+//   }
+
+//   // --- Section title helper ---
+//   Widget sectionTitle(String title) {
+//     return Padding(
+//       padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
+//       child: Row(
+//         children: [
+//           Text(title, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
+//           Spacer(),
+//           TextButton(onPressed: () {}, child: Text("See all")),
+//         ],
+//       ),
+//     );
+//   }
+
+// //   // --- Product card helper ---
+// //   Widget productCard(Product product) {
+// //     return Padding(
+// //       padding: const EdgeInsets.all(8.0),
+// //       child: Container(
+// //         width: 170,
+// //         decoration: BoxDecoration(
+// //           borderRadius: BorderRadius.circular(15),
+// //           color: Colors.white,
+// //           boxShadow: [BoxShadow(color: Colors.black12, blurRadius: 6, offset: Offset(0, 3))],
+// //         ),
+// //         child: Column(
+// //           crossAxisAlignment: CrossAxisAlignment.center,
+// //           children: [
+// //             ClipRRect(
+// //               borderRadius: const BorderRadius.vertical(top: Radius.circular(15)),
+// //               child: Image.network(product.image, height: 140, fit: BoxFit.cover),
+// //             ),
+// //             Padding(
+// //               padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 6),
+// //               child: Column(
+// //                 crossAxisAlignment: CrossAxisAlignment.start,
+// //                 children: [
+// //                   Text(product.name,
+// //                       style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+// //                       overflow: TextOverflow.ellipsis),
+// //                   Text("\$${product.price.toStringAsFixed(2)}",
+// //                       style: TextStyle(fontSize: 14, color: Colors.green)),
+// //                   SizedBox(height: 6),
+// //                   InkWell(
+// //                     onTap: () {
+// //                      // Get.to(ProductDetailScreen(product: product));
+// //                     },
+// //                     child: Container(
+// //                       width: 30,
+// //                       height: 30,
+// //                       decoration: BoxDecoration(
+// //                         borderRadius: BorderRadius.circular(20),
+// //                         color: Colors.black,
+// //                       ),
+// //                       child: Icon(Icons.add, color: Colors.white),
+// //                     ),
+// //                   )
+// //                 ],
+// //               ),
+// //             ),
+// //           ],
+// //         ),
+// //       ),
+// //     );
+// //   }
+// // }
+
