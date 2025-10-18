@@ -1,49 +1,59 @@
-import 'package:cosmetics/model/dataSystem.dart';
+import 'package:cosmetics/model/gride_home.dart';
+import 'package:cosmetics/views/detail_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 
 class ScreenType2 extends StatelessWidget {
-  const ScreenType2({super.key});
+  String category;
+  ScreenType2({super.key, required this.category});
 
   @override
   Widget build(BuildContext context) {
+    List<GrideHome> filter = category.toLowerCase() == "all"
+        ? show
+        : show
+            .where((e) => e.category.toLowerCase() == category.toLowerCase())
+            .toList();
     return Scaffold(
-      appBar: AppBar(backgroundColor: Colors.blue, title: Text("Zendo")),
-      body: Container(
-        width: double.infinity,
-        child: GridView.builder(
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2,
-            mainAxisSpacing: 10,
-            crossAxisSpacing: 10,
-            childAspectRatio: 8 / 10,
-          ),
-          itemCount: listType2.length,
-          itemBuilder: (context, index) {
-            return Padding(
-              padding: const EdgeInsets.all(13.0),
-              child: Container(
-                width: 170,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(15),
-                  color: Colors.white,
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black12,
-                      blurRadius: 6,
-                      offset: Offset(0, 3),
-                    ),
-                  ],
-                ),
-                child: Center(
+        appBar:
+            AppBar(backgroundColor: Colors.blue, title: Text("${category}")),
+        body: GridView.builder(
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2,
+              mainAxisSpacing: 10,
+              crossAxisSpacing: 10,
+              childAspectRatio: 7 / 10,
+            ),
+
+            // scrollDirection: Axis.vertical,
+            itemCount: filter.length,
+            itemBuilder: (context, index) {
+              return Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Container(
+                  width: double.infinity,
+                  height: 260,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(15),
+                    color: Colors.white,
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black12,
+                        blurRadius: 6,
+                        offset: Offset(0, 3),
+                      ),
+                    ],
+                  ),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       ClipRRect(
                         borderRadius: const BorderRadius.vertical(
-                          top: Radius.circular(20),
+                          top: Radius.circular(15),
                         ),
                         child: Image.asset(
-                          listType2[index].type,
+                          filter[index].img,
                           height: 140,
                           fit: BoxFit.cover,
                         ),
@@ -54,10 +64,24 @@ class ScreenType2 extends StatelessWidget {
                           vertical: 6,
                         ),
                         child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             Text(
-                              listType6[index].name,
+                              filter[index].title,
+                              style: TextStyle(
+                                color: const Color.fromARGB(
+                                  255,
+                                  152,
+                                  152,
+                                  152,
+                                ),
+                                fontSize: 12,
+                              ),
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                            Text(
+                              filter[index].subtitle,
                               style: TextStyle(
                                 fontSize: 16,
                                 fontWeight: FontWeight.bold,
@@ -69,14 +93,17 @@ class ScreenType2 extends StatelessWidget {
                               child: Row(
                                 children: [
                                   Text(
-                                    "\$${listType2[index].price.toStringAsFixed(2)}" +
+                                    "\$${filter[index].price.toStringAsFixed(1)}" +
                                         "USD",
                                     style: TextStyle(fontSize: 18),
                                   ),
                                   Spacer(),
                                   //link to detail page
                                   InkWell(
-                                    onTap: () {},
+                                    onTap: () {
+                                      Get.to(
+                                          DetailScreen(shows: filter[index]));
+                                    },
                                     child: Container(
                                       width: 30,
                                       height: 30,
@@ -106,11 +133,7 @@ class ScreenType2 extends StatelessWidget {
                     ],
                   ),
                 ),
-              ),
-            );
-          },
-        ),
-      ),
-    );
+              );
+            }));
   }
 }

@@ -11,70 +11,167 @@ class GrideHome {
   List<String> images;
   String subtitle;
   int? qty;
+  String category;
 
-  GrideHome({
-    required this.img,
-    required this.images,
-    required this.price,
-    required this.title,
-    required this.subtitle,
-    required this.lettter,
-    required this.describe,
-    required this.rate,
-    this.qty,
-  });
+  GrideHome(
+      {required this.img,
+      required this.images,
+      required this.price,
+      required this.title,
+      required this.subtitle,
+      required this.lettter,
+      required this.describe,
+      required this.rate,
+      this.qty,
+      required this.category});
 
-    String get description => "$title - $subtitle";
+  String get description => "$title - $subtitle";
 }
 
 List<GrideHome> show = [
   GrideHome(
-    img: "assets/images/p9.png",
-    price: 30.00,
-    title: "Aloe Vera Hydrating Cream",
-    lettter: "CROSRX",
-    rate: "4.8(128views)",
-    describe:
-        "Hydrates and soothes dry skin, leaving it soft and refreshed. Helps reduce redness and irritation.",
-    subtitle: "Soothes dry skin and provides deep, lasting moisture.",
-    images: [
-      "assets/images/p9.png",
-      "assets/images/p8.png",
-      "assets/images/p10.png",
-      "assets/images/p11.png",
-    ],
-  ),
+      img: "assets/images/p9.png",
+      price: 30.00,
+      title: "Aloe Vera Hydrating Cream",
+      lettter: "CROSRX",
+      rate: "4.8(128views)",
+      describe:
+          "Hydrates and soothes dry skin, leaving it soft and refreshed. Helps reduce redness and irritation.",
+      subtitle: "Soothes dry skin and provides deep, lasting moisture.",
+      images: [
+        "assets/images/p9.png",
+        "assets/images/p8.png",
+        "assets/images/p10.png",
+        "assets/images/p11.png",
+      ],
+      category: "Sun Screen"),
   GrideHome(
-    img: "assets/images/6.png",
-    price: 40.20,
-    title: "Aloe Vera Hydrating Cream",
-    lettter: "CROSRX",
-    rate: "2.8(100views)",
-    describe:
-        "A lightweight cream that calms irritation and locks in moisture for all-day comfort.",
-    subtitle: "Soothes dry skin and provides deep, lasting moisture.",
-    images: [
-      "assets/images/6.png",
-      "assets/images/p1.png",
-      "assets/images/d8.png",
-      "assets/images/p2.png",
-    ],
-  ),
+      img: "assets/images/p9.png",
+      price: 30.00,
+      title: "Aloe Vera Hydrating Cream",
+      lettter: "CROSRX",
+      rate: "4.8(128views)",
+      describe:
+          "Hydrates and soothes dry skin, leaving it soft and refreshed. Helps reduce redness and irritation.",
+      subtitle: "Soothes dry skin and provides deep, lasting moisture.",
+      images: [
+        "assets/images/p9.png",
+        "assets/images/p8.png",
+        "assets/images/p10.png",
+        "assets/images/p11.png",
+      ],
+      category: "Sun Screen"),
   GrideHome(
-    img: "assets/images/7.png",
-    price: 26.20,
-    title: "Green Tea Facial Cleanser",
-    lettter: "CROSRX",
-    rate: "5.8(298views)",
-    describe:
-        "Gently removes dirt and impurities while balancing oil and calming the skin.",
-    subtitle: "Removes impurities while keeping your skin fresh and soft.",
-    images: [
-      "assets/images/7.png",
-      "assets/images/d1.png",
-      "assets/images/d2.png",
-    ],
-  ),
+      img: "assets/images/p9.png",
+      price: 30.00,
+      title: "Aloe Vera Hydrating Cream",
+      lettter: "CROSRX",
+      rate: "4.8(128views)",
+      describe:
+          "Hydrates and soothes dry skin, leaving it soft and refreshed. Helps reduce redness and irritation.",
+      subtitle: "Soothes dry skin and provides deep, lasting moisture.",
+      images: [
+        "assets/images/p9.png",
+        "assets/images/p8.png",
+        "assets/images/p10.png",
+        "assets/images/p11.png",
+      ],
+      category: "Sun Screen"),
+  GrideHome(
+      img: "assets/images/p9.png",
+      price: 30.00,
+      title: "Aloe Vera Hydrating Cream",
+      lettter: "CROSRX",
+      rate: "4.8(128views)",
+      describe:
+          "Hydrates and soothes dry skin, leaving it soft and refreshed. Helps reduce redness and irritation.",
+      subtitle: "Soothes dry skin and provides deep, lasting moisture.",
+      images: [
+        "assets/images/p9.png",
+        "assets/images/p8.png",
+        "assets/images/p10.png",
+        "assets/images/p11.png",
+      ],
+      category: "Sun Screen"),
+  GrideHome(
+      img: "assets/images/p9.png",
+      price: 30.00,
+      title: "Aloe Vera Hydrating Cream",
+      lettter: "CROSRX",
+      rate: "4.8(128views)",
+      describe:
+          "Hydrates and soothes dry skin, leaving it soft and refreshed. Helps reduce redness and irritation.",
+      subtitle: "Soothes dry skin and provides deep, lasting moisture.",
+      images: [
+        "assets/images/p9.png",
+        "assets/images/p8.png",
+        "assets/images/p10.png",
+        "assets/images/p11.png",
+      ],
+      category: "Sun Screen"),
+  GrideHome(
+      img: "assets/images/p9.png",
+      price: 30.00,
+      title: "Aloe Vera Hydrating Cream",
+      lettter: "CROSRX",
+      rate: "4.8(128views)",
+      describe:
+          "Hydrates and soothes dry skin, leaving it soft and refreshed. Helps reduce redness and irritation.",
+      subtitle: "Soothes dry skin and provides deep, lasting moisture.",
+      images: [
+        "assets/images/p9.png",
+        "assets/images/p8.png",
+        "assets/images/p10.png",
+        "assets/images/p11.png",
+      ],
+      category: "Sun Screen"),
+  GrideHome(
+      img: "assets/images/6.png",
+      price: 40.20,
+      title: "Aloe Vera Hydrating Cream",
+      lettter: "CROSRX",
+      rate: "2.8(100views)",
+      describe:
+          "A lightweight cream that calms irritation and locks in moisture for all-day comfort.",
+      subtitle: "Soothes dry skin and provides deep, lasting moisture.",
+      images: [
+        "assets/images/6.png",
+        "assets/images/p1.png",
+        "assets/images/d8.png",
+        "assets/images/p2.png",
+      ],
+      category: "Blush"),
+  GrideHome(
+      img: "assets/images/7.png",
+      price: 26.20,
+      title: "Green Tea Facial Cleanser",
+      lettter: "CROSRX",
+      rate: "5.8(298views)",
+      describe:
+          "Gently removes dirt and impurities while balancing oil and calming the skin.",
+      subtitle: "Removes impurities while keeping your skin fresh and soft.",
+      images: [
+        "assets/images/7.png",
+        "assets/images/d1.png",
+        "assets/images/d2.png",
+      ],
+      category: "Hair Care"),
+  GrideHome(
+      img: "assets/images/p4.png",
+      price: 50.05,
+      title: "Collagen Renewal Night Cream",
+      lettter: "CROSRX",
+      rate: "1.8(110views)",
+      describe:
+          "Boosts collagen production overnight for smoother, firmer, and youthful skin.",
+      subtitle: "Reduces fine lines and improves skin elasticity overnight.",
+      images: [
+        "assets/images/p4.png",
+        "assets/images/p5.png",
+        "assets/images/p6.png",
+        "assets/images/p7.png",
+      ],
+      category: "Perfume"),
   GrideHome(
     img: "assets/images/p4.png",
     price: 50.05,
@@ -90,5 +187,22 @@ List<GrideHome> show = [
       "assets/images/p6.png",
       "assets/images/p7.png",
     ],
+    category: "Facial Mask",
   ),
+  GrideHome(
+      img: "assets/images/p4.png",
+      price: 50.05,
+      title: "Collagen Renewal Night Cream",
+      lettter: "CROSRX",
+      rate: "1.8(110views)",
+      describe:
+          "Boosts collagen production overnight for smoother, firmer, and youthful skin.",
+      subtitle: "Reduces fine lines and improves skin elasticity overnight.",
+      images: [
+        "assets/images/p4.png",
+        "assets/images/p5.png",
+        "assets/images/p6.png",
+        "assets/images/p7.png",
+      ],
+      category: "sun screen"),
 ];
