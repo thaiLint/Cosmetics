@@ -44,7 +44,7 @@ List<GrideHome> show = [
         "assets/images/p10.png",
         "assets/images/p11.png",
       ],
-      category: "mark"),
+      category: "Sun Screen"),
   GrideHome(
       img: "assets/images/6.png",
       price: 40.20,
@@ -60,7 +60,7 @@ List<GrideHome> show = [
         "assets/images/d8.png",
         "assets/images/p2.png",
       ],
-      category: "cream"),
+      category: "Blush"),
   GrideHome(
       img: "assets/images/7.png",
       price: 26.20,
@@ -75,7 +75,7 @@ List<GrideHome> show = [
         "assets/images/d1.png",
         "assets/images/d2.png",
       ],
-      category: "serum"),
+      category: "Hair Care"),
   GrideHome(
       img: "assets/images/p4.png",
       price: 50.05,
@@ -91,7 +91,7 @@ List<GrideHome> show = [
         "assets/images/p6.png",
         "assets/images/p7.png",
       ],
-      category: "sun screen"),
+      category: "Perfume"),
   GrideHome(
     img: "assets/images/p4.png",
     price: 50.05,
@@ -107,7 +107,7 @@ List<GrideHome> show = [
       "assets/images/p6.png",
       "assets/images/p7.png",
     ],
-    category: "sun screen",
+    category: "Facial Mask",
   ),
   GrideHome(
       img: "assets/images/p4.png",
