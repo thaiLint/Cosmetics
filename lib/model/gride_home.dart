@@ -46,6 +46,86 @@ List<GrideHome> show = [
       ],
       category: "Sun Screen"),
   GrideHome(
+      img: "assets/images/p9.png",
+      price: 30.00,
+      title: "Aloe Vera Hydrating Cream",
+      lettter: "CROSRX",
+      rate: "4.8(128views)",
+      describe:
+          "Hydrates and soothes dry skin, leaving it soft and refreshed. Helps reduce redness and irritation.",
+      subtitle: "Soothes dry skin and provides deep, lasting moisture.",
+      images: [
+        "assets/images/p9.png",
+        "assets/images/p8.png",
+        "assets/images/p10.png",
+        "assets/images/p11.png",
+      ],
+      category: "Sun Screen"),
+  GrideHome(
+      img: "assets/images/p9.png",
+      price: 30.00,
+      title: "Aloe Vera Hydrating Cream",
+      lettter: "CROSRX",
+      rate: "4.8(128views)",
+      describe:
+          "Hydrates and soothes dry skin, leaving it soft and refreshed. Helps reduce redness and irritation.",
+      subtitle: "Soothes dry skin and provides deep, lasting moisture.",
+      images: [
+        "assets/images/p9.png",
+        "assets/images/p8.png",
+        "assets/images/p10.png",
+        "assets/images/p11.png",
+      ],
+      category: "Sun Screen"),
+  GrideHome(
+      img: "assets/images/p9.png",
+      price: 30.00,
+      title: "Aloe Vera Hydrating Cream",
+      lettter: "CROSRX",
+      rate: "4.8(128views)",
+      describe:
+          "Hydrates and soothes dry skin, leaving it soft and refreshed. Helps reduce redness and irritation.",
+      subtitle: "Soothes dry skin and provides deep, lasting moisture.",
+      images: [
+        "assets/images/p9.png",
+        "assets/images/p8.png",
+        "assets/images/p10.png",
+        "assets/images/p11.png",
+      ],
+      category: "Sun Screen"),
+  GrideHome(
+      img: "assets/images/p9.png",
+      price: 30.00,
+      title: "Aloe Vera Hydrating Cream",
+      lettter: "CROSRX",
+      rate: "4.8(128views)",
+      describe:
+          "Hydrates and soothes dry skin, leaving it soft and refreshed. Helps reduce redness and irritation.",
+      subtitle: "Soothes dry skin and provides deep, lasting moisture.",
+      images: [
+        "assets/images/p9.png",
+        "assets/images/p8.png",
+        "assets/images/p10.png",
+        "assets/images/p11.png",
+      ],
+      category: "Sun Screen"),
+  GrideHome(
+      img: "assets/images/p9.png",
+      price: 30.00,
+      title: "Aloe Vera Hydrating Cream",
+      lettter: "CROSRX",
+      rate: "4.8(128views)",
+      describe:
+          "Hydrates and soothes dry skin, leaving it soft and refreshed. Helps reduce redness and irritation.",
+      subtitle: "Soothes dry skin and provides deep, lasting moisture.",
+      images: [
+        "assets/images/p9.png",
+        "assets/images/p8.png",
+        "assets/images/p10.png",
+        "assets/images/p11.png",
+      ],
+      category: "Sun Screen"),
+  GrideHome(
       img: "assets/images/6.png",
       price: 40.20,
       title: "Aloe Vera Hydrating Cream",
