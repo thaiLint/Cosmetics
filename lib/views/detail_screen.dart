@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cosmetics/model/gride_home.dart';
 import 'package:cosmetics/model/list_more.dart';
 import 'package:cosmetics/views/addcart_screen.dart';
@@ -231,16 +232,16 @@ class _DetailScreenState extends State<DetailScreen> {
                 ],
               ),
             ),
-            SizedBox(
-              height: 5,
-            ),
-            Padding(
-              padding: const EdgeInsets.only(left: 20, right: 20),
-              child: Text(
-                widget.shows.describe,
-                style: TextStyle(fontSize: 16),
-              ),
-            ),
+            // SizedBox(
+            //   height: 5,
+            // ),
+            // Padding(
+            //   padding: const EdgeInsets.only(left: 20, right: 20),
+            //   child: Text(
+            //     widget.shows.describe,
+            //     style: TextStyle(fontSize: 16),
+            //   ),
+            // ),
             SizedBox(
               height: 20,
             ),
@@ -473,7 +474,6 @@ class _DetailScreenState extends State<DetailScreen> {
                                   more[index].img,
                                   height: 140,
                                   width: double.infinity,
-                                 
                                 ),
                               ),
                               Positioned(
@@ -485,7 +485,6 @@ class _DetailScreenState extends State<DetailScreen> {
                                     //print("Heart clicked for index $index");
                                     Get.snackbar("Cosmetic", "Thank you!");
                                   },
-                              
                                   child: Container(
                                     padding: EdgeInsets.all(6),
                                     decoration: BoxDecoration(
@@ -494,7 +493,8 @@ class _DetailScreenState extends State<DetailScreen> {
                                     ),
                                     child: Icon(
                                       Icons.favorite_border,
-                                      color: const Color.fromARGB(255, 62, 62, 62),
+                                      color:
+                                          const Color.fromARGB(255, 62, 62, 62),
                                       size: 25,
                                     ),
                                   ),
@@ -567,40 +567,67 @@ class _DetailScreenState extends State<DetailScreen> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(left: 20,right: 20),
+              padding: const EdgeInsets.only(left: 20, right: 20),
               child: Row(
                 children: [
                   Container(
                     width: 70,
                     height: 60,
                     decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(10),
-                      border: Border.all(
-                        color: Colors.grey,
-                        width: 1
-                      )
-                    ),
-                    child: Center(child: Icon(Icons.favorite_border,size: 30,)),
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(10),
+                        border: Border.all(color: Colors.grey, width: 1)),
+                    child: Center(
+                        child: Icon(
+                      Icons.favorite_border,
+                      size: 30,
+                    )),
                   ),
                   Spacer(),
+                  // InkWell(
+                  //   onTap: () {
+                  //     AddcartScreen();
+                  //   },
+                  //   child: Container(
+                  //     width: 280,
+                  //     height: 60,
+                  //     decoration: BoxDecoration(
+                  //       color: Colors.lightGreen,
+                  //       borderRadius: BorderRadius.circular(15)
+                  //     ),
+                  //     child: Center(child: Text("add to cart",style: TextStyle(fontSize: 20),)),
+                  //   ),
+                  // )
                   InkWell(
-                    onTap: () {
-                      
+                    onTap: () async {
+                      // Store product to Firebase Firestore
+                      await FirebaseFirestore.instance.collection('cart').add({
+                        'name': widget.shows.title,
+                        'price': widget.shows.price,
+                        'image': widget.shows.images[0],
+                        'qty': 1,
+                        'timestamp': FieldValue.serverTimestamp(),
+                      });
+                      Get.to(AddcartScreen());
+
+                      Get.snackbar("Success", "Item added to cart!");
                     },
                     child: Container(
-                      width: 290,
+                      width: 280,
                       height: 60,
                       decoration: BoxDecoration(
-                        color: Colors.lightGreenAccent,
-                        borderRadius: BorderRadius.circular(15)
+                          color: Colors.lightGreen,
+                          borderRadius: BorderRadius.circular(15)),
+                      child: Center(
+                        child:
+                            Text("Add to Cart", style: TextStyle(fontSize: 20)),
                       ),
-                      child: Center(child: Text("add to cart",style: TextStyle(fontSize: 20),)),
                     ),
                   )
                 ],
               ),
-            )
+            ),
+            
           ],
         ),
       ),
