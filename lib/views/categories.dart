@@ -1,11 +1,7 @@
-
-import 'package:cosmetics/views/dataCategories/screen_type.dart';
+import 'package:cosmetics/model/category.dart';
 import 'package:cosmetics/views/dataCategories/screen_type2.dart';
-import 'package:cosmetics/views/dataCategories/screen_type3.dart';
-import 'package:cosmetics/views/dataCategories/screen_type4.dart';
-import 'package:cosmetics/views/dataCategories/screen_type5.dart';
-import 'package:cosmetics/views/dataCategories/screen_type6.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class Categories extends StatelessWidget {
   const Categories({super.key});
@@ -13,313 +9,67 @@ class Categories extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.amber,
-        centerTitle: true,
-        title: const Text(
-          "Categories",
-          style: TextStyle(fontWeight: FontWeight.w600),
+        appBar: AppBar(
+          backgroundColor: const Color.fromARGB(255, 82, 133, 204),
+          centerTitle: true,
+          title: const Text(
+            "Categories",
+            style: TextStyle(fontWeight: FontWeight.w600),
+          ),
+          leading: IconButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            icon: const Icon(Icons.arrow_back_ios_new, size: 25),
+          ),
         ),
-        leading: IconButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          icon: const Icon(Icons.arrow_back_ios_new, size: 25),
-        ),
-      ),
-      body: SingleChildScrollView(
-        child: Column(
+        body: Column(
           children: [
-            SingleChildScrollView(
-              child: Column(
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      InkWell(
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => ScreenType(),
-                            ),
-                          );
-                        },
-                        child: Padding(
-                          //padding: const EdgeInsets.only(left: 20, right: 20),
-                          padding: const EdgeInsets.only(left: 20, right: 20),
+            GridView.builder(
+                shrinkWrap: true,
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 3, crossAxisSpacing: 30),
+                itemCount: listCategory.length,
+                itemBuilder: (context, index) {
+                  return Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: InkWell(
+                      onTap: () {
+                        Get.to(ScreenType2(
+                          category: listCategory[index].name,
+                        ));
+                      },
+                      child: Center(
+                        child: Container(
+                          width: double.infinity,
+                          height: 100,
+                          decoration: BoxDecoration(
+                              color: Color.fromARGB(95, 248, 187, 208),
+                              // shape: BoxShape.circle,
+                              borderRadius: BorderRadius.circular(10),
+                              boxShadow: [
+                                BoxShadow(
+                                    color: Colors.grey.withOpacity(0.4),
+                                    blurRadius: 2,
+                                    offset: Offset(0, 2))
+                              ]),
                           child: Column(
                             children: [
-                              Container(
-                                width: 80,
-                                height: 200,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(20),
-                                  image: const DecorationImage(
-                                    image:
-                                        AssetImage("assets/images/apple.png"),
-                                  ),
-                                ),
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.end,
-                                  children: const [
-                                    Padding(
-                                      padding: EdgeInsets.all(4),
-                                      child: Text(
-                                        "Hello",
-                                        style: TextStyle(
-                                          color:
-                                              Color.fromARGB(226, 231, 7, 93),
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
+                              Image.asset(
+                                "${listCategory[index].image}",
+                                height: 70,
+                                fit: BoxFit.cover,
                               ),
+                              Spacer(),
+                              Text("${listCategory[index].name}"),
                             ],
                           ),
                         ),
                       ),
-                      InkWell(
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => ScreenType2(),
-                            ),
-                          );
-                        },
-                        child: Padding(
-                          padding: const EdgeInsets.only(left: 20, right: 20),
-                          child: Column(
-                            children: [
-                              Container(
-                                width: 80,
-                                height: 200,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(20),
-                                  image: const DecorationImage(
-                                    image:
-                                        AssetImage("assets/images/apple.png"),
-                                  ),
-                                ),
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.end,
-                                  children: const [
-                                    Padding(
-                                      padding: EdgeInsets.all(4),
-                                      child: Text(
-                                        "Hello",
-                                        style: TextStyle(
-                                          color:
-                                              Color.fromARGB(226, 231, 7, 93),
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                      InkWell(
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => ScreenType3(),
-                            ),
-                          );
-                        },
-                        child: Padding(
-                          padding: const EdgeInsets.only(left: 20, right: 20),
-                          child: Column(
-                            children: [
-                              Container(
-                                width: 80,
-                                height: 200,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(20),
-                                  image: const DecorationImage(
-                                    image:
-                                        AssetImage("assets/images/apple.png"),
-                                  ),
-                                ),
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.end,
-                                  children: const [
-                                    Padding(
-                                      padding: EdgeInsets.all(4),
-                                      child: Text(
-                                        "Hello",
-                                        style: TextStyle(
-                                          color:
-                                              Color.fromARGB(226, 231, 7, 93),
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      InkWell(
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => ScreenType4(),
-                            ),
-                          );
-                        },
-                        child: Padding(
-                          padding: const EdgeInsets.only(left: 20, right: 20),
-                          child: Column(
-                            children: [
-                              Container(
-                                width: 80,
-                                height: 200,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(20),
-                                  image: const DecorationImage(
-                                    image:
-                                        AssetImage("assets/images/apple.png"),
-                                  ),
-                                ),
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.end,
-                                  children: const [
-                                    Padding(
-                                      padding: EdgeInsets.all(4),
-                                      child: Text(
-                                        "Hello",
-                                        style: TextStyle(
-                                          color:
-                                              Color.fromARGB(226, 231, 7, 93),
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                      InkWell(
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => ScreenType5(),
-                            ),
-                          );
-                        },
-                        child: Padding(
-                          padding: const EdgeInsets.only(left: 20, right: 20),
-                          child: Column(
-                            children: [
-                              Container(
-                                width: 80,
-                                height: 200,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(20),
-                                  image: const DecorationImage(
-                                    image:
-                                        AssetImage("assets/images/apple.png"),
-                                  ),
-                                ),
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.end,
-                                  children: const [
-                                    Padding(
-                                      padding: EdgeInsets.all(4),
-                                      child: Text(
-                                        "Hello Sister",
-                                        style: TextStyle(
-                                          color:
-                                              Color.fromARGB(226, 231, 7, 93),
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                      InkWell(
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => ScreenType6(),
-                            ),
-                          );
-                        },
-                        child: Padding(
-                          padding: const EdgeInsets.only(left: 20, right: 20),
-                          child: Column(
-                            children: [
-                              Container(
-                                width: 80,
-                                height: 200,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(20),
-                                  image: const DecorationImage(
-                                    image:
-                                        AssetImage("assets/images/apple.png"),
-                                  ),
-                                ),
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.end,
-                                  children: const [
-                                    Padding(
-                                      padding: EdgeInsets.all(4),
-                                      child: Text(
-                                        "Hello Pro",
-                                        style: TextStyle(
-                                          color:
-                                              Color.fromARGB(226, 231, 7, 93),
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-
-                      )
-
-                //         Text(addData.name, style: TextStyle(fontSize: 20)),
-                //         Text("Text Push"),
-                //         Text("GitHub"),
-                //         Text("Push"),
-                //       ],
-                //     ),
-                //   );
-                // },
-
-
-                    ],
-                  ),
-                ],
-              ),
-            ),
+                    ),
+                  );
+                })
           ],
-        ),
-      ),
-    );
+        ));
   }
 }
