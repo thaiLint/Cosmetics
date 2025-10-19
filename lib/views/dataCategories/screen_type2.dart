@@ -16,8 +16,9 @@ class ScreenType2 extends StatelessWidget {
             .where((e) => e.category.toLowerCase() == category.toLowerCase())
             .toList();
     return Scaffold(
-        appBar:
-            AppBar(backgroundColor: Colors.blue, title: Text("${category}")),
+        appBar: AppBar(
+            backgroundColor: const Color.fromARGB(255, 96, 172, 235),
+            title: Text("${category}")),
         body: GridView.builder(
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 2,
