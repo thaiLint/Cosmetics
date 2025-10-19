@@ -225,7 +225,9 @@ class Homescreen extends StatelessWidget {
                     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
                   ),
                   Spacer(),
-                  TextButton(onPressed: () {}, child: Text("See all")),
+                  TextButton(onPressed: () {
+                    Get.to(Categories());
+                  }, child: Text("See all")),
                 ],
               ),
             ),
@@ -274,7 +276,7 @@ class Homescreen extends StatelessWidget {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    show[index].title,
+                                    show[index].subtitle,
                                     style: TextStyle(
                                       color: const Color.fromARGB(
                                         255,
@@ -288,7 +290,7 @@ class Homescreen extends StatelessWidget {
                                     overflow: TextOverflow.ellipsis,
                                   ),
                                   Text(
-                                    show[index].subtitle,
+                                    show[index].title,
                                     style: TextStyle(
                                       fontSize: 16,
                                       fontWeight: FontWeight.bold,
@@ -416,7 +418,7 @@ class Homescreen extends StatelessWidget {
                             offset: Offset(0, 3),
                           ),
                         ],
-                        border: Border.all(color: Colors.grey),
+                        // border: Border.all(color: Colors.grey),
                       ),
                       child: Center(
                         child: Column(
@@ -516,7 +518,9 @@ class Homescreen extends StatelessWidget {
                     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
                   ),
                   Spacer(),
-                  TextButton(onPressed: () {}, child: Text("See all")),
+                  TextButton(onPressed: () {
+
+                  }, child: Text("See all")),
                 ],
               ),
             ),

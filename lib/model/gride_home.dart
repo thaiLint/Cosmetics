@@ -1,5 +1,3 @@
-import 'package:flutter/material.dart';
-import 'package:get/get_connect/http/src/request/request.dart';
 
 class GrideHome {
   String img;
@@ -47,7 +45,7 @@ List<GrideHome> show = [
   GrideHome(
     img: "assets/images/6.png",
     price: 40.20,
-    title: "Aloe Vera Hydrating Cream",
+    title: "Hydrating Aloe Vera Cream",
     lettter: "CROSRX",
     rate: "2.8(100views)",
     describe:

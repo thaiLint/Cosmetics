@@ -1,8 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:cosmetics/views/checkout_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:get/route_manager.dart';
 
 class AddcartScreen extends StatelessWidget {
-  const AddcartScreen({super.key});
+  //List<String> volume;
+  AddcartScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -105,8 +108,7 @@ class AddcartScreen extends StatelessWidget {
                                                 FirebaseFirestore.instance
                                                     .collection('cart')
                                                     .doc(id)
-                                                    .update(
-                                                        {'qty': qty - 1});
+                                                    .update({'qty': qty - 1});
                                               }
                                             },
                                           ),
@@ -129,12 +131,17 @@ class AddcartScreen extends StatelessWidget {
                                   ),
 
                                   // Price below title
-                                  Text(
-                                    "\$${item['price'] ?? 0.0}",
-                                    style: const TextStyle(
-                                      fontSize: 14,
-                                      color: Colors.grey,
-                                    ),
+                                  Row(
+                                    children: [
+                                      Text(
+                                        "\$${item['price'] ?? 0.0}",
+                                        style: const TextStyle(
+                                          fontSize: 14,
+                                          color: Colors.grey,
+                                        ),
+                                      ),
+                                      // Text("${volume}")
+                                    ],
                                   ),
                                 ],
                               ),
@@ -231,31 +238,33 @@ class AddcartScreen extends StatelessWidget {
                       ],
                     ),
 
-                    const SizedBox(height: 16),
-
-                    // Checkout button
-                    SizedBox(
-                      width: double.infinity,
-                      height: 50,
-                      child: ElevatedButton(
-                        onPressed: () {
-                          // TODO: Add checkout logic here
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(content: Text("Checkout pressed!")),
-                          );
-                        },
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.lightGreen,
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(8)),
+                    SizedBox(height: 16),
+                    InkWell(
+                      onTap: () {
+                        Get.to(() => CheckoutScreen(
+                              subtotal: subtotal,
+                              deliveryFee: deliveryFee,
+                              total: subtotal + deliveryFee,
+                            ));
+                      },
+                      child: Container(
+                        width: double.infinity,
+                        height: 50,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          color: Colors.lightGreen,
                         ),
-                        child: const Text(
-                          "Checkout",
-                          style: TextStyle(
-                              fontSize: 18, fontWeight: FontWeight.bold,color: Colors.white),
+                        child: Center(
+                          child: Text(
+                            "Checkout",
+                            style: TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white),
+                          ),
                         ),
                       ),
-                    ),
+                    )
                   ],
                 ),
               ),
