@@ -87,7 +87,6 @@ class _DetailScreenState extends State<DetailScreen>
               ),
             ),
 
-            // --- Title and Letter ---
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Text(widget.shows.lettter),
@@ -101,7 +100,7 @@ class _DetailScreenState extends State<DetailScreen>
               ),
             ),
 
-            // --- Price ---
+
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
               child: Row(
