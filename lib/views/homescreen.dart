@@ -1,4 +1,6 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cosmetics/model/brand_list.dart';
+import 'package:cosmetics/model/category.dart';
 import 'package:cosmetics/model/gride_home.dart';
 import 'package:cosmetics/model/home_image.dart';
 import 'package:cosmetics/model/list_blog.dart';
@@ -24,7 +26,7 @@ class Homescreen extends StatelessWidget {
           children: [
             Text(
               "welcome back.",
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold,color: Color(0xFFC2185B),),
             ),
             Text("Olivai"),
           ],
@@ -35,6 +37,8 @@ class Homescreen extends StatelessWidget {
             child: Icon(
               Icons.notification_add,
               size: 30,
+
+              //color: Color(0xFFC2185B),
             ),
           ),
           Padding(
@@ -42,6 +46,7 @@ class Homescreen extends StatelessWidget {
             child: Icon(
               Icons.menu,
               size: 30,
+              //color: Color(0xFFC2185B),
             ),
           )
         ],
@@ -56,11 +61,11 @@ class Homescreen extends StatelessWidget {
                 itemCount: detail.length,
                 itemBuilder: (context, index) {
                   final gradients = [
-                    [Color(0xFF8BC34A), Color(0xFF558B2F)],
+                    [Color(0xFFF8BBD0), Color(0xFFC2185B)],
+                    [Color(0xFF81D4FA), Color(0xFF0288D1)],
                     [Color(0xFFFFD54F), Color(0xFFFFB300)],
-                    [Color(0xFF81D4FA), Color(0xFF0288D1)], // blue
-                    [Color(0xFFF8BBD0), Color(0xFFC2185B)], // pink
-                    [Color(0xFFFFAB91), Color(0xFFD84315)], // coral
+                    [Color(0xFFFFAB91), Color(0xFFD84315)],
+                    [Color(0xFF8BC34A), Color(0xFF558B2F)], // coral
                   ];
                   final gradientColors = gradients[index % gradients.length];
                   return Padding(
@@ -154,7 +159,7 @@ class Homescreen extends StatelessWidget {
                                   child: Text(
                                     detail[index].discount,
                                     style: const TextStyle(
-                                      color: Colors.green,
+                                      color: Colors.black54,
                                       fontWeight: FontWeight.bold,
                                     ),
                                   ),
@@ -182,7 +187,10 @@ class Homescreen extends StatelessWidget {
                     onPressed: () {
                       Get.to(Categories());
                     },
-                    child: Text("See all"),
+                    child: Text(
+                      "See all",
+                      style: TextStyle(color: Color(0xFFC2185B)),
+                    ),
                   ),
                 ],
               ),
@@ -209,10 +217,9 @@ class Homescreen extends StatelessWidget {
                           child: Text(
                             letter[index].name,
                             style: TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.black54,
-                            ),
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.black54),
                           ),
                         ),
                       ),
@@ -232,9 +239,16 @@ class Homescreen extends StatelessWidget {
                   Spacer(),
                   TextButton(
                       onPressed: () {
+
                         //Get.to(ScreenType2(category: categ))
                       },
                       child: Text("See all")),
+                        //Get.to(ScreenType2(category:listCategory))
+                      },
+                      child: Text(
+                        "See all",
+                        style: TextStyle(color: Color(0xFFC2185B)),
+                      )),
                 ],
               ),
             ),
@@ -283,7 +297,7 @@ class Homescreen extends StatelessWidget {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    show[index].title,
+                                    show[index].subtitle,
                                     style: TextStyle(
                                       color: const Color.fromARGB(
                                         255,
@@ -297,11 +311,11 @@ class Homescreen extends StatelessWidget {
                                     overflow: TextOverflow.ellipsis,
                                   ),
                                   Text(
-                                    show[index].subtitle,
+                                    show[index].title,
                                     style: TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                    ),
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.bold,
+                                        color: Color(0xFFC2185B)),
                                     overflow: TextOverflow.ellipsis,
                                   ),
                                   Padding(
@@ -334,7 +348,11 @@ class Homescreen extends StatelessWidget {
                                                 0,
                                                 0,
                                               ),
-                                            ),
+                                            ),                                    borderRadius:
+                                                    BorderRadius.circular(
+                                                  20,
+                                                ),
+                                                color: Color(0xFFC2185B)),
                                             child: Icon(
                                               Icons.add,
                                               color: Colors.white,
@@ -364,7 +382,7 @@ class Homescreen extends StatelessWidget {
                     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
                   ),
                   Spacer(),
-                  TextButton(onPressed: () {}, child: Text("See all")),
+                  TextButton(onPressed: () {}, child: Text("See all",style: TextStyle(color: Color(0xFFC2185B)),)),
                 ],
               ),
             ),
@@ -402,7 +420,12 @@ class Homescreen extends StatelessWidget {
                     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
                   ),
                   Spacer(),
-                  TextButton(onPressed: () {}, child: Text("See all")),
+                  TextButton(
+                      onPressed: () {},
+                      child: Text(
+                        "See all",
+                        style: TextStyle(color: Color(0xFFC2185B)),
+                      )),
                 ],
               ),
             ),
@@ -427,7 +450,7 @@ class Homescreen extends StatelessWidget {
                             offset: Offset(0, 3),
                           ),
                         ],
-                        border: Border.all(color: Colors.grey),
+                        // border: Border.all(color: Colors.grey),
                       ),
                       child: Center(
                         child: Column(
@@ -470,6 +493,7 @@ class Homescreen extends StatelessWidget {
                                     style: TextStyle(
                                       fontSize: 16,
                                       fontWeight: FontWeight.bold,
+                                      color: Color(0xFFC2185B),
                                     ),
                                     overflow: TextOverflow.ellipsis,
                                   ),
@@ -487,16 +511,11 @@ class Homescreen extends StatelessWidget {
                                           width: 30,
                                           height: 30,
                                           decoration: BoxDecoration(
-                                            borderRadius: BorderRadius.circular(
-                                              20,
-                                            ),
-                                            color: const Color.fromARGB(
-                                              255,
-                                              0,
-                                              0,
-                                              0,
-                                            ),
-                                          ),
+                                              borderRadius:
+                                                  BorderRadius.circular(
+                                                20,
+                                              ),
+                                              color: Color(0xFFC2185B)),
                                           child: Icon(
                                             Icons.add,
                                             color: Colors.white,
@@ -525,7 +544,7 @@ class Homescreen extends StatelessWidget {
                     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
                   ),
                   Spacer(),
-                  TextButton(onPressed: () {}, child: Text("See all")),
+                  TextButton(onPressed: () {}, child: Text("See all",style: TextStyle(color: Color(0xFFC2185B)),)),
                 ],
               ),
             ),
@@ -575,7 +594,7 @@ class Homescreen extends StatelessWidget {
                                   style: TextStyle(
                                     fontWeight: FontWeight.bold,
                                     fontSize: 16,
-                                    color: const Color.fromARGB(255, 0, 0, 0),
+                                    color: Color(0xFFC2185B)
                                   ),
                                 ),
                                 SizedBox(height: 3),

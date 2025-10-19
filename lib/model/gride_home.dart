@@ -1,6 +1,3 @@
-import 'package:flutter/material.dart';
-import 'package:get/get_connect/http/src/request/request.dart';
-
 class GrideHome {
   String img;
   String lettter;
@@ -45,86 +42,9 @@ List<GrideHome> show = [
         "assets/images/p11.png",
       ],
       category: "Sun Screen"),
-  GrideHome(
-      img: "assets/images/p9.png",
-      price: 30.00,
-      title: "Aloe Vera Hydrating Cream",
-      lettter: "CROSRX",
-      rate: "4.8(128views)",
-      describe:
-          "Hydrates and soothes dry skin, leaving it soft and refreshed. Helps reduce redness and irritation.",
-      subtitle: "Soothes dry skin and provides deep, lasting moisture.",
-      images: [
-        "assets/images/p9.png",
-        "assets/images/p8.png",
-        "assets/images/p10.png",
-        "assets/images/p11.png",
-      ],
-      category: "Sun Screen"),
-  GrideHome(
-      img: "assets/images/p9.png",
-      price: 30.00,
-      title: "Aloe Vera Hydrating Cream",
-      lettter: "CROSRX",
-      rate: "4.8(128views)",
-      describe:
-          "Hydrates and soothes dry skin, leaving it soft and refreshed. Helps reduce redness and irritation.",
-      subtitle: "Soothes dry skin and provides deep, lasting moisture.",
-      images: [
-        "assets/images/p9.png",
-        "assets/images/p8.png",
-        "assets/images/p10.png",
-        "assets/images/p11.png",
-      ],
-      category: "Sun Screen"),
-  GrideHome(
-      img: "assets/images/p9.png",
-      price: 30.00,
-      title: "Aloe Vera Hydrating Cream",
-      lettter: "CROSRX",
-      rate: "4.8(128views)",
-      describe:
-          "Hydrates and soothes dry skin, leaving it soft and refreshed. Helps reduce redness and irritation.",
-      subtitle: "Soothes dry skin and provides deep, lasting moisture.",
-      images: [
-        "assets/images/p9.png",
-        "assets/images/p8.png",
-        "assets/images/p10.png",
-        "assets/images/p11.png",
-      ],
-      category: "Sun Screen"),
-  GrideHome(
-      img: "assets/images/p9.png",
-      price: 30.00,
-      title: "Aloe Vera Hydrating Cream",
-      lettter: "CROSRX",
-      rate: "4.8(128views)",
-      describe:
-          "Hydrates and soothes dry skin, leaving it soft and refreshed. Helps reduce redness and irritation.",
-      subtitle: "Soothes dry skin and provides deep, lasting moisture.",
-      images: [
-        "assets/images/p9.png",
-        "assets/images/p8.png",
-        "assets/images/p10.png",
-        "assets/images/p11.png",
-      ],
-      category: "Sun Screen"),
-  GrideHome(
-      img: "assets/images/p9.png",
-      price: 30.00,
-      title: "Aloe Vera Hydrating Cream",
-      lettter: "CROSRX",
-      rate: "4.8(128views)",
-      describe:
-          "Hydrates and soothes dry skin, leaving it soft and refreshed. Helps reduce redness and irritation.",
-      subtitle: "Soothes dry skin and provides deep, lasting moisture.",
-      images: [
-        "assets/images/p9.png",
-        "assets/images/p8.png",
-        "assets/images/p10.png",
-        "assets/images/p11.png",
-      ],
-      category: "Sun Screen"),
+  
+  
+  
   GrideHome(
       img: "assets/images/6.png",
       price: 40.20,
@@ -172,37 +92,5 @@ List<GrideHome> show = [
         "assets/images/p7.png",
       ],
       category: "Perfume"),
-  GrideHome(
-    img: "assets/images/p4.png",
-    price: 50.05,
-    title: "Collagen Renewal Night Cream",
-    lettter: "CROSRX",
-    rate: "1.8(110views)",
-    describe:
-        "Boosts collagen production overnight for smoother, firmer, and youthful skin.",
-    subtitle: "Reduces fine lines and improves skin elasticity overnight.",
-    images: [
-      "assets/images/p4.png",
-      "assets/images/p5.png",
-      "assets/images/p6.png",
-      "assets/images/p7.png",
-    ],
-    category: "Facial Mask",
-  ),
-  GrideHome(
-      img: "assets/images/p4.png",
-      price: 50.05,
-      title: "Collagen Renewal Night Cream",
-      lettter: "CROSRX",
-      rate: "1.8(110views)",
-      describe:
-          "Boosts collagen production overnight for smoother, firmer, and youthful skin.",
-      subtitle: "Reduces fine lines and improves skin elasticity overnight.",
-      images: [
-        "assets/images/p4.png",
-        "assets/images/p5.png",
-        "assets/images/p6.png",
-        "assets/images/p7.png",
-      ],
-      category: "sun screen"),
-];
+
+  ];
