@@ -22,7 +22,7 @@ class AddcartScreen extends StatelessWidget {
         actions: const [
           Padding(
             padding: EdgeInsets.all(8.0),
-            child: Icon(Icons.favorite, color: Colors.lightGreen, size: 28),
+            child: Icon(Icons.favorite, color: Color(0xFFC2185B), size: 26),
           )
         ],
       ),
@@ -150,7 +150,7 @@ class AddcartScreen extends StatelessWidget {
                             // Delete button inline
                             IconButton(
                               icon: const Icon(Icons.delete_outline,
-                                  color: Colors.red),
+                                  color: Color(0xFFC2185B)),
                               onPressed: () {
                                 FirebaseFirestore.instance
                                     .collection('cart')
@@ -252,7 +252,7 @@ class AddcartScreen extends StatelessWidget {
                         height: 50,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
-                          color: Colors.lightGreen,
+                          color: Color(0xFFC2185B),
                         ),
                         child: Center(
                           child: Text(

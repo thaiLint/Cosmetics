@@ -1,3 +1,4 @@
+import 'package:cosmetics/model/category.dart';
 import 'package:cosmetics/views/SignIn.dart';
 import 'package:cosmetics/views/homescreen.dart';
 import 'package:cosmetics/views/track_screen.dart';

@@ -31,15 +31,14 @@ class OrderSuccessScreen extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            // ✅ Success Icon
             Container(
               width: 120,
               height: 120,
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                color: Colors.green.withOpacity(0.15),
+                color: Color(0xFFC2185B).withOpacity(0.15),
               ),
-              child: const Icon(Icons.check_circle, color: Colors.green, size: 80),
+              child: const Icon(Icons.check_circle, color: Color(0xFFC2185B), size: 80),
             ),
             const SizedBox(height: 20),
 
@@ -76,7 +75,7 @@ class OrderSuccessScreen extends StatelessWidget {
                   _buildRow("Address", address),
                   _buildRow("Payment", paymentMethod),
                   _buildRow("Total", "\$${total.toStringAsFixed(2)}"),
-                  _buildRow("Status", "Processing", color: Colors.green),
+                  _buildRow("Status", "Processing", color: Color(0xFFC2185B)),
                 ],
               ),
             ),
@@ -93,7 +92,7 @@ class OrderSuccessScreen extends StatelessWidget {
                   
                 },
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.lightGreen,
+                  backgroundColor: Color(0xFFC2185B),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(15),
                   ),

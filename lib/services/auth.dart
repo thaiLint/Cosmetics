@@ -1,4 +1,5 @@
 
+import 'package:cosmetics/model/category.dart';
 import 'package:cosmetics/services/database.dart';
 import 'package:cosmetics/views/homescreen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -40,7 +41,7 @@ class AuthMethods {
         .addUser(userDetails.uid, userInfoMap)
         .then((value) {
       Navigator.push(
-          context, MaterialPageRoute(builder: (context) =>Homescreen()));
+          context, MaterialPageRoute(builder: (context) =>Homescreen(),));
     });
     }
 }

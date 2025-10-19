@@ -111,7 +111,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                   } else if (selectedPayment == null) {
                     Get.snackbar("Error", "Please choose a payment method");
                   } else {
-                    final address =
+                    //final address =
                         selectedAddress ?? newAddressController.text.trim();
                     // Get.snackbar("Checkout Successful",
                     //     "Address: $address\nPayment: $selectedPayment\nTotal: \$${widget.total.toStringAsFixed(2)}");
@@ -124,7 +124,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                   }
                 },
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.lightGreen,
+                  backgroundColor: Color(0xFFC2185B),
                   minimumSize: const Size(double.infinity, 55),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(15),
@@ -165,7 +165,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(10),
               ),
-              prefixIcon: const Icon(Icons.location_on, color: Colors.green),
+              prefixIcon: const Icon(Icons.location_on, color: Color(0xFFC2185B)),
             ),
             items: addressList
                 .map((address) => DropdownMenuItem<String>(
@@ -188,7 +188,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
             decoration: InputDecoration(
               hintText: "Type your new address here",
               prefixIcon:
-                  const Icon(Icons.home_outlined, color: Colors.lightGreen),
+                  const Icon(Icons.home_outlined, color:Color(0xFFC2185B)),
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(10),
               ),
@@ -219,7 +219,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                 borderRadius: BorderRadius.circular(12),
                 side: BorderSide(
                   color: selectedPayment == method['name']
-                      ? Colors.green
+                      ? Color(0xFFC2185B)
                       : Colors.grey.shade300,
                   width: 1.5,
                 ),
@@ -227,7 +227,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
               child: RadioListTile<String>(
                 value: method['name'],
                 groupValue: selectedPayment,
-                activeColor: Colors.lightGreen,
+                activeColor:Color(0xFFC2185B),
                 onChanged: (value) {
                   setState(() {
                     selectedPayment = value;
@@ -237,7 +237,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                   method['name'],
                   style: const TextStyle(fontSize: 16),
                 ),
-                secondary: Icon(method['icon'], color: Colors.green),
+                secondary: Icon(method['icon'], color: Color(0xFFC2185B)),
               ),
             );
           }).toList(),

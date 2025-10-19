@@ -60,7 +60,7 @@ class _DetailScreenState extends State<DetailScreen>
             // child: Icon(Icons.shopping_bag, size: 27),
             child: IconButton(onPressed: (){
               Get.to(AddcartScreen());
-            }, icon: Icon(Icons.shopping_bag)),
+            }, icon: Icon(Icons.shopping_bag,color: Color(0xFFC2185B),)),
           ),
         ],
       ),
@@ -123,14 +123,14 @@ class _DetailScreenState extends State<DetailScreen>
                     width: 45,
                     height: 25,
                     decoration: BoxDecoration(
-                      color: Color.fromARGB(255, 177, 229, 118),
+                      color: Color(0xFFC2185B),
                       borderRadius: BorderRadius.circular(5),
                     ),
                     child: const Center(
                       child: Text(
                         "20%",
                         style: TextStyle(
-                          color: Color.fromARGB(255, 45, 128, 37),
+                          color: Color.fromARGB(255, 255, 255, 255),
                           fontSize: 17,
                         ),
                       ),
@@ -162,7 +162,7 @@ class _DetailScreenState extends State<DetailScreen>
                           color: Colors.white,
                           borderRadius: BorderRadius.circular(20),
                           border: Border.all(
-                            color: isSelected ? Colors.lightGreen : Colors.grey,
+                            color: isSelected ? Color(0xFFC2185B) : Colors.grey,
                             width: isSelected ? 2 : 1,
                           ),
                         ),
@@ -172,7 +172,7 @@ class _DetailScreenState extends State<DetailScreen>
                             style: TextStyle(
                               fontSize: 17,
                               color:
-                                  isSelected ? Colors.lightGreen : Colors.black,
+                                  isSelected ? Color(0xFFC2185B) : Colors.black,
                               fontWeight: isSelected
                                   ? FontWeight.bold
                                   : FontWeight.normal,
@@ -194,14 +194,14 @@ class _DetailScreenState extends State<DetailScreen>
               child: Row(
                 children: const [
                   Icon(Icons.badge_outlined,
-                      size: 20, color: Colors.lightGreen),
+                      size: 20, color: Color(0xFFC2185B)),
                   SizedBox(width: 5),
                   Text(
                     "In stock",
                     style: TextStyle(
                       fontSize: 17,
                       fontWeight: FontWeight.bold,
-                      color: Colors.lightGreen,
+                      color: Color(0xFFC2185B),
                     ),
                   ),
                 ],
@@ -249,9 +249,9 @@ class _DetailScreenState extends State<DetailScreen>
                 children: [
                   TabBar(
                     controller: _tabController,
-                    labelColor: Colors.lightGreen,
+                    labelColor: Color(0xFFC2185B),
                     unselectedLabelColor: Colors.grey,
-                    indicatorColor: Colors.lightGreen,
+                    indicatorColor: Color(0xFFC2185B),
                     tabs: [
                       Tab(text: "How to use"),
                       Tab(text: "Ingredient"),
@@ -307,7 +307,7 @@ class _DetailScreenState extends State<DetailScreen>
                       width: 300,
                       height: 60,
                       decoration: BoxDecoration(
-                        color: Colors.lightGreen,
+                        color:Color(0xFFC2185B),
                         borderRadius: BorderRadius.circular(10),
                       ),
                       child: Center(
@@ -329,11 +329,11 @@ class _DetailScreenState extends State<DetailScreen>
                         borderRadius: BorderRadius.circular(10),
                         color: const Color.fromARGB(255, 255, 255, 255),
                         border: Border.all(
-                          color: Colors.lightGreen,
+                          color: Color(0xFFC2185B),
                           width: 1
                         )
                         ),
-                        child: Icon(Icons.favorite,color: Colors.red,),
+                        child: Icon(Icons.favorite,color: Color(0xFFC2185B),),
                   ),
                 )
               ],
