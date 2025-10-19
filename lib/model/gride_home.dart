@@ -1,5 +1,3 @@
-import 'package:flutter/material.dart';
-import 'package:get/get_connect/http/src/request/request.dart';
 
 class GrideHome {
   String img;
@@ -46,6 +44,23 @@ List<GrideHome> show = [
       ],
       category: "Sun Screen"),
   GrideHome(
+
+    img: "assets/images/6.png",
+    price: 40.20,
+    title: "Hydrating Aloe Vera Cream",
+    lettter: "CROSRX",
+    rate: "2.8(100views)",
+    describe:
+        "A lightweight cream that calms irritation and locks in moisture for all-day comfort.",
+    subtitle: "Soothes dry skin and provides deep, lasting moisture.",
+    images: [
+      "assets/images/6.png",
+      "assets/images/p1.png",
+      "assets/images/d8.png",
+      "assets/images/p2.png",
+    ],
+  ),
+
       img: "assets/images/p9.png",
       price: 30.00,
       title: "Aloe Vera Hydrating Cream",
@@ -61,6 +76,7 @@ List<GrideHome> show = [
         "assets/images/p11.png",
       ],
       category: "Sun Screen"),
+
   GrideHome(
       img: "assets/images/p9.png",
       price: 30.00,
