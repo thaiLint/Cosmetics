@@ -6,14 +6,14 @@ import 'package:cosmetics/model/list_model.dart';
 
 import 'package:cosmetics/views/categories.dart';
 import 'package:cosmetics/model/list_more.dart';
+import 'package:cosmetics/views/dataCategories/screen_type2.dart';
 import 'package:cosmetics/views/detail_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/utils.dart';
 
 class Homescreen extends StatelessWidget {
- Homescreen({super.key});
-  
+  Homescreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -32,12 +32,18 @@ class Homescreen extends StatelessWidget {
         actions: [
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: Icon(Icons.notification_add,size: 30,),
+            child: Icon(
+              Icons.notification_add,
+              size: 30,
+            ),
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: Icon(Icons.menu,size: 30,),
-          ) 
+            child: Icon(
+              Icons.menu,
+              size: 30,
+            ),
+          )
         ],
       ),
       body: SingleChildScrollView(
@@ -175,7 +181,6 @@ class Homescreen extends StatelessWidget {
                   TextButton(
                     onPressed: () {
                       Get.to(Categories());
-                    
                     },
                     child: Text("See all"),
                   ),
@@ -225,7 +230,11 @@ class Homescreen extends StatelessWidget {
                     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
                   ),
                   Spacer(),
-                  TextButton(onPressed: () {}, child: Text("See all")),
+                  TextButton(
+                      onPressed: () {
+                        //Get.to(ScreenType2(category: categ))
+                      },
+                      child: Text("See all")),
                 ],
               ),
             ),
@@ -308,13 +317,15 @@ class Homescreen extends StatelessWidget {
                                         //link to detail page
                                         InkWell(
                                           onTap: () {
-                                            Get.to(DetailScreen(shows:show[index]));
+                                            Get.to(DetailScreen(
+                                                shows: show[index]));
                                           },
                                           child: Container(
                                             width: 30,
                                             height: 30,
                                             decoration: BoxDecoration(
-                                              borderRadius: BorderRadius.circular(
+                                              borderRadius:
+                                                  BorderRadius.circular(
                                                 20,
                                               ),
                                               color: const Color.fromARGB(
@@ -432,7 +443,6 @@ class Homescreen extends StatelessWidget {
                                 fit: BoxFit.cover,
                               ),
                             ),
-                            
                             Padding(
                               padding: const EdgeInsets.symmetric(
                                 horizontal: 8.0,
@@ -463,7 +473,6 @@ class Homescreen extends StatelessWidget {
                                     ),
                                     overflow: TextOverflow.ellipsis,
                                   ),
-
                                   Padding(
                                     padding: const EdgeInsets.all(8.0),
                                     child: Row(
@@ -522,7 +531,7 @@ class Homescreen extends StatelessWidget {
             ),
             Container(
               width: double.infinity,
-              height: 260, 
+              height: 260,
               child: ListView.builder(
                 scrollDirection: Axis.horizontal,
                 itemCount: see.length,
@@ -556,7 +565,6 @@ class Homescreen extends StatelessWidget {
                               fit: BoxFit.cover,
                             ),
                           ),
-
                           Padding(
                             padding: const EdgeInsets.all(10.0),
                             child: Column(
