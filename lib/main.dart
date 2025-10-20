@@ -1,3 +1,4 @@
+
 import 'package:cosmetics/model/category.dart';
 import 'package:cosmetics/views/SignIn.dart';
 import 'package:cosmetics/views/homescreen.dart';
@@ -24,7 +25,10 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
+
       theme: ThemeData(primarySwatch: Colors.deepPurple),
+
+      // If user already logged in, go to home
       home: FirebaseAuth.instance.currentUser == null
           ? Login()
           : BottomBarController(),
