@@ -21,8 +21,9 @@ class _SearchScreenState extends State<SearchScreen> {
         e.title.toLowerCase().contains(searchController.text.toLowerCase())
     ).toList();
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: const Color.fromARGB(255, 244, 232, 242),
       body: SafeArea(
+
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
           child: Column(
