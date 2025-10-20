@@ -37,6 +37,7 @@ class Homescreen extends StatelessWidget {
             child: Icon(
               Icons.notification_add,
               size: 30,
+              //color: Color(0xFFC2185B),
             ),
           ),
           Padding(
@@ -44,6 +45,7 @@ class Homescreen extends StatelessWidget {
             child: Icon(
               Icons.menu,
               size: 30,
+              //color: Color(0xFFC2185B),
             ),
           )
         ],
@@ -181,8 +183,13 @@ class Homescreen extends StatelessWidget {
                   ),
                   Spacer(),
                   TextButton(
-                    onPressed: () {},
-                    child: Text("See all"),
+                    onPressed: () {
+                      Get.to(Categories());
+                    },
+                    child: Text(
+                      "See all",
+                      style: TextStyle(color: Color(0xFFC2185B)),
+                    ),
                   ),
                 ],
               ),
@@ -326,17 +333,11 @@ class Homescreen extends StatelessWidget {
                                             width: 30,
                                             height: 30,
                                             decoration: BoxDecoration(
-                                              borderRadius:
-                                                  BorderRadius.circular(
-                                                20,
-                                              ),
-                                              color: const Color.fromARGB(
-                                                255,
-                                                0,
-                                                0,
-                                                0,
-                                              ),
-                                            ),
+                                                borderRadius:
+                                                    BorderRadius.circular(
+                                                  20,
+                                                ),
+                                                color: Color(0xFFC2185B)),
                                             child: Icon(
                                               Icons.add,
                                               color: Colors.white,
@@ -607,5 +608,3 @@ class Homescreen extends StatelessWidget {
     );
   }
 }
-
-
