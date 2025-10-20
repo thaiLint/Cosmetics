@@ -18,8 +18,8 @@ class ScreenType2 extends StatelessWidget {
     return Scaffold(
         appBar: AppBar(
             backgroundColor: const Color.fromARGB(255, 96, 172, 235),
-            title: Text("${category}")),
-        body: GridView.builder(
+            title: Text("${category}"),),
+    body: GridView.builder(
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 2,
               mainAxisSpacing: 10,
@@ -94,7 +94,7 @@ class ScreenType2 extends StatelessWidget {
                               child: Row(
                                 children: [
                                   Text(
-                                    "\$${filter[index].price.toStringAsFixed(1)}" +
+                                    "\$${filter[index].price.toStringAsFixed(2)}" +
                                         "USD",
                                     style: TextStyle(fontSize: 18),
                                   ),
