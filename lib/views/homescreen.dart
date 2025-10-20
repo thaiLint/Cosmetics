@@ -239,12 +239,9 @@ class Homescreen extends StatelessWidget {
                   Spacer(),
                   TextButton(
                       onPressed: () {
-
                         //Get.to(ScreenType2(category: categ))
                       },
-                      child: Text("See all")),
                         //Get.to(ScreenType2(category:listCategory))
-                      },
                       child: Text(
                         "See all",
                         style: TextStyle(color: Color(0xFFC2185B)),
@@ -348,11 +345,7 @@ class Homescreen extends StatelessWidget {
                                                 0,
                                                 0,
                                               ),
-                                            ),                                    borderRadius:
-                                                    BorderRadius.circular(
-                                                  20,
-                                                ),
-                                                color: Color(0xFFC2185B)),
+                                            ), 
                                             child: Icon(
                                               Icons.add,
                                               color: Colors.white,
