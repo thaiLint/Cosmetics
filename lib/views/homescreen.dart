@@ -5,6 +5,7 @@ import 'package:cosmetics/model/gride_home.dart';
 import 'package:cosmetics/model/home_image.dart';
 import 'package:cosmetics/model/list_blog.dart';
 import 'package:cosmetics/model/list_model.dart';
+
 import 'package:cosmetics/views/categories.dart';
 import 'package:cosmetics/model/list_more.dart';
 import 'package:cosmetics/views/dataCategories/screen_type2.dart';
@@ -25,11 +26,7 @@ class Homescreen extends StatelessWidget {
           children: [
             Text(
               "welcome back.",
-              style: TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-                color: Color(0xFFC2185B),
-              ),
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold,color: Color(0xFFC2185B),),
             ),
             Text("Olivai"),
           ],
@@ -40,7 +37,7 @@ class Homescreen extends StatelessWidget {
             child: Icon(
               Icons.notification_add,
               size: 30,
-              color: Color(0xFFC2185B),
+              //color: Color(0xFFC2185B),
             ),
           ),
           Padding(
@@ -48,7 +45,7 @@ class Homescreen extends StatelessWidget {
             child: Icon(
               Icons.menu,
               size: 30,
-              color: Color(0xFFC2185B),
+              //color: Color(0xFFC2185B),
             ),
           )
         ],
@@ -67,7 +64,7 @@ class Homescreen extends StatelessWidget {
                     [Color(0xFF81D4FA), Color(0xFF0288D1)],
                     [Color(0xFFFFD54F), Color(0xFFFFB300)],
                     [Color(0xFFFFAB91), Color(0xFFD84315)],
-                    [Color(0xFF8BC34A), Color(0xFF558B2F)],
+                    [Color(0xFF8BC34A), Color(0xFF558B2F)], // coral
                   ];
                   final gradientColors = gradients[index % gradients.length];
                   return Padding(
@@ -144,6 +141,8 @@ class Homescreen extends StatelessWidget {
                                       fontSize: 14,
                                       height: 1.4,
                                     ),
+                                    // maxLines: 3,
+                                    // overflow: TextOverflow.ellipsis,
                                   ),
                                 ),
                                 SizedBox(height: 16),
@@ -217,10 +216,9 @@ class Homescreen extends StatelessWidget {
                           child: Text(
                             letter[index].name,
                             style: TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.black54,
-                            ),
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.black54),
                           ),
                         ),
                       ),
@@ -239,14 +237,13 @@ class Homescreen extends StatelessWidget {
                   ),
                   Spacer(),
                   TextButton(
-                    onPressed: () {
-                      // Get.to(ScreenType2(category: listCategory))
-                    },
-                    child: Text(
-                      "See all",
-                      style: TextStyle(color: Color(0xFFC2185B)),
-                    ),
-                  ),
+                      onPressed: () {
+                        //Get.to(ScreenType2(category:listCategory))
+                      },
+                      child: Text(
+                        "See all",
+                        style: TextStyle(color: Color(0xFFC2185B)),
+                      )),
                 ],
               ),
             ),
@@ -297,7 +294,12 @@ class Homescreen extends StatelessWidget {
                                   Text(
                                     show[index].subtitle,
                                     style: TextStyle(
-                                      color: Color.fromARGB(255, 152, 152, 152),
+                                      color: const Color.fromARGB(
+                                        255,
+                                        152,
+                                        152,
+                                        152,
+                                      ),
                                       fontSize: 12,
                                     ),
                                     maxLines: 1,
@@ -306,10 +308,9 @@ class Homescreen extends StatelessWidget {
                                   Text(
                                     show[index].title,
                                     style: TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                      color: Color(0xFFC2185B),
-                                    ),
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.bold,
+                                        color: Color(0xFFC2185B)),
                                     overflow: TextOverflow.ellipsis,
                                   ),
                                   Padding(
@@ -317,10 +318,12 @@ class Homescreen extends StatelessWidget {
                                     child: Row(
                                       children: [
                                         Text(
-                                          "\$${show[index].price.toStringAsFixed(2)} USD",
+                                          "\$${show[index].price.toStringAsFixed(2)}" +
+                                              "USD",
                                           style: TextStyle(fontSize: 18),
                                         ),
                                         Spacer(),
+                                        //link to detail page
                                         InkWell(
                                           onTap: () {
                                             Get.to(DetailScreen(
@@ -330,17 +333,11 @@ class Homescreen extends StatelessWidget {
                                             width: 30,
                                             height: 30,
                                             decoration: BoxDecoration(
-                                              borderRadius:
-                                                  BorderRadius.circular(20),
-                                              gradient: LinearGradient(
-                                                colors: [
-                                                  Color(0xFFC2185B),
-                                                  Colors.pinkAccent,
-                                                ],
-                                                begin: Alignment.topLeft,
-                                                end: Alignment.bottomRight,
-                                              ),
-                                            ),
+                                                borderRadius:
+                                                    BorderRadius.circular(
+                                                  20,
+                                                ),
+                                                color: Color(0xFFC2185B)),
                                             child: Icon(
                                               Icons.add,
                                               color: Colors.white,
@@ -370,13 +367,7 @@ class Homescreen extends StatelessWidget {
                     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
                   ),
                   Spacer(),
-                  TextButton(
-                    onPressed: () {},
-                    child: Text(
-                      "See all",
-                      style: TextStyle(color: Color(0xFFC2185B)),
-                    ),
-                  ),
+                  TextButton(onPressed: () {}, child: Text("See all",style: TextStyle(color: Color(0xFFC2185B)),)),
                 ],
               ),
             ),
@@ -394,7 +385,7 @@ class Homescreen extends StatelessWidget {
                       height: 70,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
-                        color: Colors.white,
+                        color: const Color.fromARGB(255, 255, 255, 255),
                         border: Border.all(color: Colors.grey, width: 1),
                       ),
                       child: Center(
@@ -415,12 +406,11 @@ class Homescreen extends StatelessWidget {
                   ),
                   Spacer(),
                   TextButton(
-                    onPressed: () {},
-                    child: Text(
-                      "See all",
-                      style: TextStyle(color: Color(0xFFC2185B)),
-                    ),
-                  ),
+                      onPressed: () {},
+                      child: Text(
+                        "See all",
+                        style: TextStyle(color: Color(0xFFC2185B)),
+                      )),
                 ],
               ),
             ),
@@ -445,6 +435,7 @@ class Homescreen extends StatelessWidget {
                             offset: Offset(0, 3),
                           ),
                         ],
+                        // border: Border.all(color: Colors.grey),
                       ),
                       child: Center(
                         child: Column(
@@ -471,8 +462,12 @@ class Homescreen extends StatelessWidget {
                                   Text(
                                     more[index].title,
                                     style: TextStyle(
-                                      color:
-                                          Color.fromARGB(255, 152, 152, 152),
+                                      color: const Color.fromARGB(
+                                        255,
+                                        152,
+                                        152,
+                                        152,
+                                      ),
                                       fontSize: 12,
                                     ),
                                     maxLines: 1,
@@ -492,7 +487,8 @@ class Homescreen extends StatelessWidget {
                                     child: Row(
                                       children: [
                                         Text(
-                                          "\$${more[index].price.toStringAsFixed(2)} USD",
+                                          "\$${more[index].price.toStringAsFixed(2)}" +
+                                              "USD",
                                           style: TextStyle(fontSize: 18),
                                         ),
                                         Spacer(),
@@ -500,10 +496,11 @@ class Homescreen extends StatelessWidget {
                                           width: 30,
                                           height: 30,
                                           decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(20),
-                                            color: Color(0xFFC2185B),
-                                          ),
+                                              borderRadius:
+                                                  BorderRadius.circular(
+                                                20,
+                                              ),
+                                              color: Color(0xFFC2185B)),
                                           child: Icon(
                                             Icons.add,
                                             color: Colors.white,
@@ -532,13 +529,7 @@ class Homescreen extends StatelessWidget {
                     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
                   ),
                   Spacer(),
-                  TextButton(
-                    onPressed: () {},
-                    child: Text(
-                      "See all",
-                      style: TextStyle(color: Color(0xFFC2185B)),
-                    ),
-                  ),
+                  TextButton(onPressed: () {}, child: Text("See all",style: TextStyle(color: Color(0xFFC2185B)),)),
                 ],
               ),
             ),
@@ -588,7 +579,7 @@ class Homescreen extends StatelessWidget {
                                   style: TextStyle(
                                     fontWeight: FontWeight.bold,
                                     fontSize: 16,
-                                    color: Color(0xFFC2185B),
+                                    color: Color(0xFFC2185B)
                                   ),
                                 ),
                                 SizedBox(height: 3),
