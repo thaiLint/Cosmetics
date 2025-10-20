@@ -245,6 +245,8 @@ class AddcartScreen extends StatelessWidget {
                               subtotal: subtotal,
                               deliveryFee: deliveryFee,
                               total: subtotal + deliveryFee,
+                              address: "",
+                              //paymentId: "",
                             ));
                       },
                       child: Container(
