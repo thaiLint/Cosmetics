@@ -254,7 +254,7 @@ class Homescreen extends StatelessWidget {
               height: 260,
               child: ListView.builder(
                 scrollDirection: Axis.horizontal,
-                itemCount: show.length,
+                itemCount: 3,
                 itemBuilder: (context, index) {
                   return Padding(
                     padding: const EdgeInsets.all(8.0),

@@ -1,5 +1,5 @@
-import 'package:cosmetics/model/category.dart';
 import 'package:cosmetics/views/SignIn.dart';
+import 'package:cosmetics/views/Sign_up.dart';
 import 'package:cosmetics/views/homescreen.dart';
 import 'package:cosmetics/views/track_screen.dart';
 import 'package:cosmetics/views/order_screen.dart';
@@ -28,6 +28,12 @@ class MyApp extends StatelessWidget {
       home: FirebaseAuth.instance.currentUser == null
           ? Login()
           : BottomBarController(),
+      initialRoute: '/splash',
+      routes: {
+        '/signin': (context) => Login(),
+        '/signup': (context) => SignUp(),
+        '/home': (context) => Homescreen()
+      },
     );
   }
 }
