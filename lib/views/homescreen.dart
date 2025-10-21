@@ -1,10 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:cosmetics/model/api_product.dart';
 import 'package:cosmetics/model/brand_list.dart';
 import 'package:cosmetics/model/category.dart';
 import 'package:cosmetics/model/gride_home.dart';
 import 'package:cosmetics/model/home_image.dart';
 import 'package:cosmetics/model/list_blog.dart';
 import 'package:cosmetics/model/list_model.dart';
+import 'package:cosmetics/services/aip_product.dart';
 
 import 'package:cosmetics/views/categories.dart';
 import 'package:cosmetics/model/list_more.dart';
@@ -14,40 +16,132 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/utils.dart';
 
-class Homescreen extends StatelessWidget {
+class Homescreen extends StatefulWidget {
   Homescreen({super.key});
+
+  @override
+  State<Homescreen> createState() => _HomescreenState();
+}
+
+class _HomescreenState extends State<Homescreen> {
+  late Future<List<Product>> futureProducts;
+  @override
+  void initState() {
+    super.initState();
+    futureProducts = ApiService().getApi();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.white,
+        elevation: 1,
         title: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              "welcome back.",
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold,color: Color(0xFFC2185B),),
+              "Location",
+              style: TextStyle(fontSize: 14),
             ),
-            Text("Olivai"),
+            const SizedBox(
+              height: 8,
+            ),
+            Row(
+              children: [
+                const Icon(Icons.location_on_outlined, color: Colors.black54),
+                const SizedBox(width: 5),
+                const Text(
+                  "Phnom Penh",
+                  style: TextStyle(
+                    color: Colors.black87,
+                    fontWeight: FontWeight.w500,
+                    fontSize: 14,
+                  ),
+                ),
+                const Icon(Icons.keyboard_arrow_down,
+                    color: Colors.black54, size: 20),
+              ],
+            ),
           ],
         ),
         actions: [
           Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Icon(
-              Icons.notification_add,
-              size: 30,
-              //color: Color(0xFFC2185B),
+            padding: const EdgeInsets.symmetric(horizontal: 5),
+            child: Image.network(
+              'https://flagcdn.com/w20/kh.png',
+              width: 25,
+              height: 25,
             ),
           ),
+
+          //  Favorite icon with badge
           Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Icon(
-              Icons.menu,
-              size: 30,
-              //color: Color(0xFFC2185B),
+            padding: const EdgeInsets.symmetric(horizontal: 8),
+            child: Stack(
+              clipBehavior: Clip.none,
+              children: [
+                const Icon(Icons.favorite_border, color: Colors.black54),
+                Positioned(
+                  right: -3,
+                  top: -3,
+                  child: Container(
+                    padding: const EdgeInsets.all(2),
+                    decoration: const BoxDecoration(
+                      color: Colors.red,
+                      shape: BoxShape.circle,
+                    ),
+                    constraints:
+                        const BoxConstraints(minWidth: 14, minHeight: 14),
+                    child: const Text(
+                      '0',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 9,
+                        fontWeight: FontWeight.bold,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                ),
+              ],
             ),
-          )
+          ),
+
+          // Notification icon with badge
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8),
+            child: Stack(
+              clipBehavior: Clip.none,
+              children: [
+                const Icon(Icons.notifications_none, color: Colors.black54),
+                Positioned(
+                  right: -3,
+                  top: -3,
+                  child: Container(
+                    padding: const EdgeInsets.all(2),
+                    decoration: const BoxDecoration(
+                      color: Colors.red,
+                      shape: BoxShape.circle,
+                    ),
+                    constraints:
+                        const BoxConstraints(minWidth: 14, minHeight: 14),
+                    child: const Text(
+                      '0',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 9,
+                        fontWeight: FontWeight.bold,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+
+          const SizedBox(width: 10),
         ],
       ),
       body: SingleChildScrollView(
@@ -198,7 +292,7 @@ class Homescreen extends StatelessWidget {
               padding: const EdgeInsets.only(left: 8, right: 8),
               child: Container(
                 width: double.infinity,
-                height: 60,
+                height: 70,
                 child: ListView.builder(
                   scrollDirection: Axis.horizontal,
                   itemCount: letter.length,
@@ -207,10 +301,11 @@ class Homescreen extends StatelessWidget {
                       padding: const EdgeInsets.all(8.0),
                       child: Container(
                         width: 130,
-                        height: 50,
+                        height: 70,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(15),
-                          border: Border.all(color: Colors.grey, width: 1),
+                          border:
+                              Border.all(color: Color(0xFFC2185B), width: 1),
                         ),
                         child: Center(
                           child: Text(
@@ -218,7 +313,7 @@ class Homescreen extends StatelessWidget {
                             style: TextStyle(
                                 fontSize: 18,
                                 fontWeight: FontWeight.bold,
-                                color: Colors.black54),
+                                color: Color(0xFFC2185B)),
                           ),
                         ),
                       ),
@@ -227,137 +322,190 @@ class Homescreen extends StatelessWidget {
                 ),
               ),
             ),
+
+            // -------------------- New Arrivals --------------------
             Padding(
               padding: const EdgeInsets.only(left: 14, right: 8),
               child: Row(
                 children: [
-                  Text(
-                    "New Arrivals",
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
-                  ),
-                  Spacer(),
+                  const Text("New Arrivals",
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
+                  const Spacer(),
                   TextButton(
-                      onPressed: () {
-                        //Get.to(ScreenType2(category:listCategory))
-                      },
-                      child: Text(
-                        "See all",
-                        style: TextStyle(color: Color(0xFFC2185B)),
-                      )),
+                      onPressed: () => Get.to(Categories()),
+                      child: const Text("See all")),
                 ],
               ),
             ),
-            Container(
-              width: double.infinity,
+            SizedBox(
               height: 260,
-              child: ListView.builder(
-                scrollDirection: Axis.horizontal,
-                itemCount: show.length,
-                itemBuilder: (context, index) {
-                  return Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Container(
-                      width: 170,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(15),
-                        color: Colors.white,
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.black12,
-                            blurRadius: 6,
-                            offset: Offset(0, 3),
+              child: FutureBuilder<List<Product>>(
+                future: futureProducts,
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return const Center(child: CircularProgressIndicator());
+                  } else if (snapshot.hasError) {
+                    return Center(
+                        child: Text("Error: ${snapshot.error}",
+                            style: const TextStyle(color: Colors.red)));
+                  } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
+                    return const Center(child: Text("No products found"));
+                  }
+
+                  final products = snapshot.data!;
+                  return ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    itemCount: products.length,
+                    itemBuilder: (context, index) {
+                      final product = products[index];
+                      return Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Container(
+                          width: 170,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(15),
+                            color: Colors.white,
+                            boxShadow: const [
+                              BoxShadow(
+                                  color: Colors.black12,
+                                  blurRadius: 6,
+                                  offset: Offset(0, 3))
+                            ],
                           ),
-                        ],
-                      ),
-                      child: Center(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            ClipRRect(
-                              borderRadius: const BorderRadius.vertical(
-                                top: Radius.circular(15),
-                              ),
-                              child: Image.asset(
-                                show[index].img,
-                                height: 140,
-                                fit: BoxFit.cover,
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.symmetric(
-                                horizontal: 8.0,
-                                vertical: 6,
-                              ),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              // ----------- Image + New + Favorite -----------
+                              Stack(
                                 children: [
-                                  Text(
-                                    show[index].subtitle,
-                                    style: TextStyle(
-                                      color: const Color.fromARGB(
-                                        255,
-                                        152,
-                                        152,
-                                        152,
-                                      ),
-                                      fontSize: 12,
+                                  ClipRRect(
+                                    borderRadius: const BorderRadius.vertical(
+                                        top: Radius.circular(15)),
+                                    child: Image.network(
+                                      product.image ?? '',
+                                      height: 130,
+                                      width: double.infinity,
+                                      fit: BoxFit.cover,
+                                      errorBuilder:
+                                          (context, error, stackTrace) =>
+                                              const Icon(Icons.broken_image,
+                                                  size: 50),
                                     ),
-                                    maxLines: 1,
-                                    overflow: TextOverflow.ellipsis,
                                   ),
-                                  Text(
-                                    show[index].title,
-                                    style: TextStyle(
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.bold,
-                                        color: Color(0xFFC2185B)),
-                                    overflow: TextOverflow.ellipsis,
+                                  // "New" label (top-left)
+                                  Positioned(
+                                    top: 8,
+                                    left: 8,
+                                    child: Container(
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 8, vertical: 4),
+                                      decoration: BoxDecoration(
+                                        color: Color(0xFFC2185B),
+                                        borderRadius: BorderRadius.circular(6),
+                                      ),
+                                      child: const Text(
+                                        "NEW",
+                                        style: TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 12,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                    ),
                                   ),
-                                  Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Row(
-                                      children: [
-                                        Text(
-                                          "\$${show[index].price.toStringAsFixed(2)}" +
-                                              "USD",
-                                          style: TextStyle(fontSize: 18),
-                                        ),
-                                        Spacer(),
-                                        //link to detail page
-                                        InkWell(
-                                          onTap: () {
-                                            Get.to(DetailScreen(
-                                                shows: show[index]));
-                                          },
-                                          child: Container(
-                                            width: 30,
-                                            height: 30,
-                                            decoration: BoxDecoration(
-                                                borderRadius:
-                                                    BorderRadius.circular(
-                                                  20,
-                                                ),
-                                                color: Color(0xFFC2185B)),
-                                            child: Icon(
-                                              Icons.add,
-                                              color: Colors.white,
-                                            ),
-                                          ),
-                                        ),
-                                      ],
+                                  // Favorite icon (top-right)
+                                  Positioned(
+                                    top: 0,
+                                    right: 0,
+                                    child: IconButton(
+                                      icon: const Icon(Icons.favorite_border,
+                                          color: Colors.pinkAccent),
+                                      onPressed: () {
+                                        ScaffoldMessenger.of(context)
+                                            .showSnackBar(
+                                          SnackBar(
+                                              content: Text(
+                                                  "${product.name} added to favorites")),
+                                        );
+                                      },
                                     ),
                                   ),
                                 ],
                               ),
-                            ),
-                          ],
+
+                              const SizedBox(height: 6),
+
+                              // ----------- Subtitle (e.g. "Natural Skin Cream")
+                              Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 8.0),
+                                child: Text(
+                                  product.description ?? "Natural Skin Cream",
+                                  style: const TextStyle(
+                                      color: Colors.grey, fontSize: 12),
+                                  maxLines: 1,
+                                  overflow: TextOverflow.ellipsis,
+                                ),
+                              ),
+
+                              // ----------- Product name -----------
+                              Padding(
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 8.0, vertical: 4),
+                                child: Text(
+                                  product.name ?? "No name",
+                                  style: const TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold,
+                                      color: Color(0xFFC2185B)),
+                                  overflow: TextOverflow.ellipsis,
+                                ),
+                              ),
+
+                              // ----------- Price + Add button -----------
+                              Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 8.0),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      "\$${product.price.toString()}" + "USD",
+                                      style: const TextStyle(fontSize: 18),
+                                    ),
+                                    Container(
+                                      width: 30,
+                                      height: 30,
+                                      decoration: const BoxDecoration(
+                                        color: Color(0xFFC2185B),
+                                        shape: BoxShape.circle,
+                                      ),
+                                      child: IconButton(
+                                        padding: EdgeInsets.zero,
+                                        iconSize: 20,
+                                        icon: const Icon(Icons.add,
+                                            color: Colors.white),
+                                        onPressed: () {
+                                          Get.to(
+                                              DetailScreen(product: product));
+                                        },
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
-                      ),
-                    ),
+                      );
+                    },
                   );
                 },
               ),
             ),
+            //Brand part
+
             Padding(
               padding: const EdgeInsets.only(left: 14, right: 8),
               child: Row(
@@ -367,13 +515,18 @@ class Homescreen extends StatelessWidget {
                     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
                   ),
                   Spacer(),
-                  TextButton(onPressed: () {}, child: Text("See all",style: TextStyle(color: Color(0xFFC2185B)),)),
+                  TextButton(
+                      onPressed: () {},
+                      child: Text(
+                        "See all",
+                        style: TextStyle(color: Color(0xFFC2185B)),
+                      )),
                 ],
               ),
             ),
             Container(
               width: double.infinity,
-              height: 80,
+              height: 70,
               child: ListView.builder(
                 scrollDirection: Axis.horizontal,
                 itemCount: all.length,
@@ -382,11 +535,11 @@ class Homescreen extends StatelessWidget {
                     padding: const EdgeInsets.all(8.0),
                     child: Container(
                       width: 130,
-                      height: 70,
+                      height: 50,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
                         color: const Color.fromARGB(255, 255, 255, 255),
-                        border: Border.all(color: Colors.grey, width: 1),
+                        border: Border.all(color: Color(0xFFC2185B), width: 1),
                       ),
                       child: Center(
                         child: Image.asset(all[index].img, width: 200),
@@ -396,6 +549,8 @@ class Homescreen extends StatelessWidget {
                 },
               ),
             ),
+
+            // Recommended product
             Padding(
               padding: const EdgeInsets.only(left: 14, right: 8),
               child: Row(
@@ -529,7 +684,12 @@ class Homescreen extends StatelessWidget {
                     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
                   ),
                   Spacer(),
-                  TextButton(onPressed: () {}, child: Text("See all",style: TextStyle(color: Color(0xFFC2185B)),)),
+                  TextButton(
+                      onPressed: () {},
+                      child: Text(
+                        "See all",
+                        style: TextStyle(color: Color(0xFFC2185B)),
+                      )),
                 ],
               ),
             ),
@@ -577,10 +737,9 @@ class Homescreen extends StatelessWidget {
                                 Text(
                                   see[index].title,
                                   style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 16,
-                                    color: Color(0xFFC2185B)
-                                  ),
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 16,
+                                      color: Color(0xFFC2185B)),
                                 ),
                                 SizedBox(height: 3),
                                 Text(

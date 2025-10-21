@@ -1,5 +1,3 @@
-
-import 'package:cosmetics/model/category.dart';
 import 'package:cosmetics/views/SignIn.dart';
 import 'package:cosmetics/views/homescreen.dart';
 import 'package:cosmetics/views/track_screen.dart';
@@ -24,11 +22,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
-
-      theme: ThemeData(primarySwatch: Colors.deepPurple),
-
-      // If user already logged in, go to home
+      title: 'Cosmetics App',
+      theme: ThemeData(
+        primarySwatch: Colors.pink,
+        scaffoldBackgroundColor: Colors.white,
+      ),
       home: FirebaseAuth.instance.currentUser == null
           ? Login()
           : BottomBarController(),
@@ -40,7 +38,7 @@ class BottomBarController extends StatefulWidget {
   const BottomBarController({super.key});
 
   @override
-  _BottomBarControllerState createState() => _BottomBarControllerState();
+  State<BottomBarController> createState() => _BottomBarControllerState();
 }
 
 class _BottomBarControllerState extends State<BottomBarController> {
@@ -57,24 +55,76 @@ class _BottomBarControllerState extends State<BottomBarController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBody: true,
       body: _pages[_currentIndex],
-      bottomNavigationBar: BottomNavigationBar(
-        type: BottomNavigationBarType.fixed,
-        currentIndex: _currentIndex,
-        selectedItemColor: Colors.deepPurple,
-        unselectedItemColor: Colors.grey,
-        onTap: (index) {
-          setState(() {
-            _currentIndex = index;
-          });
-        },
-        items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
-          BottomNavigationBarItem(icon: Icon(Icons.search), label: 'Search'),
-          BottomNavigationBarItem(icon: Icon(Icons.list_alt), label: 'Track'),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.shopping_cart_outlined), label: 'Order'),
-          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
+
+      //  Floating center button (Track)
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      floatingActionButton: Padding(
+        padding: const EdgeInsets.only(top: 10),
+        child: FloatingActionButton(
+          backgroundColor: Color(0xFFC2185B),
+          elevation: 8,
+          onPressed: () {
+            setState(() => _currentIndex = 2);
+          },
+          shape: const CircleBorder(),
+          child: const Icon(Icons.storefront, color: Colors.white, size: 28),
+        ),
+      ),
+
+      //  Rounded floating bottom bar
+      bottomNavigationBar: Padding(
+        padding: const EdgeInsets.only(left: 20, right: 20, bottom: 20),
+        child: Container(
+          height: 60,
+          decoration: BoxDecoration(
+            color: const Color.fromARGB(255, 243, 171, 171).withOpacity(0.2),
+            borderRadius: BorderRadius.circular(40),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withOpacity(0.15),
+                blurRadius: 15,
+                offset: const Offset(0, 6),
+              ),
+            ],
+          ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              _buildNavItem(Icons.home, "Home", 0),
+              _buildNavItem(Icons.search, "Search", 1),
+              const SizedBox(width: 40),
+              _buildNavItem(Icons.shopping_cart_outlined, "Cart", 3),
+              _buildNavItem(Icons.person, "Profile", 4),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildNavItem(IconData icon, String label, int index) {
+    final isSelected = _currentIndex == index;
+    
+    return GestureDetector(
+      onTap: () => setState(() => _currentIndex = index),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Icon(
+            icon,
+            color: isSelected ? const Color(0xFFC2185B) : Colors.black,
+          ),
+          const SizedBox(height: 4),
+          Text(
+            label,
+            style: TextStyle(
+              color: isSelected ? const Color(0xFFC2185B) : Colors.black,
+              fontSize: 12,
+              fontWeight: isSelected ? FontWeight.w600 : FontWeight.normal,
+            ),
+          ),
         ],
       ),
     );
