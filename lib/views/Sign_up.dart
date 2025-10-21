@@ -49,11 +49,8 @@ class _SignUpState extends State<SignUp> {
           backgroundColor: Colors.green,
         ),
       );
-
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(builder: (context) => const BottomBarController()),
-      );
+      Get.offAll(() => const BottomBarController());
+      
     } on FirebaseAuthException catch (e) {
       String message = "";
 

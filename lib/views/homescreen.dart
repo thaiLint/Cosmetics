@@ -67,11 +67,20 @@ class _HomescreenState extends State<Homescreen> {
         ),
         actions: [
           Padding(
+<<<<<<< HEAD
             padding: const EdgeInsets.symmetric(horizontal: 5),
             child: Image.network(
               'https://flagcdn.com/w20/kh.png',
               width: 25,
               height: 25,
+=======
+            padding: const EdgeInsets.all(8.0),
+            child: Icon(
+              Icons.notification_add,
+              size: 30,
+
+              //color: Color(0xFFC2185B),
+>>>>>>> ede323647e26396fe5472dd8064c8a924f8118c0
             ),
           ),
 
@@ -333,13 +342,25 @@ class _HomescreenState extends State<Homescreen> {
                           TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
                   const Spacer(),
                   TextButton(
+<<<<<<< HEAD
                       onPressed: () => Get.to(Categories()),
                       child: const Text("See all")),
+=======
+                      onPressed: () {
+                        //Get.to(ScreenType2(category: categ))
+                      },
+                        //Get.to(ScreenType2(category:listCategory))
+                      child: Text(
+                        "See all",
+                        style: TextStyle(color: Color(0xFFC2185B)),
+                      )),
+>>>>>>> ede323647e26396fe5472dd8064c8a924f8118c0
                 ],
               ),
             ),
             SizedBox(
               height: 260,
+<<<<<<< HEAD
               child: FutureBuilder<List<Product>>(
                 future: futureProducts,
                 builder: (context, snapshot) {
@@ -372,6 +393,24 @@ class _HomescreenState extends State<Homescreen> {
                                   blurRadius: 6,
                                   offset: Offset(0, 3))
                             ],
+=======
+              child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+                itemCount: 3,
+                itemBuilder: (context, index) {
+                  return Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Container(
+                      width: 170,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(15),
+                        color: Colors.white,
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black12,
+                            blurRadius: 6,
+                            offset: Offset(0, 3),
+>>>>>>> ede323647e26396fe5472dd8064c8a924f8118c0
                           ),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -413,6 +452,7 @@ class _HomescreenState extends State<Homescreen> {
                                       ),
                                     ),
                                   ),
+<<<<<<< HEAD
                                   // Favorite icon (top-right)
                                   Positioned(
                                     top: 0,
@@ -428,6 +468,46 @@ class _HomescreenState extends State<Homescreen> {
                                                   "${product.name} added to favorites")),
                                         );
                                       },
+=======
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Row(
+                                      children: [
+                                        Text(
+                                          "\$${show[index].price.toStringAsFixed(2)}" +
+                                              "USD",
+                                          style: TextStyle(fontSize: 18),
+                                        ),
+                                        Spacer(),
+                                        //link to detail page
+                                        InkWell(
+                                          onTap: () {
+                                            Get.to(DetailScreen(
+                                                shows: show[index]));
+                                          },
+                                          child: Container(
+                                            width: 30,
+                                            height: 30,
+                                            decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(
+                                                20,
+                                              ),
+                                              color: const Color.fromARGB(
+                                                255,
+                                                0,
+                                                0,
+                                                0,
+                                              ),
+                                            ), 
+                                            child: Icon(
+                                              Icons.add,
+                                              color: Colors.white,
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+>>>>>>> ede323647e26396fe5472dd8064c8a924f8118c0
                                     ),
                                   ),
                                 ],
