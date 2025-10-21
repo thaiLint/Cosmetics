@@ -37,6 +37,7 @@ class Homescreen extends StatelessWidget {
             child: Icon(
               Icons.notification_add,
               size: 30,
+
               //color: Color(0xFFC2185B),
             ),
           ),
@@ -238,8 +239,9 @@ class Homescreen extends StatelessWidget {
                   Spacer(),
                   TextButton(
                       onPressed: () {
-                        //Get.to(ScreenType2(category:listCategory))
+                        //Get.to(ScreenType2(category: categ))
                       },
+                        //Get.to(ScreenType2(category:listCategory))
                       child: Text(
                         "See all",
                         style: TextStyle(color: Color(0xFFC2185B)),
@@ -252,7 +254,7 @@ class Homescreen extends StatelessWidget {
               height: 260,
               child: ListView.builder(
                 scrollDirection: Axis.horizontal,
-                itemCount: show.length,
+                itemCount: 3,
                 itemBuilder: (context, index) {
                   return Padding(
                     padding: const EdgeInsets.all(8.0),
@@ -333,11 +335,17 @@ class Homescreen extends StatelessWidget {
                                             width: 30,
                                             height: 30,
                                             decoration: BoxDecoration(
-                                                borderRadius:
-                                                    BorderRadius.circular(
-                                                  20,
-                                                ),
-                                                color: Color(0xFFC2185B)),
+                                              borderRadius:
+                                                  BorderRadius.circular(
+                                                20,
+                                              ),
+                                              color: const Color.fromARGB(
+                                                255,
+                                                0,
+                                                0,
+                                                0,
+                                              ),
+                                            ), 
                                             child: Icon(
                                               Icons.add,
                                               color: Colors.white,
