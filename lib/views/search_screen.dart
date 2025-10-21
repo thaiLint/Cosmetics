@@ -49,7 +49,7 @@ class _SearchScreenState extends State<SearchScreen> {
                               borderSide: BorderSide.none),
                               
                           prefixIcon: const Icon(Icons.search_outlined),
-                          hintText: "Search product",
+                          hintText: "Search product",fillColor: Color.fromARGB(10, 7, 16, 45),
                         ),onChanged: (show) {
                           setState(() {
                           });
