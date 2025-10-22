@@ -1,44 +1,41 @@
-class Product {
-  int? id;
-  String? name;
-  int? qty;
-  double? price;
-  String? description;
-  String? image;
-  String? createdAt;
-  String? updatedAt;
+class Products {
+  final int id;
+  final String name;
+  final String description;
+  final double price;
+  final int qty;
+  final String category;
+  final String image;
 
-  Product(
-      {this.id,
-      this.name,
-      this.qty,
-      this.price,
-      this.description,
-      this.image,
-      this.createdAt,
-      this.updatedAt});
+  Products({
+    required this.id,
+    required this.name,
+    required this.description,
+    required this.price,
+    required this.qty,
+    required this.category,
+    required this.image,
+  });
 
-  Product.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    name = json['name'];
-    qty = json['qty'];
-    price = json['price'];
-    description = json['description'];
-    image = json['image'];
-    createdAt = json['created_at'];
-    updatedAt = json['updated_at'];
+  factory Products.fromJson(Map<String, dynamic> json) {
+    return Products(
+      id: json['id'] ?? 0,
+      name: json['name'] ?? "No name",
+      description: json['description'] ?? "No description",
+      price: _parsePrice(json['price']),
+      qty: json['qty'] ?? 0,
+      category: json['category'] ?? "Unknown",
+      image: json['image'] ?? "https://via.placeholder.com/150",
+    );
   }
 
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['name'] = this.name;
-    data['qty'] = this.qty;
-    data['price'] = this.price;
-    data['description'] = this.description;
-    data['image'] = this.image;
-    data['created_at'] = this.createdAt;
-    data['updated_at'] = this.updatedAt;
-    return data;
+  // Helper to safely parse price
+  static double _parsePrice(dynamic value) {
+    if (value == null) return 0.0;
+    if (value is num) return value.toDouble();
+    if (value is String) {
+      return double.tryParse(value) ?? 0.0;
+    }
+    return 0.0;
   }
 }

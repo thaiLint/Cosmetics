@@ -335,9 +335,6 @@ class _SignUpState extends State<SignUp> {
                             children: [
                               InkWell(
                                 borderRadius: BorderRadius.circular(12),
-
-                               
-
                                 onTap: () {
                                   AuthMethods().signInWithGoogle(context);
                                 },
