@@ -225,7 +225,7 @@ class _SignUpState extends State<SignUp> {
 
                           const SizedBox(height: 20),
 
-                          // Confirm Password
+                          // Confirm Password 
                           Container(
                             width: double.infinity,
                             height: 50,
@@ -361,7 +361,7 @@ class _SignUpState extends State<SignUp> {
                             ],
                           ),
 
-                          const SizedBox(height: 10),
+                          const SizedBox(height: 11),
 
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
