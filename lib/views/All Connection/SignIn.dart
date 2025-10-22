@@ -1,72 +1,63 @@
 import 'package:cosmetics/main.dart';
 import 'package:cosmetics/services/auth.dart';
-import 'package:cosmetics/views/SignIn.dart';
+import 'package:cosmetics/views/All%20Connection/Sign_up.dart';
+import 'package:cosmetics/views/All%20Connection/forget_password.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class SignUp extends StatefulWidget {
-  const SignUp({super.key});
+
+class Login extends StatefulWidget {
+  Login({super.key});
 
   @override
-  State<SignUp> createState() => _SignUpState();
+  State<Login> createState() => _LoginState();
+  
 }
 
-class _SignUpState extends State<SignUp> {
-  final TextEditingController ematctrl = TextEditingController();
-  final TextEditingController usernamectrl = TextEditingController();
-  final TextEditingController passwordctrl = TextEditingController();
-  final TextEditingController confirmpwctrl = TextEditingController();
-
+class _LoginState extends State<Login> {
+  String email = "";
+  String password = "";
+  TextEditingController emailctrl = new TextEditingController();
+  TextEditingController passwordctrl = new TextEditingController();
   final _formKey = GlobalKey<FormState>();
   bool _obscurePassword = true;
   bool _obscureConfirm = true;
 
-  Future<void> registration(BuildContext context) async {
-    String emailtext = ematctrl.text.trim();
-    String passwordtext = passwordctrl.text.trim();
-    String confirmpwtext = confirmpwctrl.text.trim();
+  void _login() {
+    Get.offAll(() => const BottomBarController());
+  }
 
-    if (passwordtext != confirmpwtext) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text("Passwords do not match"),
-          backgroundColor: Colors.red,
-        ),
-      );
-      return;
-    }
-
+  userlogin() async {
     try {
-      await FirebaseAuth.instance.createUserWithEmailAndPassword(
-        email: emailtext,
-        password: passwordtext,
-      );
-
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text("Registration successfully"),
-          backgroundColor: Colors.green,
-        ),
-      );
-      Get.offAll(() => const BottomBarController());
-      
+await FirebaseAuth.instance.signInWithEmailAndPassword(
+      email: email,
+      password: password,
+    );
+    Get.offAll(() => const BottomBarController());
     } on FirebaseAuthException catch (e) {
-      String message = "";
-
-      if (e.code == 'weak-password') {
-        message = "The password provided is too weak.";
-      } else if (e.code == 'email-already-in-use') {
-        message = "The account already exists for that email.";
-      } else if (e.code == 'invalid-email') {
-        message = "Invalid email format.";
-      } else {
-        message = "Error: ${e.message}";
+      if (e.code == 'user-not-found') {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            backgroundColor: Colors.orangeAccent,
+            content: Text(
+              "No User Found that Email",
+              style: TextStyle(fontSize: 18.0),
+            ),
+          ),
+        );
+      } else if (e.code == 'wrong-password') {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            backgroundColor: Colors.orangeAccent,
+            content: Text(
+              "Wrong Password Provided by User",
+              style: TextStyle(fontSize: 18.0),
+            ),
+          ),
+        );
       }
-
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(message), backgroundColor: Colors.red),
-      );
     }
   }
 
@@ -88,7 +79,7 @@ class _SignUpState extends State<SignUp> {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                const SizedBox(height: 20),
+                const SizedBox(height: 5),
 
                 // Logo
                 Container(
@@ -101,10 +92,11 @@ class _SignUpState extends State<SignUp> {
                   child: Image.asset("assets/images/logos.png"),
                 ),
 
-                const SizedBox(height: 20),
+                const SizedBox(height: 5),
 
+                // Title
                 const Text(
-                  "Sign Up",
+                  "Sign In",
                   style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
                 ),
                 const SizedBox(height: 10),
@@ -112,98 +104,85 @@ class _SignUpState extends State<SignUp> {
                   "Welcome back to your account!",
                   style: TextStyle(
                     fontSize: 18,
-                    color: Color.fromARGB(255, 122, 145, 156),
+                    color: Color.fromARGB(255, 11, 15, 17),
                   ),
                 ),
 
-                const SizedBox(height: 20),
+                const SizedBox(height: 10),
 
-                // Sign-up form
                 SizedBox(
                   width: 300,
                   child: Padding(
-                    padding: const EdgeInsets.all(20.0),
+                    padding: const EdgeInsets.all(8.0),
                     child: Form(
                       key: _formKey,
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          // Username
+                          Align(
+                            alignment: Alignment.centerLeft,
+                            child: Text(
+                              "Email",
+                              style: TextStyle(
+                                fontSize: 16,
+                                color: Colors.black,
+                              ),
+                            ),
+                          ),
+                          const SizedBox(height: 5),
                           Container(
                             width: double.infinity,
                             height: 50,
                             decoration: BoxDecoration(
                               color: Colors.white,
-                              borderRadius: BorderRadius.circular(15),
+                              borderRadius: BorderRadius.circular(10),
                             ),
                             child: TextFormField(
                               validator: (value) {
                                 if (value == null || value.isEmpty) {
-                                  return 'Please enter some text';
+                                  return 'Enter enter the E-mail';
                                 }
                                 return null;
                               },
-                              controller: usernamectrl,
+                              controller: emailctrl,
                               decoration: InputDecoration(
-                                labelText: " Enter your username",
-                                prefixIcon: const Icon(Icons.person),
+                                hintText: "Please enter your email",
                                 border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(10),
                                 ),
                               ),
                             ),
                           ),
-
-                          const SizedBox(height: 20),
-
-                          // Email
+                          const SizedBox(height: 5),
+                          Align(
+                            alignment: Alignment.centerLeft,
+                            child: Text(
+                              "Password",
+                              style: TextStyle(
+                                fontSize: 16,
+                                color: Colors.black,
+                              ),
+                            ),
+                          ),
+                          const SizedBox(height: 3),
                           Container(
                             width: double.infinity,
                             height: 50,
                             decoration: BoxDecoration(
                               color: Colors.white,
-                              borderRadius: BorderRadius.circular(15),
+                              borderRadius: BorderRadius.circular(10),
                             ),
                             child: TextFormField(
                               validator: (value) {
                                 if (value == null || value.isEmpty) {
-                                  return 'Enter your email';
+                                  return 'Please enter the password';
                                 }
                                 return null;
                               },
-                              controller: ematctrl,
-                              decoration: InputDecoration(
-                                labelText: " Enter your email",
-                                prefixIcon: const Icon(Icons.email),
-                                border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(10),
-                                ),
-                              ),
-                            ),
-                          ),
-
-                          const SizedBox(height: 20),
-
-                          // Password
-                          Container(
-                            width: double.infinity,
-                            height: 50,
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(15),
-                            ),
-                            child: TextFormField(
                               controller: passwordctrl,
                               obscureText: _obscurePassword,
-                              validator: (value) {
-                                if (value == null || value.isEmpty) {
-                                  return 'Enter the password';
-                                }
-                                return null;
-                              },
                               decoration: InputDecoration(
-                                labelText: "Enter your password",
-                                prefixIcon: const Icon(Icons.lock),
+                                hintText: "Please enter your password",
                                 suffixIcon: IconButton(
                                   onPressed: () {
                                     setState(() {
@@ -222,58 +201,42 @@ class _SignUpState extends State<SignUp> {
                               ),
                             ),
                           ),
-
-                          const SizedBox(height: 20),
-
-                          // Confirm Password 
-                          Container(
-                            width: double.infinity,
-                            height: 50,
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(15),
-                            ),
-                            child: TextFormField(
-                              controller: confirmpwctrl,
-                              obscureText: _obscureConfirm,
-                              validator: (value) {
-                                if (value == null || value.isEmpty) {
-                                  return 'Re-enter the password';
-                                }
-                                return null;
+                          const SizedBox(height: 3),
+                          Align(
+                            alignment: Alignment.centerRight,
+                            child: TextButton(
+                              onPressed: () {
+                                Get.to(ForgetPassword());
                               },
-                              decoration: InputDecoration(
-                                labelText: "Re-enter your password",
-                                prefixIcon: const Icon(Icons.lock),
-                                suffixIcon: IconButton(
-                                  onPressed: () {
-                                    setState(() {
-                                      _obscureConfirm = !_obscureConfirm;
-                                    });
-                                  },
-                                  icon: Icon(
-                                    _obscureConfirm
-                                        ? Icons.visibility_off
-                                        : Icons.visibility,
+                              child: GestureDetector(
+                                onTap: () {
+                                  Get.to(ForgetPassword());
+                                },
+                                child: Text(
+                                  "Forget password?",
+                                  style: TextStyle(
+                                    color: Colors.redAccent,
+                                    decoration: TextDecoration.underline,
+                                    decorationColor: Colors.redAccent,
+                                    decorationThickness: 1.5,
                                   ),
-                                ),
-                                border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(10),
                                 ),
                               ),
                             ),
                           ),
-
-                          const SizedBox(height: 25),
-
-                          // Sign up button
+                          const SizedBox(height: 5),
                           SizedBox(
                             width: double.infinity,
                             height: 55,
                             child: ElevatedButton(
                               onPressed: () {
-                                if (_formKey.currentState!.validate()) {
-                                  registration(context);
+                                if (_formKey.currentState?.validate() ??
+                                    false) {
+                                  setState(() {
+                                    email = emailctrl.text;
+                                    password = passwordctrl.text;
+                                  });
+                                  userlogin();
                                 }
                               },
                               style: ElevatedButton.styleFrom(
@@ -291,7 +254,7 @@ class _SignUpState extends State<SignUp> {
                                 ),
                               ),
                               child: const Text(
-                                "Sign Up",
+                                "Sign In",
                                 style: TextStyle(
                                   fontSize: 18,
                                   color: Colors.white,
@@ -299,49 +262,25 @@ class _SignUpState extends State<SignUp> {
                               ),
                             ),
                           ),
-
-                          const SizedBox(height: 25),
-
-                          // Divider (Or)
+                          const SizedBox(height: 10),
                           Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
                             children: const [
-                              Expanded(
-                                child: Divider(
-                                  thickness: 1.5,
-                                  color: Colors.grey,
-                                ),
+                              Expanded(child: Divider(thickness: 2)),
+                              Padding(
+                                padding: EdgeInsets.symmetric(horizontal: 10),
+                                child: Text("Or"),
                               ),
-                              SizedBox(width: 10),
-                              Text(
-                                "Or",
-                                style: TextStyle(color: Colors.black54),
-                              ),
-                              SizedBox(width: 10),
-                              Expanded(
-                                child: Divider(
-                                  thickness: 1.5,
-                                  color: Colors.grey,
-                                ),
-                              ),
+                              Expanded(child: Divider(thickness: 2)),
                             ],
                           ),
-
-                          const SizedBox(height: 25),
-
-                          // Social icons (no border)
+                          const SizedBox(height: 5),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              InkWell(
-                                borderRadius: BorderRadius.circular(12),
-
-                               
-
+                              GestureDetector(
                                 onTap: () {
                                   AuthMethods().signInWithGoogle(context);
                                 },
-
                                 child: Image.asset(
                                   "assets/images/google.png",
                                   width: 40,
@@ -349,8 +288,7 @@ class _SignUpState extends State<SignUp> {
                                 ),
                               ),
                               const SizedBox(width: 20),
-                              InkWell(
-                                borderRadius: BorderRadius.circular(12),
+                              GestureDetector(
                                 onTap: () {},
                                 child: Image.asset(
                                   "assets/images/apple.png",
@@ -360,19 +298,17 @@ class _SignUpState extends State<SignUp> {
                               ),
                             ],
                           ),
-
-                          const SizedBox(height: 11),
-
+                          const SizedBox(height: 20),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              const Text("Already have an account? "),
+                              const Text("Don't have an account? "),
                               GestureDetector(
                                 onTap: () {
-                                  Get.to(Login());
+                                  Get.to(SignUp());
                                 },
                                 child: const Text(
-                                  "Sign In",
+                                  "Sign up",
                                   style: TextStyle(
                                     color: Colors.black,
                                     fontWeight: FontWeight.bold,

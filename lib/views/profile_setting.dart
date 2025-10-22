@@ -1,9 +1,9 @@
 import 'dart:typed_data';
 import 'package:cosmetics/views/help_center.dart';
 import 'package:cosmetics/views/language.dart';
-import 'package:cosmetics/views/logout.dart';
+import 'package:cosmetics/views/All%20Connection/logout.dart';
 import 'package:cosmetics/views/profile_detail.dart';
-import 'package:cosmetics/views/resetpaswor_profile.dart';
+import 'package:cosmetics/views/All%20Connection/resetpaswor_profile.dart';
 import 'package:cosmetics/views/condition.dart'; // <-- Add this import
 import 'package:flutter/material.dart';
 import 'package:get/get.dart' hide Condition;
@@ -164,7 +164,7 @@ class _ProfileSettingState extends State<ProfileSetting> {
                 index: 1,
                 selectedIndex: _selectedMenuIndex,
                 onTap: (i) => setState(() => _selectedMenuIndex = i),
-                onNavigate: () => Get.to(ResetpasworProfile()),
+                onNavigate: () => Get.to(/*ResetpasworProfile*/ UpdatePasswordScreen()),
               ),
               MenuItem(
                 icon: Icons.language,
