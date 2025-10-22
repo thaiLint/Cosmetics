@@ -6,6 +6,7 @@ class Products {
   final int qty;
   final String category;
   final String image;
+  final List<String> images; // New field for multiple images
 
   Products({
     required this.id,
@@ -15,6 +16,7 @@ class Products {
     required this.qty,
     required this.category,
     required this.image,
+    required this.images,
   });
 
   factory Products.fromJson(Map<String, dynamic> json) {
@@ -26,6 +28,10 @@ class Products {
       qty: json['qty'] ?? 0,
       category: json['category'] ?? "Unknown",
       image: json['image'] ?? "https://via.placeholder.com/150",
+      images: (json['images'] as List<dynamic>?)
+              ?.map((e) => e.toString())
+              .toList() ??
+          [], // Safely parse images list
     );
   }
 

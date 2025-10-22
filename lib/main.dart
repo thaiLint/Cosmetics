@@ -35,7 +35,7 @@ class MyApp extends StatelessWidget {
       routes: {
         '/signin': (context) => Login(),
         '/signup': (context) => SignUp(),
-       // '/home': (context) => Homescreen()
+       '/home': (context) => Homescreen()
       },
     );
   }
@@ -52,8 +52,8 @@ class _BottomBarControllerState extends State<BottomBarController> {
   int _currentIndex = 0;
 
   final List<Widget> _pages = [
-    //Homescreen(),
-    //SearchScreen(),
+    Homescreen(),
+    SearchScreen(),
     TrackScreen(),
     OrderScreen(),
     ProfileSetting(),
