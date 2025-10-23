@@ -2,9 +2,7 @@
 import 'package:cosmetics/views/All%20Connection/SignIn.dart';
 import 'package:cosmetics/views/All%20Connection/Sign_up.dart';
 
-
 import 'package:cosmetics/model/category.dart';
-import 'package:cosmetics/views/SignIn.dart';
 import 'package:cosmetics/views/homescreen.dart';
 import 'package:cosmetics/views/track_screen.dart';
 import 'package:cosmetics/views/order_screen.dart';
@@ -34,9 +32,9 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.pink,
         scaffoldBackgroundColor: Colors.white,
       ),
-      title: 'Flutter Demo',
+      // title: 'Flutter Demo',
 
-      theme: ThemeData(primarySwatch: Colors.deepPurple),
+      // theme: ThemeData(primarySwatch: Colors.deepPurple),
 
       // If user already logged in, go to home
       home: FirebaseAuth.instance.currentUser == null

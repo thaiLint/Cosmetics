@@ -23,7 +23,6 @@ class _DetailScreenState extends State<DetailScreen>
   PageController? pageController;
   int currentImage = 0;
   Timer? timer;
-
   late Future<Products> productFuture;
 
   @override

@@ -48,17 +48,16 @@ class _SearchScreenState extends State<SearchScreen> {
                               borderRadius: BorderRadius.circular(18),
                               borderSide: BorderSide.none),
                           prefixIcon: const Icon(Icons.search_outlined),
-<<<<<<< HEAD
+
                           hintText: "Search product",fillColor: Color.fromARGB(10, 7, 16, 45),
                         ),onChanged: (show) {
                           setState(() {
                           });
-=======
+
                           hintText: "Search product",
                         ),
                         onChanged: (show) {
                           setState(() {});
->>>>>>> Lineth
                         },
                       ),
                     ),
@@ -221,6 +220,5 @@ class _SearchScreenState extends State<SearchScreen> {
           ),
         ),
       ),
-    );
   }
 }
