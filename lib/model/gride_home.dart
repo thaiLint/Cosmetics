@@ -9,6 +9,7 @@ class GrideHome {
   String subtitle;
   int? qty;
   String category;
+  
 
   GrideHome(
       {required this.img,
@@ -20,7 +21,8 @@ class GrideHome {
       required this.describe,
       required this.rate,
       this.qty,
-      required this.category});
+      required this.category
+      });
 
   String get description => "$title - $subtitle";
 }
@@ -41,7 +43,8 @@ List<GrideHome> show = [
         "assets/images/p10.png",
         "assets/images/p11.png",
       ],
-      category: "Sun Screen"),
+      category: "All"
+     ),
   
   
   
@@ -60,7 +63,8 @@ List<GrideHome> show = [
         "assets/images/d8.png",
         "assets/images/p2.png",
       ],
-      category: "Blush"),
+      category: "Serum"
+      ),
   GrideHome(
       img: "assets/images/7.png",
       price: 26.20,
@@ -75,7 +79,8 @@ List<GrideHome> show = [
         "assets/images/d1.png",
         "assets/images/d2.png",
       ],
-      category: "Hair Care"),
+      category: "Sun Screen"
+     ),
   GrideHome(
       img: "assets/images/p4.png",
       price: 50.05,
@@ -91,6 +96,61 @@ List<GrideHome> show = [
         "assets/images/p6.png",
         "assets/images/p7.png",
       ],
-      category: "Perfume"),
+      category: "Sun Screen"
+      ),
+    GrideHome(
+  img: "assets/images/lip1.png",
+  price: 50.05,
+  title: "Romand Zero Matte Lipstick Envy",
+  lettter: "CROSRX",
+  rate: "1.8(110views)",
+  describe:
+      "Reduces fine lines and improves skin elasticity overnight",
+  subtitle: "Romand Zero Matte Lipstick in Envy delivers a smooth, long-lasting matte finish that keeps your lips vibrant all day. Enriched with moisturizing ingredients to prevent dryness, it glides on effortlessly and provides full coverage with intense pigmentation. Perfect for daily wear or special occasions, it enhances your natural beauty while keeping your lips soft and supple.",
+
+  images: [
+    "assets/images/lip1.png",
+    "assets/images/lip6.png",
+    "assets/images/lip7.png",
+  ],
+  category: "Lipstick"
+),
+
+
+      GrideHome(
+  img: "assets/images/lip2.png",
+  price: 40.05,
+  title: "Maybelline Lifter Glaze Oil Balm",
+  lettter: "CROSRX",
+  rate: "3.8(110views)",
+  describe: "Boosts collagen production overnight for smoother, firmer, and youthful skin.",
+  subtitle: "Maybelline Lifter Glaze Oil Balm",
+  images: [
+    "assets/images/lip2.png",
+    "assets/images/lip3.png",
+    "assets/images/lip4.png",
+    "assets/images/lip5.png",
+  ],
+  category: "Lipstick"
+),
+
+
+      GrideHome(
+      img: "assets/images/p4.png",
+      price: 50.05,
+      title: "Collagen Renewal Night Cream",
+      lettter: "CROSRX",
+      rate: "1.8(110views)",
+      describe:
+          "Boosts collagen production overnight for smoother, firmer, and youthful skin.",
+      subtitle: "Reduces fine lines and improves skin elasticity overnight.",
+      images: [
+        "assets/images/p4.png",
+        "assets/images/p5.png",
+        "assets/images/p6.png",
+        "assets/images/p7.png",
+      ],
+      category: "Facial Mask"
+      ),
 
   ];

@@ -5,6 +5,7 @@ import 'package:cosmetics/model/gride_home.dart';
 import 'package:cosmetics/model/home_image.dart';
 import 'package:cosmetics/model/list_blog.dart';
 import 'package:cosmetics/model/list_model.dart';
+import 'package:cosmetics/views/brand_screen.dart';
 
 import 'package:cosmetics/views/categories.dart';
 import 'package:cosmetics/model/list_more.dart';
@@ -238,7 +239,7 @@ class Homescreen extends StatelessWidget {
                   Spacer(),
                   TextButton(
                       onPressed: () {
-                        //Get.to(ScreenType2(category:listCategory))
+                        Get.to(Categories());
                       },
                       child: Text(
                         "See all",
@@ -252,7 +253,7 @@ class Homescreen extends StatelessWidget {
               height: 260,
               child: ListView.builder(
                 scrollDirection: Axis.horizontal,
-                itemCount: show.length,
+                itemCount: 4,
                 itemBuilder: (context, index) {
                   return Padding(
                     padding: const EdgeInsets.all(8.0),
@@ -367,7 +368,9 @@ class Homescreen extends StatelessWidget {
                     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
                   ),
                   Spacer(),
-                  TextButton(onPressed: () {}, child: Text("See all",style: TextStyle(color: Color(0xFFC2185B)),)),
+                  TextButton(onPressed: () {
+                    Get.to(BrandScreen());
+                  }, child: Text("See all",style: TextStyle(color: Color(0xFFC2185B)),)),
                 ],
               ),
             ),
@@ -406,7 +409,9 @@ class Homescreen extends StatelessWidget {
                   ),
                   Spacer(),
                   TextButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Get.to(Categories());
+                      },
                       child: Text(
                         "See all",
                         style: TextStyle(color: Color(0xFFC2185B)),

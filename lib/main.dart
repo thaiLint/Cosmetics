@@ -1,6 +1,8 @@
 import 'package:cosmetics/model/category.dart';
 import 'package:cosmetics/views/SignIn.dart';
+import 'package:cosmetics/views/Sign_up.dart';
 import 'package:cosmetics/views/homescreen.dart';
+import 'package:cosmetics/views/splash_screen.dart';
 import 'package:cosmetics/views/track_screen.dart';
 import 'package:cosmetics/views/order_screen.dart';
 import 'package:cosmetics/views/profile_setting.dart';
@@ -25,13 +27,14 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(primarySwatch: Colors.deepPurple),
-      home: FirebaseAuth.instance.currentUser == null
-          ? Login()
-          : BottomBarController(),
+      // home: FirebaseAuth.instance.currentUser == null
+      //     ? Login()
+      //     : BottomBarController(),
+      home:SignUp(),
     );
+    
   }
 }
-
 class BottomBarController extends StatefulWidget {
   const BottomBarController({super.key});
 
@@ -76,3 +79,4 @@ class _BottomBarControllerState extends State<BottomBarController> {
     );
   }
 }
+

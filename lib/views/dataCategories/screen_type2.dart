@@ -16,8 +16,9 @@ class ScreenType2 extends StatelessWidget {
             .where((e) => e.category.toLowerCase() == category.toLowerCase())
             .toList();
     return Scaffold(
-        appBar:
-            AppBar(backgroundColor: Colors.blue, title: Text("${category}")),
+        appBar: AppBar(
+          title: Text("${category}",style: TextStyle(fontWeight: FontWeight.bold),),
+        ),
         body: GridView.builder(
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 2,
@@ -26,7 +27,6 @@ class ScreenType2 extends StatelessWidget {
               childAspectRatio: 7 / 10,
             ),
 
-            // scrollDirection: Axis.vertical,
             itemCount: filter.length,
             itemBuilder: (context, index) {
               return Padding(
@@ -93,7 +93,7 @@ class ScreenType2 extends StatelessWidget {
                               child: Row(
                                 children: [
                                   Text(
-                                    "\$${filter[index].price.toStringAsFixed(1)}" +
+                                    "\$${filter[index].price.toStringAsFixed(2)}" +
                                         "USD",
                                     style: TextStyle(fontSize: 18),
                                   ),

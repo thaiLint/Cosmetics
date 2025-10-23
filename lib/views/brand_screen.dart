@@ -1,10 +1,8 @@
-import 'package:cosmetics/model/category.dart';
-import 'package:cosmetics/views/dataCategories/screen_type2.dart';
+import 'package:cosmetics/model/brand_list.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
-class Categories extends StatelessWidget {
-  const Categories({super.key});
+class BrandScreen extends StatelessWidget {
+  const BrandScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +13,7 @@ class Categories extends StatelessWidget {
         backgroundColor: Colors.white,
         centerTitle: true,
         title: const Text(
-          "Categories",
+          "Brands",
           style: TextStyle(
             color: Colors.black87,
             fontWeight: FontWeight.w700,
@@ -30,22 +28,19 @@ class Categories extends StatelessWidget {
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
         child: GridView.builder(
-          itemCount: listCategory.length,
+          itemCount: all.length, // <-- use your existing brand list
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2,
+            crossAxisCount: 2, // 2 columns
             crossAxisSpacing: 16,
             mainAxisSpacing: 16,
-            childAspectRatio: 0.9,
+            childAspectRatio: 1.0, // square cards
           ),
           itemBuilder: (context, index) {
-            final category = listCategory[index];
+            final brand = all[index]; // <-- existing list item
             return InkWell(
               borderRadius: BorderRadius.circular(20),
               onTap: () {
-                // Navigate to ScreenType2 with selected category
-                Get.to(() => ScreenType2(
-                      category: category.name.toLowerCase(),
-                    ));
+                // TODO: Navigate to brand-specific screen if needed
               },
               child: Container(
                 decoration: BoxDecoration(
@@ -59,38 +54,17 @@ class Categories extends StatelessWidget {
                     ),
                   ],
                 ),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    ClipRRect(
+                child: Center(
+                  child: Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: ClipRRect(
                       borderRadius: BorderRadius.circular(12),
                       child: Image.asset(
-                        category.image,
-                        height: 90,
-                        width: 90,
-                        fit: BoxFit.cover,
+                        brand.img, // <-- display the logo
+                        fit: BoxFit.contain,
                       ),
                     ),
-                    const SizedBox(height: 12),
-                    Text(
-                      category.name,
-                      style: const TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w600,
-                        color: Colors.black87,
-                      ),
-                      textAlign: TextAlign.center,
-                    ),
-                    const SizedBox(height: 4),
-                    Container(
-                      height: 4,
-                      width: 40,
-                      decoration: BoxDecoration(
-                        color: const Color(0xffe91e63).withOpacity(0.7),
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                    ),
-                  ],
+                  ),
                 ),
               ),
             );
