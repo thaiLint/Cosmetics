@@ -1,7 +1,7 @@
 import 'package:cosmetics/main.dart';
 import 'package:cosmetics/services/login.dart'; // ✅ import your service
-import 'package:cosmetics/views/Sign_up.dart';
 import 'package:cosmetics/views/forget_password.dart';
+import 'package:cosmetics/views/Sign_up.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -229,7 +229,7 @@ class _LoginState extends State<Login> {
                           // Forgot password link
                           GestureDetector(
                             onTap: () {
-                              Get.to(() => const ForgetPassword());
+                              Get.to(() =>  ForgetPassword());
                             },
                             child: const Text(
                               "Forgot Password?",
