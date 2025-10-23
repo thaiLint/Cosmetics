@@ -1,4 +1,19 @@
+import 'package:cosmetics/views/All%20Connection/SignIn.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/route_manager.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+import 'package:firebase_auth/firebase_auth.dart';
+
+void logout(BuildContext context) async {
+  try {
+    await FirebaseAuth.instance.signOut();
+    // Navigator.pushNamedAndRemoveUntil(context, '/signin', (route) => false);
+  } catch (e) {
+    print('Error signing out: $e');
+  }
+}
 
 class Logout extends StatefulWidget {
   const Logout({super.key});
@@ -48,7 +63,6 @@ class _LogoutState extends State<Logout> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                   
                     OutlinedButton(
                       style: OutlinedButton.styleFrom(
                         side: const BorderSide(color: Colors.pinkAccent),
@@ -63,7 +77,7 @@ class _LogoutState extends State<Logout> {
                         Navigator.pop(context);
                       },
                       child: const Text('Cancel'),
-                    ),                
+                    ),
                     ElevatedButton(
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.pinkAccent,
@@ -74,8 +88,18 @@ class _LogoutState extends State<Logout> {
                           borderRadius: BorderRadius.circular(30),
                         ),
                       ),
-                      onPressed: () {
-                        Navigator.pop(context);
+                      onPressed: () async {
+                        await FirebaseAuth.instance.signOut();
+                        final prefs = await SharedPreferences.getInstance();
+                        await prefs.clear();
+
+                        // clear all page
+                        Get.offAll(() => Login());
+
+                        // Navigator.pop(context);
+                        // Navigator.popUntil(context, (route) => route.isFirst);
+                        //   await FirebaseAuth.instance.signOut();
+                        // Navigator.pushReplacementNamed(context, '/signin');
                       },
                       child: const Text('Log out'),
                     ),

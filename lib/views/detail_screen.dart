@@ -1,13 +1,13 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:cosmetics/model/gride_home.dart';
-import 'package:cosmetics/model/list_more.dart';
-import 'package:cosmetics/views/addcart_screen.dart';
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:cosmetics/model/api_product.dart';
+import 'package:cosmetics/services/aip_product.dart';
 
 class DetailScreen extends StatefulWidget {
-  final GrideHome shows;
-  DetailScreen({super.key, required this.shows});
+  final int productId;
+
+  const DetailScreen({super.key, required this.productId});
 
   @override
   State<DetailScreen> createState() => _DetailScreenState();
@@ -15,331 +15,240 @@ class DetailScreen extends StatefulWidget {
 
 class _DetailScreenState extends State<DetailScreen>
     with SingleTickerProviderStateMixin {
-  int selectedVolume = 0; // 0 = 30ml, 1 = 100ml
+  int selectedVolume = 0;
   final List<String> volumes = ["30ml", "100ml"];
   String volume = "30ml";
 
   late TabController _tabController;
+  PageController? pageController;
+  int currentImage = 0;
+  Timer? timer;
 
-  // Example static data (you can load from Firebase later)
-  final List<Map<String, String>> productDetails = [
-    {
-      'howToUse':
-          'Apply a small amount to your face twice daily after cleansing.',
-      'ingredient': 'Aloe Vera, Vitamin C, Green Tea Extract, Hyaluronic Acid.',
-      'description':
-          'This lightweight moisturizer deeply hydrates and brightens your skin for a healthy glow.'
-    }
-  ];
+  late Future<Products> productFuture;
 
   @override
   void initState() {
     super.initState();
     _tabController = TabController(length: 3, vsync: this);
+
+    productFuture = ApiService().getProductById(widget.productId);
   }
 
   @override
   void dispose() {
     _tabController.dispose();
+    pageController?.dispose();
+    timer?.cancel();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    final details = productDetails[0]; // load first product’s info
-
     return Scaffold(
       appBar: AppBar(
         leading: InkWell(
-          onTap: () => Get.back(),
-          child: const Icon(Icons.arrow_back, size: 27),
-        ),
-        actions: [
-          Padding(
-            padding: EdgeInsets.all(8.0),
-            // child: Icon(Icons.shopping_bag, size: 27),
-            child: IconButton(onPressed: (){
-              Get.to(AddcartScreen());
-            }, icon: Icon(Icons.shopping_bag,color: Color(0xFFC2185B),)),
-          ),
-        ],
+            onTap: () => Get.back(), child: const Icon(Icons.arrow_back)),
+        title: const Text("Product Detail"),
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            // --- Product Images ---
-            Container(
-              width: double.infinity,
-              height: 350,
-              child: ListView.builder(
-                scrollDirection: Axis.horizontal,
-                itemCount: widget.shows.images.length,
-                itemBuilder: (context, index) {
-                  return Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(10),
-                      child: Image.asset(widget.shows.images[index]),
-                    ),
-                  );
-                },
-              ),
-            ),
+      body: FutureBuilder<Products>(
+        future: productFuture,
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const Center(child: CircularProgressIndicator());
+          }
+          if (snapshot.hasError) {
+            return Center(child: Text("Error: ${snapshot.error}"));
+          }
 
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: Text(widget.shows.lettter),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: Text(
-                widget.shows.title,
-                style:
-                    const TextStyle(fontWeight: FontWeight.bold, fontSize: 23),
-              ),
-            ),
+          final product = snapshot.data!;
 
+          // Initialize PageController and Timer only once
+          pageController ??= PageController(initialPage: 0);
+          if (timer == null && product.images.length > 1) {
+            timer = Timer.periodic(const Duration(seconds: 3), (_) {
+              if (pageController!.hasClients) {
+                currentImage = (currentImage + 1) % product.images.length;
+                pageController!.animateToPage(
+                  currentImage,
+                  duration: const Duration(milliseconds: 500),
+                  curve: Curves.easeInOut,
+                );
+              }
+            });
+          }
 
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-              child: Row(
-                children: [
-                  Text(
-                    "\$${widget.shows.price.toStringAsFixed(2)} USD",
-                    style: const TextStyle(fontSize: 23),
-                  ),
-                  const SizedBox(width: 10),
-                  const Text(
-                    "\$40.40 USD",
-                    style: TextStyle(
-                      fontSize: 23,
-                      color: Colors.grey,
-                      decoration: TextDecoration.lineThrough,
-                    ),
-                  ),
-                  const SizedBox(width: 15),
-                  Container(
-                    width: 45,
-                    height: 25,
-                    decoration: BoxDecoration(
-                      color: Color(0xFFC2185B),
-                      borderRadius: BorderRadius.circular(5),
-                    ),
-                    child: const Center(
-                      child: Text(
-                        "20%",
-                        style: TextStyle(
-                          color: Color.fromARGB(255, 255, 255, 255),
-                          fontSize: 17,
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-
-            // --- Volume Selection ---
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: Row(
-                children: List.generate(volumes.length, (index) {
-                  bool isSelected = selectedVolume == index;
-                  return Padding(
-                    padding: const EdgeInsets.only(right: 15),
-                    child: GestureDetector(
-                      onTap: () {
+          // --- Rest of your UI stays the same ---
+          return SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                if (product.images.isNotEmpty)
+                  SizedBox(
+                    height: 300,
+                    child: PageView.builder(
+                      controller: pageController,
+                      itemCount: product.images.length,
+                      onPageChanged: (index) {
                         setState(() {
-                          selectedVolume = index;
-                          volume = volumes[index];
+                          currentImage = index;
                         });
                       },
-                      child: Container(
-                        width: 90,
-                        height: 40,
+                      itemBuilder: (context, index) {
+                        return Image.network(
+                          product.images[index],
+                          fit: BoxFit.cover,
+                          width: double.infinity,
+                        );
+                      },
+                    ),
+                  ),
+                if (product.images.length > 1)
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: List.generate(product.images.length, (index) {
+                      return Container(
+                        margin: const EdgeInsets.symmetric(
+                            horizontal: 4, vertical: 8),
+                        width: currentImage == index ? 12 : 8,
+                        height: currentImage == index ? 12 : 8,
                         decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(20),
-                          border: Border.all(
-                            color: isSelected ? Color(0xFFC2185B) : Colors.grey,
-                            width: isSelected ? 2 : 1,
-                          ),
+                          shape: BoxShape.circle,
+                          color:
+                              currentImage == index ? Colors.red : Colors.grey,
                         ),
-                        child: Center(
-                          child: Text(
-                            volumes[index],
-                            style: TextStyle(
-                              fontSize: 17,
-                              color:
-                                  isSelected ? Color(0xFFC2185B) : Colors.black,
-                              fontWeight: isSelected
-                                  ? FontWeight.bold
-                                  : FontWeight.normal,
+                      );
+                    }),
+                  ),
+
+                // --- Product Name ---
+                Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Text(
+                    product.name,
+                    style: const TextStyle(
+                        fontSize: 24, fontWeight: FontWeight.bold),
+                  ),
+                ),
+
+                // --- Description ---
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                  child: Text(
+                    product.description,
+                    style: const TextStyle(fontSize: 16),
+                  ),
+                ),
+
+                // --- Price ---
+                Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Text(
+                    "\$${product.price.toStringAsFixed(2)} USD",
+                    style: const TextStyle(fontSize: 20, color: Colors.red),
+                  ),
+                ),
+
+                // --- Volume selection ---
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  child: Row(
+                    children: List.generate(volumes.length, (index) {
+                      bool isSelected = selectedVolume == index;
+                      return Padding(
+                        padding: const EdgeInsets.only(right: 10),
+                        child: GestureDetector(
+                          onTap: () {
+                            setState(() {
+                              selectedVolume = index;
+                              volume = volumes[index];
+                            });
+                          },
+                          child: Container(
+                            width: 90,
+                            height: 40,
+                            decoration: BoxDecoration(
+                              border: Border.all(
+                                  color: isSelected ? Colors.red : Colors.grey,
+                                  width: isSelected ? 2 : 1),
+                              borderRadius: BorderRadius.circular(20),
                             ),
+                            child: Center(
+                                child: Text(
+                              volumes[index],
+                              style: TextStyle(
+                                  color:
+                                      isSelected ? Colors.red : Colors.black),
+                            )),
                           ),
                         ),
+                      );
+                    }),
+                  ),
+                ),
+
+                const SizedBox(height: 20),
+
+                // --- TabBar for details ---
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  child: Column(
+                    children: [
+                      TabBar(
+                        controller: _tabController,
+                        labelColor: Colors.red,
+                        unselectedLabelColor: Colors.grey,
+                        tabs: const [
+                          Tab(text: "How to use"),
+                          Tab(text: "Ingredients"),
+                          Tab(text: "Description"),
+                        ],
                       ),
-                    ),
-                  );
-                }),
-              ),
-            ),
-
-            const SizedBox(height: 10),
-
-            // --- Stock Info ---
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: Row(
-                children: const [
-                  Icon(Icons.badge_outlined,
-                      size: 20, color: Color(0xFFC2185B)),
-                  SizedBox(width: 5),
-                  Text(
-                    "In stock",
-                    style: TextStyle(
-                      fontSize: 17,
-                      fontWeight: FontWeight.bold,
-                      color: Color(0xFFC2185B),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            SizedBox(height: 5),
-
-            // --- Delivery Info ---
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 20),
-              child: Row(
-                children: [
-                  Icon(Icons.delivery_dining_sharp,
-                      size: 20, color: Colors.grey),
-                  SizedBox(width: 5),
-                  Text(
-                    "Free Delivery",
-                    style: TextStyle(fontSize: 17, color: Colors.grey),
-                  ),
-                ],
-              ),
-            ),
-            SizedBox(height: 5),
-
-            // --- Store Info ---
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: Row(
-                children: const [
-                  Icon(Icons.store_mall_directory_outlined,
-                      size: 20, color: Colors.grey),
-                  SizedBox(width: 5),
-                  Text(
-                    "Available in the nearest store",
-                    style: TextStyle(fontSize: 17, color: Colors.grey),
-                  ),
-                ],
-              ),
-            ),
-
-            SizedBox(height: 5),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 10),
-              child: Column(
-                children: [
-                  TabBar(
-                    controller: _tabController,
-                    labelColor: Color(0xFFC2185B),
-                    unselectedLabelColor: Colors.grey,
-                    indicatorColor: Color(0xFFC2185B),
-                    tabs: [
-                      Tab(text: "How to use"),
-                      Tab(text: "Ingredient"),
-                      Tab(text: "Description"),
+                      SizedBox(
+                        height: 120,
+                        child:
+                            TabBarView(controller: _tabController, children: [
+                          const Padding(
+                            padding: EdgeInsets.all(8.0),
+                            child: Text("Use twice daily after cleansing."),
+                          ),
+                          const Padding(
+                            padding: EdgeInsets.all(8.0),
+                            child:
+                                Text("Aloe Vera, Vitamin C, Hyaluronic Acid."),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text(product.description),
+                          ),
+                        ]),
+                      ),
                     ],
                   ),
-                  SizedBox(
-                    height: 90, // height of tab content
-                    child: TabBarView(
-                      controller: _tabController,
-                      children: [
-                        SingleChildScrollView(
-                          padding: const EdgeInsets.all(12),
-                          child: Text(details['howToUse']!,
-                              style: const TextStyle(fontSize: 16)),
-                        ),
-                        SingleChildScrollView(
-                          padding: const EdgeInsets.all(12),
-                          child: Text(details['ingredient']!,
-                              style: const TextStyle(fontSize: 16)),
-                        ),
-                        SingleChildScrollView(
-                          padding: const EdgeInsets.all(12),
-                          child: Text(details['description']!,
-                              style: const TextStyle(fontSize: 16)),
-                        ),
-                      ],
+                ),
+
+                const SizedBox(height: 20),
+
+                // --- Add to Cart button (API or local)
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.red,
+                      minimumSize: const Size.fromHeight(50),
                     ),
-                  ),
-                ],
-              ),
-            ),
-
-            Row(
-              children: [
-                InkWell(
-                  onTap: () {
-                    FirebaseFirestore.instance.collection('cart').add({
-                      'name': widget.shows.title,
-                      'price': widget.shows.price,
-                      'image': widget.shows.images[0],
-                      'qty': 1,
-                      'timestamp': FieldValue.serverTimestamp(),
-                    });
-
-                    //Get.to(AddcartScreen());
-                    Get.snackbar("Success", "Item added to cart!");
-                    
-                  },
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Container(
-                      width: 300,
-                      height: 60,
-                      decoration: BoxDecoration(
-                        color:Color(0xFFC2185B),
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      child: Center(
-                        child: Text(
-                          "Add to Cart",
-                          style: TextStyle(fontSize: 20, color: Colors.white,fontWeight: FontWeight.bold),
-                        ),
-                      ),
+                    onPressed: () {
+                      Get.snackbar("Success", "Item added to cart!");
+                    },
+                    child: const Text(
+                      "Add to Cart",
+                      style: TextStyle(fontSize: 20),
                     ),
                   ),
                 ),
-                SizedBox(width: 10,),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Container(
-                    width: 60,
-                    height: 60,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        color: const Color.fromARGB(255, 255, 255, 255),
-                        border: Border.all(
-                          color: Color(0xFFC2185B),
-                          width: 1
-                        )
-                        ),
-                        child: Icon(Icons.favorite,color: Color(0xFFC2185B),),
-                  ),
-                )
               ],
             ),
-          ],
-        ),
+          );
+        },
       ),
     );
   }

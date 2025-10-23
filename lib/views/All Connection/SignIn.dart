@@ -1,7 +1,7 @@
 import 'package:cosmetics/main.dart';
 import 'package:cosmetics/services/auth.dart';
-import 'package:cosmetics/views/Sign_up.dart';
-import 'package:cosmetics/views/forget_password.dart';
+import 'package:cosmetics/views/All%20Connection/Sign_up.dart';
+import 'package:cosmetics/views/All%20Connection/forget_password.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 import 'package:flutter/material.dart';
@@ -13,6 +13,7 @@ class Login extends StatefulWidget {
 
   @override
   State<Login> createState() => _LoginState();
+  
 }
 
 class _LoginState extends State<Login> {
@@ -30,15 +31,11 @@ class _LoginState extends State<Login> {
 
   userlogin() async {
     try {
-      await FirebaseAuth.instance.signInWithEmailAndPassword(
-        email: email,
-        password: password,
-      );
-      // Navigate to BottomBarController instead of Homescreen
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(builder: (context) => const BottomBarController()),
-      );
+await FirebaseAuth.instance.signInWithEmailAndPassword(
+      email: email,
+      password: password,
+    );
+    Get.offAll(() => const BottomBarController());
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
         ScaffoldMessenger.of(context).showSnackBar(
@@ -280,7 +277,12 @@ class _LoginState extends State<Login> {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
+<<<<<<< HEAD:lib/views/All Connection/SignIn.dart
                               GestureDetector(
+=======
+                              InkWell(
+                                borderRadius: BorderRadius.circular(12),
+>>>>>>> Lineth:lib/views/Sign_up.dart
                                 onTap: () {
                                   AuthMethods().signInWithGoogle(context);
                                 },

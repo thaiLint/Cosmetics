@@ -1,10 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:cosmetics/model/api_product.dart';
 import 'package:cosmetics/model/brand_list.dart';
 import 'package:cosmetics/model/category.dart';
 import 'package:cosmetics/model/gride_home.dart';
 import 'package:cosmetics/model/home_image.dart';
 import 'package:cosmetics/model/list_blog.dart';
 import 'package:cosmetics/model/list_model.dart';
+import 'package:cosmetics/services/aip_product.dart';
 
 import 'package:cosmetics/views/categories.dart';
 import 'package:cosmetics/model/list_more.dart';
@@ -14,9 +16,21 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/utils.dart';
 
-class Homescreen extends StatelessWidget {
+class Homescreen extends StatefulWidget {
   Homescreen({super.key});
 
+  @override
+  State<Homescreen> createState() => _HomescreenState();
+}
+
+class _HomescreenState extends State<Homescreen> {
+  late Future<List<Products>> futureProducts;
+  final ApiService apiService =ApiService();
+  @override
+  void initState(){
+    super.initState();
+    futureProducts = apiService.getAllProducts();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,7 +51,6 @@ class Homescreen extends StatelessWidget {
             child: Icon(
               Icons.notification_add,
               size: 30,
-
               //color: Color(0xFFC2185B),
             ),
           ),
@@ -228,6 +241,8 @@ class Homescreen extends StatelessWidget {
                 ),
               ),
             ),
+
+            //  New Arrivals
             Padding(
               padding: const EdgeInsets.only(left: 14, right: 8),
               child: Row(
@@ -239,9 +254,8 @@ class Homescreen extends StatelessWidget {
                   Spacer(),
                   TextButton(
                       onPressed: () {
-                        //Get.to(ScreenType2(category: categ))
-                      },
                         //Get.to(ScreenType2(category:listCategory))
+                      },
                       child: Text(
                         "See all",
                         style: TextStyle(color: Color(0xFFC2185B)),
@@ -249,123 +263,131 @@ class Homescreen extends StatelessWidget {
                 ],
               ),
             ),
-            Container(
-              width: double.infinity,
-              height: 260,
-              child: ListView.builder(
-                scrollDirection: Axis.horizontal,
-                itemCount: show.length,
-                itemBuilder: (context, index) {
-                  return Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Container(
-                      width: 170,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(15),
-                        color: Colors.white,
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.black12,
-                            blurRadius: 6,
-                            offset: Offset(0, 3),
+           Container(
+  width: double.infinity,
+  height: 260,
+  child: FutureBuilder<List<Products>>(
+    future: futureProducts,
+    builder: (context, snapshot) {
+      if (snapshot.connectionState == ConnectionState.waiting) {
+        return const Center(child: CircularProgressIndicator());
+      } else if (snapshot.hasError) {
+        return Center(
+          child: Text(
+            "Error: ${snapshot.error}",
+            style: const TextStyle(color: Colors.red),
+          ),
+        );
+      } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
+        return const Center(child: Text("No products found"));
+      } else {
+        final show = snapshot.data!;
+        return ListView.builder(
+          scrollDirection: Axis.horizontal,
+          itemCount: show.length,
+          itemBuilder: (context, index) {
+            final product =show[index];
+            return Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Container(
+                width: 170,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(15),
+                  color: Colors.white,
+                  boxShadow: const [
+                    BoxShadow(
+                      color: Colors.black12,
+                      blurRadius: 6,
+                      offset: Offset(0, 3),
+                    ),
+                  ],
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    // Image
+                    ClipRRect(
+                      borderRadius: const BorderRadius.vertical(
+                        top: Radius.circular(15),
+                      ),
+                      child: Image.network(
+                        show[index].image,
+                        height: 140,
+                        width: double.infinity,
+                        fit: BoxFit.cover,
+                        errorBuilder: (context, error, stackTrace) =>
+                            const Icon(Icons.broken_image, size: 50),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 8.0, vertical: 6),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            show[index].description,
+                            style: const TextStyle(
+                                color: Color.fromARGB(255, 152, 152, 152),
+                                fontSize: 12),
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                          Text(
+                            show[index].name,
+                            style: const TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
+                                color: Color(0xFFC2185B)),
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Row(
+                              children: [
+                                Text(
+                                  "\$${show[index].price.toStringAsFixed(2)} USD",
+                                  style: const TextStyle(fontSize: 18),
+                                ),
+                                const Spacer(),
+                                // Link to detail page
+                                InkWell(
+                                  onTap: () {
+                                     Get.to(
+                                      DetailScreen(
+                                       productId: product.id,
+                                       ),
+                                       );
+                                  },
+                                  child: Container(
+                                    width: 30,
+                                    height: 30,
+                                    decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(20),
+                                        color: const Color(0xFFC2185B)),
+                                    child: const Icon(
+                                      Icons.add,
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
                         ],
                       ),
-                      child: Center(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            ClipRRect(
-                              borderRadius: const BorderRadius.vertical(
-                                top: Radius.circular(15),
-                              ),
-                              child: Image.asset(
-                                show[index].img,
-                                height: 140,
-                                fit: BoxFit.cover,
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.symmetric(
-                                horizontal: 8.0,
-                                vertical: 6,
-                              ),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    show[index].subtitle,
-                                    style: TextStyle(
-                                      color: const Color.fromARGB(
-                                        255,
-                                        152,
-                                        152,
-                                        152,
-                                      ),
-                                      fontSize: 12,
-                                    ),
-                                    maxLines: 1,
-                                    overflow: TextOverflow.ellipsis,
-                                  ),
-                                  Text(
-                                    show[index].title,
-                                    style: TextStyle(
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.bold,
-                                        color: Color(0xFFC2185B)),
-                                    overflow: TextOverflow.ellipsis,
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Row(
-                                      children: [
-                                        Text(
-                                          "\$${show[index].price.toStringAsFixed(2)}" +
-                                              "USD",
-                                          style: TextStyle(fontSize: 18),
-                                        ),
-                                        Spacer(),
-                                        //link to detail page
-                                        InkWell(
-                                          onTap: () {
-                                            Get.to(DetailScreen(
-                                                shows: show[index]));
-                                          },
-                                          child: Container(
-                                            width: 30,
-                                            height: 30,
-                                            decoration: BoxDecoration(
-                                              borderRadius:
-                                                  BorderRadius.circular(
-                                                20,
-                                              ),
-                                              color: const Color.fromARGB(
-                                                255,
-                                                0,
-                                                0,
-                                                0,
-                                              ),
-                                            ), 
-                                            child: Icon(
-                                              Icons.add,
-                                              color: Colors.white,
-                                            ),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
                     ),
-                  );
-                },
+                  ],
+                ),
               ),
-            ),
+            );
+          },
+        );
+      }
+    },
+  ),
+),
+
             Padding(
               padding: const EdgeInsets.only(left: 14, right: 8),
               child: Row(

@@ -32,7 +32,9 @@ dependencies:
   font_awesome_flutter: ^10.4.0
   flutter_stripe: ^12.0.2
   qr_flutter: ^4.1.0
+
   http: ^1.5.0
+
 
 dev_dependencies:
   flutter_test:
