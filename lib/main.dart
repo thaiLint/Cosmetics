@@ -1,19 +1,20 @@
-
-import 'package:cosmetics/views/All%20Connection/SignIn.dart';
-import 'package:cosmetics/views/All%20Connection/Sign_up.dart';
-
-
-import 'package:cosmetics/model/category.dart';
 import 'package:cosmetics/views/SignIn.dart';
+import 'package:cosmetics/views/Sign_up.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+
+// ✅ Only keep ONE correct import path for SignIn and SignUp
+import 'package:cosmetics/views/All Connection/SignIn.dart';
+import 'package:cosmetics/views/All Connection/Sign_up.dart';
+
 import 'package:cosmetics/views/homescreen.dart';
+import 'package:cosmetics/views/splash_screen.dart';
 import 'package:cosmetics/views/track_screen.dart';
 import 'package:cosmetics/views/order_screen.dart';
 import 'package:cosmetics/views/profile_setting.dart';
 import 'package:cosmetics/views/search_screen.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -28,25 +29,22 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-
       title: 'Cosmetics App',
       theme: ThemeData(
         primarySwatch: Colors.pink,
         scaffoldBackgroundColor: Colors.white,
       ),
-      title: 'Flutter Demo',
 
-      theme: ThemeData(primarySwatch: Colors.deepPurple),
-
-      // If user already logged in, go to home
+      // ✅ Start app at login if not authenticated
       home: FirebaseAuth.instance.currentUser == null
           ? Login()
-          : BottomBarController(),
-      initialRoute: '/splash',
+          : const BottomBarController(),
+
+      // ✅ Define routes
       routes: {
         '/signin': (context) => Login(),
         '/signup': (context) => SignUp(),
-       '/home': (context) => Homescreen()
+        '/home': (context) => const Homescreen(),
       },
     );
   }
@@ -63,11 +61,11 @@ class _BottomBarControllerState extends State<BottomBarController> {
   int _currentIndex = 0;
 
   final List<Widget> _pages = [
-    Homescreen(),
-    SearchScreen(),
-    TrackScreen(),
-    OrderScreen(),
-    ProfileSetting(),
+    const Homescreen(),
+     SearchScreen(),
+    const TrackScreen(),
+    const OrderScreen(),
+    const ProfileSetting(),
   ];
 
   @override
@@ -76,12 +74,11 @@ class _BottomBarControllerState extends State<BottomBarController> {
       extendBody: true,
       body: _pages[_currentIndex],
 
-      //  Floating center button (Track)
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: Padding(
         padding: const EdgeInsets.only(top: 10),
         child: FloatingActionButton(
-          backgroundColor: Color(0xFFC2185B),
+          backgroundColor: const Color(0xFFC2185B),
           elevation: 8,
           onPressed: () {
             setState(() => _currentIndex = 2);
@@ -91,7 +88,6 @@ class _BottomBarControllerState extends State<BottomBarController> {
         ),
       ),
 
-      //  Rounded floating bottom bar
       bottomNavigationBar: Padding(
         padding: const EdgeInsets.only(left: 20, right: 20, bottom: 20),
         child: Container(
@@ -121,9 +117,9 @@ class _BottomBarControllerState extends State<BottomBarController> {
       ),
     );
   }
+
   Widget _buildNavItem(IconData icon, String label, int index) {
     final isSelected = _currentIndex == index;
-    
     return GestureDetector(
       onTap: () => setState(() => _currentIndex = index),
       child: Column(

@@ -1,4 +1,5 @@
 import 'package:cosmetics/views/All%20Connection/SignIn.dart';
+import 'package:cosmetics/views/SignIn.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/route_manager.dart';
