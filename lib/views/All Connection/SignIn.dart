@@ -277,7 +277,12 @@ await FirebaseAuth.instance.signInWithEmailAndPassword(
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
+<<<<<<< HEAD:lib/views/All Connection/SignIn.dart
                               GestureDetector(
+=======
+                              InkWell(
+                                borderRadius: BorderRadius.circular(12),
+>>>>>>> Lineth:lib/views/Sign_up.dart
                                 onTap: () {
                                   AuthMethods().signInWithGoogle(context);
                                 },

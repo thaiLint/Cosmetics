@@ -102,8 +102,8 @@ class ScreenType2 extends StatelessWidget {
                                   //link to detail page
                                   InkWell(
                                     onTap: () {
-                                      Get.to(
-                                          DetailScreen(shows: filter[index]));
+                                      // Get.to(
+                                      //     DetailScreen(shows: filter[index], product: null,));
                                     },
                                     child: Container(
                                       width: 30,
