@@ -274,33 +274,33 @@ await FirebaseAuth.instance.signInWithEmailAndPassword(
                             ],
                           ),
                           const SizedBox(height: 5),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              GestureDetector(
-                              InkWell(
-                                borderRadius: BorderRadius.circular(12),
+                          // Row(
+                          //   mainAxisAlignment: MainAxisAlignment.center,
+                          //   children: [
+                          //     GestureDetector(
+                          //     InkWell(
+                          //       borderRadius: BorderRadius.circular(12),
 
-                                onTap: () {
-                                  AuthMethods().signInWithGoogle(context);
-                                },
-                                child: Image.asset(
-                                  "assets/images/google.png",
-                                  width: 40,
-                                  height: 40,
-                                ),
-                              ),
-                              const SizedBox(width: 20),
-                              GestureDetector(
-                                onTap: () {},
-                                child: Image.asset(
-                                  "assets/images/apple.png",
-                                  width: 40,
-                                  height: 40,
-                                ),
-                              ),
-                            ],
-                          ),
+                          //       onTap: () {
+                          //         AuthMethods().signInWithGoogle(context);
+                          //       },
+                          //       child: Image.asset(
+                          //         "assets/images/google.png",
+                          //         width: 40,
+                          //         height: 40,
+                          //       ),
+                          //     ),
+                          //     const SizedBox(width: 20),
+                          //     GestureDetector(
+                          //       onTap: () {},
+                          //       child: Image.asset(
+                          //         "assets/images/apple.png",
+                          //         width: 40,
+                          //         height: 40,
+                          //       ),
+                          //     ),
+                          //   ],
+                          // ),
                           const SizedBox(height: 20),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,

@@ -94,7 +94,7 @@ class _LogoutState extends State<Logout> {
                         await prefs.clear();
 
                         // clear all page
-                        Get.offAll(() => Login());
+                       // Get.offAll(() => Login());
 
                         // Navigator.pop(context);
                         // Navigator.popUntil(context, (route) => route.isFirst);

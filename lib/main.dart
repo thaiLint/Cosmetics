@@ -1,4 +1,3 @@
-
 import 'package:cosmetics/views/All%20Connection/SignIn.dart';
 import 'package:cosmetics/views/All%20Connection/Sign_up.dart';
 
@@ -44,7 +43,7 @@ class MyApp extends StatelessWidget {
       routes: {
         '/signin': (context) => Login(),
         '/signup': (context) => SignUp(),
-       '/home': (context) => Homescreen()
+        '/home': (context) => Homescreen()
       },
     );
   }
@@ -119,9 +118,10 @@ class _BottomBarControllerState extends State<BottomBarController> {
       ),
     );
   }
+
   Widget _buildNavItem(IconData icon, String label, int index) {
     final isSelected = _currentIndex == index;
-    
+
     return GestureDetector(
       onTap: () => setState(() => _currentIndex = index),
       child: Column(
