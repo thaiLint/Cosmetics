@@ -110,7 +110,6 @@ class _BottomBarControllerState extends State<BottomBarController> {
       ),
     );
   }
-
   Widget _buildNavItem(IconData icon, String label, int index) {
     final isSelected = _currentIndex == index;
     
