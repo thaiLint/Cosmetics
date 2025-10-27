@@ -7,6 +7,7 @@ import 'package:cosmetics/model/home_image.dart';
 import 'package:cosmetics/model/list_blog.dart';
 import 'package:cosmetics/model/list_model.dart';
 import 'package:cosmetics/services/aip_product.dart';
+import 'package:cosmetics/views/brand_screen.dart';
 import 'package:cosmetics/views/categories.dart';
 import 'package:cosmetics/model/list_more.dart';
 import 'package:cosmetics/views/dataCategories/screen_type2.dart';
@@ -258,7 +259,7 @@ class _HomescreenState extends State<Homescreen> {
                   Spacer(),
                   TextButton(
                       onPressed: () {
-                        //Get.to(ScreenType2(category:listCategory))
+                        Get.to(Categories());
                       },
                       child: Text(
                         "See all",
@@ -410,7 +411,9 @@ class _HomescreenState extends State<Homescreen> {
                   ),
                   Spacer(),
                   TextButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Get.to(BrandScreen());
+                      },
                       child: Text(
                         "See all",
                         style: TextStyle(color: Color(0xFFC2185B)),
