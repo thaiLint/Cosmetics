@@ -310,8 +310,8 @@ class _HomescreenState extends State<Homescreen> {
                                   height: 140,
                                   width: double.infinity,
                                   fit: BoxFit.cover,
-                                  errorBuilder:
-                                      (context, error, stackTrace) => const Icon(
+                                  errorBuilder: (context, error, stackTrace) =>
+                                      const Icon(
                                     Icons.broken_image,
                                     size: 50,
                                   ),
@@ -326,8 +326,8 @@ class _HomescreenState extends State<Homescreen> {
                                     Text(
                                       product.description,
                                       style: const TextStyle(
-                                          color:
-                                              Color.fromARGB(255, 152, 152, 152),
+                                          color: Color.fromARGB(
+                                              255, 152, 152, 152),
                                           fontSize: 12),
                                       maxLines: 1,
                                       overflow: TextOverflow.ellipsis,
@@ -362,8 +362,7 @@ class _HomescreenState extends State<Homescreen> {
                                               decoration: BoxDecoration(
                                                 borderRadius:
                                                     BorderRadius.circular(20),
-                                                color:
-                                                    const Color(0xFFC2185B),
+                                                color: const Color(0xFFC2185B),
                                               ),
                                               child: const Icon(
                                                 Icons.add,

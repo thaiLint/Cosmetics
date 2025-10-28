@@ -41,7 +41,11 @@ class AbaPaymentScreen extends StatelessWidget {
       //       total: total,
       //       paymentMethod: "ABA Pay",
       //     ));
-      Get.to(OrderSuccessScreen(total: total, paymentMethod: "ABA Pay", address: ""));
+      Get.to(OrderSuccessScreen(total: total,
+       paymentMethod: "ABA Pay",
+        address: "",
+    
+        ));
 
     } catch (e) {
       Get.snackbar(
@@ -54,7 +58,6 @@ class AbaPaymentScreen extends StatelessWidget {
       );
     }
   }
-
   @override
   Widget build(BuildContext context) {
     final qrData = {

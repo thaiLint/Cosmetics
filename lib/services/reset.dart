@@ -1,34 +1,48 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 
-class ResetService {
-  final String baseUrl = 'http://10.0.2.2:8000/api'; // replace with your Laravel API URL
+class ForgotService {
+  final String baseUrl = 'http://10.0.2.2:8000/api';
 
-  // Reset password method
-  Future<Map<String, dynamic>> resetPassword(
-      String email, String token, String password, String passwordConfirmation) async {
+  Future<Map<String, dynamic>> resetPassword({
+    required String email,
+    required String code,
+    required String password,
+    required String passwordConfirmation,
+  }) async {
     try {
       final response = await http.post(
-        Uri.parse("$baseUrl/reset-password"),
+        Uri.parse('$baseUrl/reset-password'),
         headers: {
           "Content-Type": "application/json",
-          // Add authorization if needed
+          "Accept": "application/json",
         },
         body: jsonEncode({
-          "email": email,
-          "token": token,
-          "password": password,
-          "password_confirmation": passwordConfirmation,
-        }),
+  "email": email,
+  "token": code, // API expects 'token' field
+  "password": password,
+  "password_confirmation": passwordConfirmation,
+}),
+
       );
 
+      print('Status: ${response.statusCode}');
+      print('Body: ${response.body}');
+
+      Map<String, dynamic> body;
+      try {
+        body = jsonDecode(response.body);
+      } catch (_) {
+        return {"error": "Invalid response: ${response.body}"};
+      }
+
       if (response.statusCode == 200 || response.statusCode == 201) {
-        return jsonDecode(response.body);
+        return {"message": body['message'] ?? "Password reset successfully"};
+      } else if (body['errors'] != null) {
+        String errors = body['errors'].values.expand((e) => e).join(' ');
+        return {"error": errors};
       } else {
-        return {
-          "error": jsonDecode(response.body)['error'] ??
-              "Failed to reset password. Status: ${response.statusCode}"
-        };
+        return {"error": body['message'] ?? "Failed to reset password"};
       }
     } catch (e) {
       return {"error": e.toString()};

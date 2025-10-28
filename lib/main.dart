@@ -1,19 +1,17 @@
+import 'package:cosmetics/controllers/usercontroller.dart';
 import 'package:cosmetics/views/SignIn.dart';
 import 'package:cosmetics/views/Sign_up.dart';
+import 'package:cosmetics/views/profile_setting.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 // ✅ Only keep ONE correct import path for SignIn and SignUp
-import 'package:cosmetics/views/All Connection/SignIn.dart';
-import 'package:cosmetics/views/All Connection/Sign_up.dart';
 
 import 'package:cosmetics/views/homescreen.dart';
-import 'package:cosmetics/views/splash_screen.dart';
 import 'package:cosmetics/views/track_screen.dart';
 import 'package:cosmetics/views/order_screen.dart';
-import 'package:cosmetics/views/profile_setting.dart';
 import 'package:cosmetics/views/search_screen.dart';
 
 void main() async {
@@ -65,7 +63,7 @@ class _BottomBarControllerState extends State<BottomBarController> {
      SearchScreen(),
     const TrackScreen(),
     const OrderScreen(),
-    const ProfileSetting(),
+    ProfileSetting(),
   ];
 
   @override
@@ -117,7 +115,6 @@ class _BottomBarControllerState extends State<BottomBarController> {
       ),
     );
   }
-
   Widget _buildNavItem(IconData icon, String label, int index) {
     final isSelected = _currentIndex == index;
     return GestureDetector(
