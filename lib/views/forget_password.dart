@@ -1,8 +1,8 @@
-import 'package:cosmetics/views/Sign_up.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:cosmetics/views/All%20Connection/SignIn.dart';
-import 'package:cosmetics/services/forgot.dart'; // your service file
+import 'package:cosmetics/views/SignIn.dart';
+import 'package:cosmetics/views/Sign_up.dart';
+import 'package:cosmetics/services/forgot.dart';
 
 class ForgetPassword extends StatefulWidget {
   const ForgetPassword({super.key});
@@ -12,43 +12,38 @@ class ForgetPassword extends StatefulWidget {
 }
 
 class _ForgetPasswordState extends State<ForgetPassword> {
-  final TextEditingController emailctrl = TextEditingController();
   final _formKey = GlobalKey<FormState>();
-  ForgotService forgotService = ForgotService(); // instance of your service
+
+  final emailCtrl = TextEditingController();
+  final codeCtrl = TextEditingController();
+  final passwordCtrl = TextEditingController();
+  final confirmCtrl = TextEditingController();
+
+  final forgotService = ForgotService();
+
   bool _loading = false;
+  bool _showResetFields = false;
 
-  // Call Laravel API to request forgot password
-  resetPassword() async {
+  /// Step 1: Request 6-digit code
+  Future<void> requestCode() async {
     if (!_formKey.currentState!.validate()) return;
-
-    setState(() {
-      _loading = true;
-    });
+    setState(() => _loading = true);
 
     try {
-      var result = await forgotService.forgotPassword(emailctrl.text.trim());
-
-      if (result.containsKey('token')) {
+      final result = await forgotService.forgotPassword(emailCtrl.text.trim());
+      if (result.containsKey('code')) {
+        setState(() => _showResetFields = true);
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             backgroundColor: Colors.green,
-            content: Text(
-              "Password reset token generated! Check your email or copy token.",
-              style: TextStyle(fontSize: 16),
-            ),
+            content: Text("Password reset code sent: ${result['code']}"),
           ),
         );
-
-        // Navigate to Reset Password screen if you have one
-        // Get.to(() => ResetPasswordScreen(email: emailctrl.text.trim(), token: result['token']));
       } else {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             backgroundColor: Colors.red,
-            content: Text(
-              result['error'] ?? 'Something went wrong',
-              style: TextStyle(fontSize: 16),
-            ),
+            content: Text(result['error'] ?? 'Something went wrong'),
           ),
         );
       }
@@ -56,122 +51,216 @@ class _ForgetPasswordState extends State<ForgetPassword> {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           backgroundColor: Colors.red,
-          content: Text("Error: $e", style: TextStyle(fontSize: 16)),
+          content: Text("Error: $e"),
         ),
       );
     } finally {
-      setState(() {
-        _loading = false;
-      });
+      setState(() => _loading = false);
+    }
+  }
+
+  /// Step 2: Reset password using 6-digit code
+  Future<void> resetPassword() async {
+    if (!_formKey.currentState!.validate()) return;
+    setState(() => _loading = true);
+
+    try {
+      final result = await forgotService.resetPassword(
+        email: emailCtrl.text.trim(),
+        code: codeCtrl.text.trim(),
+        password: passwordCtrl.text.trim(),
+        passwordConfirmation: confirmCtrl.text.trim(),
+      );
+
+      if (result.containsKey('message')) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            backgroundColor: Colors.green,
+            content: Text(result['message']),
+          ),
+        );
+
+        Future.delayed(const Duration(seconds: 1), () {
+          Get.offAll(() => const Login());
+        });
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            backgroundColor: Colors.red,
+            content: Text(result['error'] ?? 'Something went wrong'),
+          ),
+        );
+      }
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          backgroundColor: Colors.red,
+          content: Text("Error: $e"),
+        ),
+      );
+    } finally {
+      setState(() => _loading = false);
     }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        width: double.infinity,
-        height: double.infinity,
-        decoration: BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage("assets/images/bg.jpg"),
-            fit: BoxFit.cover,
-          ),
-        ),
-        child: Center(
-          child: SingleChildScrollView(
+      backgroundColor: Colors.grey[100],
+      body: Center(
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.all(20),
+          child: Card(
+            elevation: 6,
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
             child: Padding(
-              padding: const EdgeInsets.all(16.0),
+              padding: const EdgeInsets.all(25),
               child: Form(
                 key: _formKey,
                 child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    Text(
-                      "Password Recovery",
+                    const SizedBox(height: 10),
+                    const Text(
+                      "Forgot Password",
+                      textAlign: TextAlign.center,
                       style: TextStyle(
-                        fontSize: 30,
+                        fontSize: 26,
                         fontWeight: FontWeight.bold,
-                        color: Colors.black,
+                        color: Colors.black87,
                       ),
                     ),
-                    SizedBox(height: 20),
-                    Text(
-                      "Enter your email",
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.black,
-                      ),
+                    const SizedBox(height: 8),
+                    const Text(
+                      "Enter your email to receive a reset code.",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(color: Colors.black54),
                     ),
-                    SizedBox(height: 20),
-                    Container(
-                      padding: EdgeInsets.symmetric(horizontal: 16),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(30),
-                        border: Border.all(
-                            color: Colors.grey.shade600, width: 2),
+                    const SizedBox(height: 25),
+
+                    // Email
+                    TextFormField(
+                      controller: emailCtrl,
+                      decoration: InputDecoration(
+                        labelText: "Email Address",
+                        prefixIcon: const Icon(Icons.email_outlined),
+                        border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
                       ),
-                      child: TextFormField(
-                        controller: emailctrl,
+                      validator: (value) {
+                        if (value == null || value.isEmpty) return "Enter email";
+                        if (!value.contains("@")) return "Enter valid email";
+                        return null;
+                      },
+                    ),
+                    const SizedBox(height: 20),
+
+                    // Show extra fields after code sent
+                    if (_showResetFields) ...[
+                      TextFormField(
+                        controller: codeCtrl,
                         decoration: InputDecoration(
-                          hintText: "Email",
-                          border: InputBorder.none,
-                          prefixIcon: Icon(Icons.email, color: Colors.black),
+                          labelText: "6-Digit Code",
+                          prefixIcon: const Icon(Icons.lock_outline),
+                          border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
                         ),
                         validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            return "Please enter your email";
-                          }
-                          if (!value.contains("@")) {
-                            return "Please enter a valid email";
-                          }
+                          if (value == null || value.isEmpty) return "Enter code";
+                          if (value.length != 6) return "Code must be 6 digits";
                           return null;
                         },
                       ),
-                    ),
-                    SizedBox(height: 30),
-                    GestureDetector(
-                      onTap: _loading ? null : resetPassword,
-                      child: Container(
-                        width: 160,
-                        padding: EdgeInsets.all(12),
-                        decoration: BoxDecoration(
-                          color: _loading ? Colors.grey : Colors.black,
-                          borderRadius: BorderRadius.circular(10),
+                      const SizedBox(height: 15),
+                      TextFormField(
+                        controller: passwordCtrl,
+                        obscureText: true,
+                        decoration: InputDecoration(
+                          labelText: "New Password",
+                          prefixIcon: const Icon(Icons.key_outlined),
+                          border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
                         ),
-                        child: Center(
-                          child: _loading
-                              ? CircularProgressIndicator(
-                                  color: Colors.white,
-                                )
-                              : Text(
-                                  "Send Email",
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
+                        validator: (value) {
+                          if (value == null || value.isEmpty) return "Enter password";
+                          if (value.length < 6) return "Password must be 6+ characters";
+                          return null;
+                        },
+                      ),
+                      const SizedBox(height: 15),
+                      TextFormField(
+                        controller: confirmCtrl,
+                        obscureText: true,
+                        decoration: InputDecoration(
+                          labelText: "Confirm Password",
+                          prefixIcon: const Icon(Icons.key),
+                          border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
+                        ),
+                        validator: (value) {
+                          if (value != passwordCtrl.text) return "Passwords do not match";
+                          return null;
+                        },
+                      ),
+                    ],
+                    const SizedBox(height: 30),
+
+                    // Send Code / Reset Password Button
+                    ElevatedButton(
+                      onPressed: _loading
+                          ? null
+                          : _showResetFields
+                              ? resetPassword
+                              : requestCode,
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Color(0xFFC2185B),
+                        padding: const EdgeInsets.symmetric(vertical: 14),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12),
                         ),
                       ),
+                      child: _loading
+                          ? const SizedBox(
+                              width: 22,
+                              height: 22,
+                              child: CircularProgressIndicator(
+                                strokeWidth: 2.5,
+                                color: Colors.white,
+                              ),
+                            )
+                          : Text(
+                              _showResetFields ? "Reset Password" : "Send Code",
+                              style: const TextStyle(fontSize: 18, color: Colors.white),
+                            ),
                     ),
-                    SizedBox(height: 50),
+                    const SizedBox(height: 20),
+
+                    // Navigation
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        const Text(
-                          "Don't have an account? ",
-                          style: TextStyle(color: Colors.black),
-                        ),
+                        const Text("Don't have an account? "),
                         GestureDetector(
-                          onTap: () {
-                            Get.to(SignUp());
-                          },
+                          onTap: () => Get.to(() => const SignUp()),
                           child: const Text(
                             "Create",
                             style: TextStyle(
-                              color: Colors.black,
-                              fontWeight: FontWeight.bold,
+                              color: Color(0xFFC2185B),
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 10),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const Text("Remember your password? "),
+                        GestureDetector(
+                          onTap: () => Get.offAll(() => const Login()),
+                          child: const Text(
+                            "Sign In",
+                            style: TextStyle(
+                              color: Color(0xFFC2185B),
+                              fontWeight: FontWeight.w600,
                             ),
                           ),
                         ),
