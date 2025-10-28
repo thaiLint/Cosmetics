@@ -17,9 +17,9 @@ class ScreenType2 extends StatelessWidget {
             .toList();
     return Scaffold(
         appBar: AppBar(
-            backgroundColor: const Color.fromARGB(255, 96, 172, 235),
-            title: Text("${category}"),),
-    body: GridView.builder(
+          title: Text("${category}",style: TextStyle(fontWeight: FontWeight.bold),),
+        ),
+        body: GridView.builder(
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 2,
               mainAxisSpacing: 10,
@@ -27,7 +27,6 @@ class ScreenType2 extends StatelessWidget {
               childAspectRatio: 7 / 10,
             ),
 
-            // scrollDirection: Axis.vertical,
             itemCount: filter.length,
             itemBuilder: (context, index) {
               return Padding(

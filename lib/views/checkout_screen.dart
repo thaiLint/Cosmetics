@@ -134,6 +134,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
               total: widget.total,
               paymentMethod: "ABA Pay",
               address: address,
+            
             ));
       }
     } else if (selectedPayment == "Credit / Debit Card") {
@@ -143,6 +144,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
               total: widget.total,
               paymentMethod: "Credit / Debit Card",
               address: address,
+              
             ));
       }
     }

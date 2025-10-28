@@ -31,6 +31,7 @@ class CashOnDeliveryScreen extends StatelessWidget {
             total: total,
             paymentMethod: "Cash on Delivery",
             address: address,
+            
           ));
 
       Get.snackbar(

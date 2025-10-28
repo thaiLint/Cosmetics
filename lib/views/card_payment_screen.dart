@@ -51,6 +51,7 @@ class _CardPaymentScreenState extends State<CardPaymentScreen> {
             total: widget.total,
             paymentMethod: "Card Payment",
             address: "N/A", // you can pass actual address from checkout
+           
           ));
 
       Get.snackbar(

@@ -101,9 +101,8 @@ class _BottomBarControllerState extends State<BottomBarController> {
                 child: AnimatedDefaultTextStyle(
                   duration: const Duration(milliseconds: 300),
                   style: TextStyle(
-                    color: isSelected
-                        ? const Color(0xFFC2185B)
-                        : Colors.black54,
+                    color:
+                        isSelected ? const Color(0xFFC2185B) : Colors.black54,
                     fontWeight: FontWeight.w600,
                     fontSize: isSelected ? 14 : 0,
                   ),

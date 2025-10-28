@@ -1,13 +1,8 @@
 import 'package:flutter/material.dart';
 
-class Condition extends StatefulWidget {
+class Condition extends StatelessWidget {
   const Condition({super.key});
 
-  @override
-  State<Condition> createState() => _ConditionState();
-}
-
-class _ConditionState extends State<Condition> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
