@@ -1,6 +1,7 @@
 import 'package:cosmetics/main.dart';
 import 'package:cosmetics/services/auth.dart';
 import 'package:cosmetics/views/All%20Connection/SignIn.dart';
+import 'package:cosmetics/views/bottom_bar_controller.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

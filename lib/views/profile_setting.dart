@@ -4,7 +4,9 @@ import 'package:cosmetics/views/language.dart';
 import 'package:cosmetics/views/All%20Connection/logout.dart';
 import 'package:cosmetics/views/profile_detail.dart';
 import 'package:cosmetics/views/All%20Connection/resetpaswor_profile.dart';
-import 'package:cosmetics/views/condition.dart'; // <-- Add this import
+import 'package:cosmetics/views/condition.dart';
+import 'package:cosmetics/views/quiz_screen.dart';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart' hide Condition;
 import 'package:image_picker/image_picker.dart';
@@ -18,7 +20,6 @@ class ProfileSetting extends StatefulWidget {
 
 class _ProfileSettingState extends State<ProfileSetting> {
   int _selectedMenuIndex = -1;
-
   Uint8List? _image;
 
   Future<void> selectImage() async {
@@ -45,8 +46,8 @@ class _ProfileSettingState extends State<ProfileSetting> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const SizedBox(height: 20),
-              Center(
-                child: const Text(
+              const Center(
+                child: Text(
                   "Profile Setting",
                   style: TextStyle(
                     fontSize: 22,
@@ -55,7 +56,6 @@ class _ProfileSettingState extends State<ProfileSetting> {
                   ),
                 ),
               ),
-
               const SizedBox(height: 20),
               Row(
                 children: [
@@ -79,35 +79,21 @@ class _ProfileSettingState extends State<ProfileSetting> {
                                 ),
                               ),
                             ),
-                      // Positioned(
-                      //   bottom: -15,
-                      //   right: 0,
-                      //   left: 20,
-                      //   child: IconButton(
-                      //     onPressed: selectImage,
-                      //     icon: const Icon(
-                      //       Icons.add_a_photo,
-                      //       color: Colors.pinkAccent,
-                      //       size: 20,
-                      //     ),
-                      //   ),
-                      // ),
                     ],
                   ),
-
                   const SizedBox(width: 15),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const Text(
+                    children: const [
+                      Text(
                         "Kim Minji",
                         style: TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                      const Text(
+                      Text(
                         "pammin@gmail.com",
                         style: TextStyle(color: Colors.grey),
                       ),
@@ -115,41 +101,61 @@ class _ProfileSettingState extends State<ProfileSetting> {
                   ),
                 ],
               ),
-
               const SizedBox(height: 20),
               const Divider(),
-
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 15),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: const [
-                    ActionIcon(
-                      icon: Icons.shopping_bag,
-                      label: "My Order",
-                      color: Colors.pinkAccent,
+                  children: [
+                    Material(
+                      color: Colors.transparent,
+                      child: InkWell(
+                        onTap: () {
+                          // My Order action
+                          // Replace with navigation if needed
+                        },
+                        borderRadius: BorderRadius.circular(15),
+                        child: const ActionIcon(
+                          icon: Icons.shopping_bag,
+                          label: "My Order",
+                          color: Colors.pinkAccent,
+                        ),
+                      ),
                     ),
-                    ActionIcon(
-                      icon: Icons.favorite,
-                      label: "Wishlist",
-                      color: Colors.redAccent,
+                    Material(
+                      color: Colors.transparent,
+                      child: InkWell(
+                        onTap: () {
+                          // Wishlist action
+                        },
+                        borderRadius: BorderRadius.circular(15),
+                        child: const ActionIcon(
+                          icon: Icons.favorite,
+                          label: "Wishlist",
+                          color: Colors.redAccent,
+                        ),
+                      ),
                     ),
-                    ActionIcon(
-                      icon: Icons.shopping_cart,
-                      label: "Cart",
-                      color: Colors.amber,
-                    ),
-                    ActionIcon(
-                      icon: Icons.quiz,
-                      label: "Skin Quiz",
-                      color: Colors.orangeAccent,
+                    Material(
+                      color: Colors.transparent,
+                      child: InkWell(
+                        onTap: () {
+                          
+                          Get.to(QuizScreen());
+                        },
+                        borderRadius: BorderRadius.circular(15),
+                        child: const ActionIcon(
+                          icon: Icons.quiz,
+                          label: "Skin Quiz",
+                          color: Colors.orangeAccent,
+                        ),
+                      ),
                     ),
                   ],
                 ),
               ),
-
               const Divider(),
-
               MenuItem(
                 icon: Icons.person_outline,
                 text: "My Profile",
@@ -164,7 +170,7 @@ class _ProfileSettingState extends State<ProfileSetting> {
                 index: 1,
                 selectedIndex: _selectedMenuIndex,
                 onTap: (i) => setState(() => _selectedMenuIndex = i),
-                onNavigate: () => Get.to(/*ResetpasworProfile*/ UpdatePasswordScreen()),
+                onNavigate: () => Get.to(UpdatePasswordScreen()),
               ),
               MenuItem(
                 icon: Icons.language,
@@ -174,19 +180,13 @@ class _ProfileSettingState extends State<ProfileSetting> {
                 onTap: (i) => setState(() => _selectedMenuIndex = i),
                 onNavigate: () => Get.to(LanguageScreen()),
               ),
-
-              InkWell(
-                onTap: () {
-                  Get.to(ProfileDetail());
-                },
-                child: MenuItem(
-                  icon: Icons.file_copy_outlined,
-                  text: "Term & Condition",
-                  index: 3,
-                  selectedIndex: _selectedMenuIndex,
-                  onTap: (i) => setState(() => _selectedMenuIndex = i),
-                 onNavigate: () => Get.to(Condition()),
-                ),
+              MenuItem(
+                icon: Icons.file_copy_outlined,
+                text: "Term & Condition",
+                index: 3,
+                selectedIndex: _selectedMenuIndex,
+                onTap: (i) => setState(() => _selectedMenuIndex = i),
+                onNavigate: () => Get.to(Condition()),
               ),
               MenuItem(
                 icon: Icons.help_outline,
@@ -204,7 +204,6 @@ class _ProfileSettingState extends State<ProfileSetting> {
                 onTap: (i) => setState(() => _selectedMenuIndex = i),
                 onNavigate: () => Get.to(Logout()),
               ),
-
               const SizedBox(height: 20),
             ],
           ),
@@ -223,6 +222,7 @@ class ActionIcon extends StatelessWidget {
     required this.icon,
     required this.label,
     required this.color,
+    super.key,
   });
 
   @override
@@ -287,7 +287,6 @@ class MenuItem extends StatelessWidget {
         ),
         onPressed: onNavigate,
       ),
-
       tileColor: isSelected ? Colors.blueAccent.withOpacity(0.1) : null,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       onTap: () {
