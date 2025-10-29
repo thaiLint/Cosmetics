@@ -1,3 +1,5 @@
+import 'package:flutter/widgets.dart';
+
 class Products {
   final int id;
   final String name;
@@ -5,8 +7,10 @@ class Products {
   final double price;
   final int qty;
   final String category;
+  final String ingredients;
+  final List<String> sizes;
   final String image;
-  final List<String> images; // New field for multiple images
+  final List<String> images;
 
   Products({
     required this.id,
@@ -17,31 +21,35 @@ class Products {
     required this.category,
     required this.image,
     required this.images,
+    required this.ingredients,
+    required this.sizes,
   });
 
   factory Products.fromJson(Map<String, dynamic> json) {
     return Products(
       id: json['id'] ?? 0,
-      name: json['name'] ?? "No name",
-      description: json['description'] ?? "No description",
+      name: json['name']?.toString() ?? "No name",
+      description: json['description']?.toString() ?? "No description",
       price: _parsePrice(json['price']),
       qty: json['qty'] ?? 0,
-      category: json['category'] ?? "Unknown",
-      image: json['image'] ?? "https://via.placeholder.com/150",
+      category: json['category']?.toString() ?? "Unknown",
+      image: json['image']?.toString() ?? "https://via.placeholder.com/150",
       images: (json['images'] as List<dynamic>?)
-              ?.map((e) => e.toString())
+              ?.map((e) => e?.toString() ?? "https://via.placeholder.com/150")
               .toList() ??
-          [], // Safely parse images list
+          [],
+      ingredients: json['ingredients']?.toString() ?? "No ingredients",
+      sizes: (json['sizes'] as List<dynamic>?)
+              ?.map((e) => e?.toString() ?? "N/A")
+              .toList() ??
+          ["N/A"],
     );
   }
 
-  // Helper to safely parse price
   static double _parsePrice(dynamic value) {
     if (value == null) return 0.0;
     if (value is num) return value.toDouble();
-    if (value is String) {
-      return double.tryParse(value) ?? 0.0;
-    }
+    if (value is String) return double.tryParse(value) ?? 0.0;
     return 0.0;
   }
 }

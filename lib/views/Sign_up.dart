@@ -4,7 +4,7 @@ import 'package:cosmetics/services/register.dart';
 import 'package:cosmetics/views/SignIn.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
+import 'package:cosmetics/views/bottom_bar_controller.dart';
 class SignUp extends StatefulWidget {
   const SignUp({super.key});
 

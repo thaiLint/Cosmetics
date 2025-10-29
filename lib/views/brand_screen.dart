@@ -1,3 +1,4 @@
+
 import 'package:cosmetics/model/brand_list.dart';
 import 'package:flutter/material.dart';
 
@@ -40,7 +41,7 @@ class BrandScreen extends StatelessWidget {
             return InkWell(
               borderRadius: BorderRadius.circular(20),
               onTap: () {
-                // TODO: Navigate to brand-specific screen if needed
+              
               },
               child: Container(
                 decoration: BoxDecoration(
@@ -74,3 +75,4 @@ class BrandScreen extends StatelessWidget {
     );
   }
 }
+

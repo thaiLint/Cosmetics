@@ -1,72 +1,50 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cosmetics/model/api_product.dart';
 import 'package:cosmetics/model/brand_list.dart';
-import 'package:cosmetics/model/category.dart';
 import 'package:cosmetics/model/home_image.dart';
 import 'package:cosmetics/model/list_blog.dart';
 import 'package:cosmetics/model/list_model.dart';
-import 'package:cosmetics/views/brand_screen.dart';
 import 'package:cosmetics/services/aip_product.dart';
+import 'package:cosmetics/views/brand_screen.dart';
 import 'package:cosmetics/views/categories.dart';
-import 'package:cosmetics/model/list_more.dart';
 import 'package:cosmetics/views/detail_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'header_section.dart';
 
 class Homescreen extends StatefulWidget {
-  const Homescreen({super.key});
+  Homescreen({super.key});
 
   @override
   State<Homescreen> createState() => _HomescreenState();
 }
 
 class _HomescreenState extends State<Homescreen> {
-  late Future<List<Products>> futureProducts;
+  late Future<List<Products>> futureNewArrivals;
+  late Future<List<Products>> futureRecommended;
   final ApiService apiService = ApiService();
 
   @override
   void initState() {
     super.initState();
-    futureProducts = apiService.getAllProducts();
+    // Fetch products from API
+    futureNewArrivals =
+        apiService.getAllProducts(); // Can filter on backend if needed
+    futureRecommended =
+        apiService.getAllProducts(); // Can filter on backend if needed
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: const [
-            Text(
-              "Welcome back.",
-              style: TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-                color: Color(0xFFC2185B),
-              ),
-            ),
-            Text("Olivai"),
-          ],
-        ),
-        actions: const [
-          Padding(
-            padding: EdgeInsets.all(8.0),
-            child: Icon(Icons.notification_add, size: 30),
-          ),
-          Padding(
-            padding: EdgeInsets.all(8.0),
-            child: Icon(Icons.menu, size: 30),
-          ),
-        ],
-      ),
-
-      // ---------------- BODY ----------------
       body: SingleChildScrollView(
         child: Column(
           children: [
-            // 🔹 Horizontal Cards
+            // ====== Header ======
+            HeaderSection(),
+
+            // ====== Featured / Slider ======
             SizedBox(
-              height: 280,
+              height: 250,
               child: ListView.builder(
                 scrollDirection: Axis.horizontal,
                 itemCount: detail.length,
@@ -79,6 +57,7 @@ class _HomescreenState extends State<Homescreen> {
                     [Color(0xFF8BC34A), Color(0xFF558B2F)],
                   ];
                   final gradientColors = gradients[index % gradients.length];
+
                   return Padding(
                     padding: const EdgeInsets.all(10),
                     child: Container(
@@ -90,7 +69,7 @@ class _HomescreenState extends State<Homescreen> {
                           end: Alignment.bottomRight,
                         ),
                         borderRadius: BorderRadius.circular(20),
-                        boxShadow: const [
+                        boxShadow: [
                           BoxShadow(
                             color: Colors.black26,
                             blurRadius: 8,
@@ -102,10 +81,10 @@ class _HomescreenState extends State<Homescreen> {
                         children: [
                           Positioned(
                             top: 60,
-                            left: 270,
+                            left: 200,
                             child: Image.asset(
                               detail[index].cream,
-                              width: 150,
+                              width: 100,
                               fit: BoxFit.contain,
                             ),
                           ),
@@ -116,7 +95,7 @@ class _HomescreenState extends State<Homescreen> {
                               borderRadius: BorderRadius.circular(12),
                               child: Image.asset(
                                 detail[index].img,
-                                width: 280,
+                                width: 250,
                                 fit: BoxFit.contain,
                               ),
                             ),
@@ -144,7 +123,7 @@ class _HomescreenState extends State<Homescreen> {
                                     height: 1.3,
                                   ),
                                 ),
-                                const SizedBox(height: 10),
+                                SizedBox(height: 10),
                                 Expanded(
                                   child: Text(
                                     detail[index].describe,
@@ -155,7 +134,7 @@ class _HomescreenState extends State<Homescreen> {
                                     ),
                                   ),
                                 ),
-                                const SizedBox(height: 16),
+                                SizedBox(height: 16),
                                 Container(
                                   padding: const EdgeInsets.symmetric(
                                     horizontal: 12,
@@ -184,19 +163,21 @@ class _HomescreenState extends State<Homescreen> {
               ),
             ),
 
-            // 🔹 Categories
+            // ====== Categories ======
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 14),
+              padding: const EdgeInsets.only(left: 14, right: 8),
               child: Row(
                 children: [
-                  const Text(
+                  Text(
                     "Categories",
                     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
                   ),
-                  const Spacer(),
+                  Spacer(),
                   TextButton(
-                    onPressed: () => Get.to(() => const Categories()),
-                    child: const Text(
+                    onPressed: () {
+                      Get.to(Categories());
+                    },
+                    child: Text(
                       "See all",
                       style: TextStyle(color: Color(0xFFC2185B)),
                     ),
@@ -204,9 +185,8 @@ class _HomescreenState extends State<Homescreen> {
                 ],
               ),
             ),
-
-            // 🔹 Horizontal Category Chips
-            SizedBox(
+            Container(
+              width: double.infinity,
               height: 60,
               child: ListView.builder(
                 scrollDirection: Axis.horizontal,
@@ -216,18 +196,18 @@ class _HomescreenState extends State<Homescreen> {
                     padding: const EdgeInsets.all(8.0),
                     child: Container(
                       width: 130,
+                      height: 50,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(15),
-                        border: Border.all(color: Colors.grey, width: 1),
+                        border: Border.all(color: Color(0xFFC2185B), width: 1),
                       ),
                       child: Center(
                         child: Text(
                           letter[index].name,
-                          style: const TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.black54,
-                          ),
+                          style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black54),
                         ),
                       ),
                     ),
@@ -236,200 +216,286 @@ class _HomescreenState extends State<Homescreen> {
               ),
             ),
 
-            // 🔹 New Arrivals
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 14),
-              child: Row(
-                children: [
-                  const Text(
-                    "New Arrivals",
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
-                  ),
-                  const Spacer(),
-                  TextButton(
-                    onPressed: () => Get.to(() => const Categories()),
-                    child: const Text(
-                      "See all",
-                      style: TextStyle(color: Color(0xFFC2185B)),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-
-            // 🔹 Product List from API
+            // ====== New Arrivals ======
+            SectionTitle(
+                title: "New Arrivals", onSeeAll: () => Get.to(Categories())),
             SizedBox(
-              width: double.infinity,
               height: 260,
               child: FutureBuilder<List<Products>>(
-                future: futureProducts,
+                future: futureNewArrivals,
                 builder: (context, snapshot) {
                   if (snapshot.connectionState == ConnectionState.waiting) {
                     return const Center(child: CircularProgressIndicator());
                   } else if (snapshot.hasError) {
                     return Center(
-                      child: Text(
-                        "Error: ${snapshot.error}",
-                        style: const TextStyle(color: Colors.red),
-                      ),
-                    );
+                        child: Text("Error: ${snapshot.error}",
+                            style: TextStyle(color: Colors.red)));
                   } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
                     return const Center(child: Text("No products found"));
+                  } else {
+                    final products = snapshot.data!;
+                    return ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      itemCount: products.length,
+                      itemBuilder: (context, index) {
+                        return ProductCard(product: products[index]);
+                      },
+                    );
                   }
+                },
+              ),
+            ),
 
-                  final show = snapshot.data!;
-                  return ListView.builder(
-                    scrollDirection: Axis.horizontal,
-                    itemCount: show.length,
-                    itemBuilder: (context, index) {
-                      final product = show[index];
-                      return Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Container(
-                          width: 170,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(15),
-                            color: Colors.white,
-                            boxShadow: const [
-                              BoxShadow(
-                                color: Colors.black12,
-                                blurRadius: 6,
-                                offset: Offset(0, 3),
-                              ),
-                            ],
-                          ),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              ClipRRect(
-                                borderRadius: const BorderRadius.vertical(
-                                  top: Radius.circular(15),
-                                ),
-                                child: Image.network(
-                                  product.image,
-                                  height: 140,
-                                  width: double.infinity,
-                                  fit: BoxFit.cover,
-                                  errorBuilder: (context, error, stackTrace) =>
-                                      const Icon(
-                                    Icons.broken_image,
-                                    size: 50,
-                                  ),
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 8.0, vertical: 6),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      product.description,
-                                      style: const TextStyle(
-                                          color: Color.fromARGB(
-                                              255, 152, 152, 152),
-                                          fontSize: 12),
-                                      maxLines: 1,
-                                      overflow: TextOverflow.ellipsis,
-                                    ),
-                                    Text(
-                                      product.name,
-                                      style: const TextStyle(
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.bold,
-                                        color: Color(0xFFC2185B),
-                                      ),
-                                      overflow: TextOverflow.ellipsis,
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.all(8.0),
-                                      child: Row(
-                                        children: [
-                                          Text(
-                                            "\$${product.price.toStringAsFixed(2)} USD",
-                                            style:
-                                                const TextStyle(fontSize: 18),
-                                          ),
-                                          const Spacer(),
-                                          InkWell(
-                                            onTap: () => Get.to(
-                                              () => DetailScreen(
-                                                  productId: product.id),
-                                            ),
-                                            child: Container(
-                                              width: 30,
-                                              height: 30,
-                                              decoration: BoxDecoration(
-                                                borderRadius:
-                                                    BorderRadius.circular(20),
-                                                color: const Color(0xFFC2185B),
-                                              ),
-                                              child: const Icon(
-                                                Icons.add,
-                                                color: Colors.white,
-                                              ),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      );
-                    },
+            // ====== Brands ======
+            SectionTitle(
+                title: "Brands", onSeeAll: () => Get.to(BrandScreen())),
+            Container(
+              width: double.infinity,
+              height: 80,
+              child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+                itemCount: all.length,
+                itemBuilder: (context, index) {
+                  return Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Container(
+                      width: 130,
+                      height: 70,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        color: Colors.white,
+                        border: Border.all(color: Colors.grey, width: 1),
+                      ),
+                      child: Center(
+                          child: Image.asset(all[index].img, width: 200)),
+                    ),
                   );
                 },
               ),
             ),
 
-            // 🔹 Brands
+            // ====== Recommended ======
+            SectionTitle(title: "Recommended for you", onSeeAll: () {}),
+            SizedBox(
+              height: 260,
+              child: FutureBuilder<List<Products>>(
+                future: futureRecommended,
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return const Center(child: CircularProgressIndicator());
+                  } else if (snapshot.hasError) {
+                    return Center(
+                        child: Text("Error: ${snapshot.error}",
+                            style: TextStyle(color: Colors.red)));
+                  } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
+                    return const Center(child: Text("No recommended products"));
+                  } else {
+                    final products = snapshot.data!;
+                    return ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      itemCount: products.length,
+                      itemBuilder: (context, index) {
+                        return ProductCard(product: products[index]);
+                      },
+                    );
+                  }
+                },
+              ),
+            ),
+            //======Blog=============
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 14),
+              padding: const EdgeInsets.only(left: 14, right: 8),
               child: Row(
                 children: [
-                  const Text(
-                    "Brands",
+                  Text(
+                    "Blog",
                     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
                   ),
-                  const Spacer(),
+                  Spacer(),
                   TextButton(
-                    onPressed: () => Get.to(() => const BrandScreen()),
-                    child: const Text(
-                      "See all",
-                      style: TextStyle(color: Color(0xFFC2185B)),
+                      onPressed: () {},
+                      child: Text(
+                        "See all",
+                        style: TextStyle(color: Color(0xFFC2185B)),
+                      )),
+                ],
+              ),
+            ),
+            Container(
+              width: double.infinity,
+              height: 260,
+              child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+                itemCount: see.length,
+                itemBuilder: (context, index) {
+                  return Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Container(
+                      width: 300,
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(20),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.grey.withOpacity(0.3),
+                            blurRadius: 6,
+                            offset: Offset(0, 4),
+                          ),
+                        ],
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          ClipRRect(
+                            borderRadius: BorderRadius.vertical(
+                              top: Radius.circular(20),
+                            ),
+                            child: Image.asset(
+                              see[index].img,
+                              height: 150,
+                              width: double.infinity,
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(10.0),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  see[index].title,
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 16,
+                                      color: Color(0xFFC2185B)),
+                                ),
+                                SizedBox(height: 3),
+                                Text(
+                                  see[index].describe,
+                                  style: TextStyle(
+                                    fontSize: 13,
+                                    color: Colors.grey[700],
+                                  ),
+                                  maxLines: 2,
+                                  overflow: TextOverflow.ellipsis,
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
+                  );
+                },
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+// ====== Reusable Widgets ======
+class SectionTitle extends StatelessWidget {
+  final String title;
+  final VoidCallback onSeeAll;
+  const SectionTitle({required this.title, required this.onSeeAll});
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(left: 14, right: 8, top: 16, bottom: 4),
+      child: Row(
+        children: [
+          Text(title,
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
+          Spacer(),
+          TextButton(
+              onPressed: onSeeAll,
+              child:
+                  Text("See all", style: TextStyle(color: Color(0xFFC2185B)))),
+        ],
+      ),
+    );
+  }
+}
+
+class ProductCard extends StatelessWidget {
+  final Products product;
+  const ProductCard({required this.product});
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Container(
+        width: 170,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(15),
+          color: Colors.white,
+          boxShadow: const [
+            BoxShadow(
+                color: Colors.black12, blurRadius: 6, offset: Offset(0, 3))
+          ],
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            ClipRRect(
+              borderRadius:
+                  const BorderRadius.vertical(top: Radius.circular(15)),
+              child: Image.network(
+                product.image,
+                height: 140,
+                width: double.infinity,
+                fit: BoxFit.cover,
+                errorBuilder: (context, error, stackTrace) =>
+                    const Icon(Icons.broken_image, size: 50),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 6),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(product.description,
+                      style: TextStyle(
+                          color: Color.fromARGB(255, 152, 152, 152),
+                          fontSize: 12),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis),
+                  Text(product.name,
+                      style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                          color: Color(0xFFC2185B)),
+                      overflow: TextOverflow.ellipsis),
+                  Row(
+                    children: [
+                      Text("\$${product.price.toStringAsFixed(2)} USD",
+                          style: const TextStyle(fontSize: 18)),
+                      Spacer(),
+                      InkWell(
+                        onTap: () {
+                          Get.to(DetailScreen(
+                            productId: product.id,
+                          ));
+                        },
+                        child: Container(
+                          width: 30,
+                          height: 30,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(20),
+                              color: const Color(0xFFC2185B)),
+                          child: const Icon(Icons.add, color: Colors.white),
+                        ),
+                      ),
+                    ],
                   ),
                 ],
               ),
             ),
-
-            // 🔹 Brand Logos
-            SizedBox(
-              height: 80,
-              child: ListView.builder(
-                scrollDirection: Axis.horizontal,
-                itemCount: all.length,
-                itemBuilder: (context, index) => Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Container(
-                    width: 130,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      border: Border.all(color: Colors.grey),
-                    ),
-                    child: Center(
-                      child: Image.asset(all[index].img, width: 100),
-                    ),
-                  ),
-                ),
-              ),
-            ),
-
-            // 🔹 Recommended & Blog sections omitted for brevity...
           ],
         ),
       ),

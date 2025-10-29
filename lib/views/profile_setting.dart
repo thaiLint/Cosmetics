@@ -1,12 +1,13 @@
 import 'dart:io';
+import 'package:cosmetics/views/logout.dart';
+import 'package:cosmetics/views/updatepassword_profile.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart' hide Condition;
 import 'package:shared_preferences/shared_preferences.dart';
 import 'profile_detail.dart';
 import 'help_center.dart';
 import 'language.dart';
-import 'All Connection/logout.dart';
-import 'All Connection/resetpaswor_profile.dart';
+
 import 'condition.dart';
 
 class ProfileSetting extends StatefulWidget {
@@ -133,7 +134,7 @@ class _ProfileSettingState extends State<ProfileSetting> {
                 index: 1,
                 selectedIndex: _selectedMenuIndex,
                 onTap: (i) => setState(() => _selectedMenuIndex = i),
-                onNavigate: () => Get.to(() => const UpdatePasswordScreen()),
+                onNavigate: () => Get.to(() =>  UpdatePasswordProfile()),
               ),
               MenuItem(
                 icon: Icons.language,
@@ -168,7 +169,7 @@ class _ProfileSettingState extends State<ProfileSetting> {
                 onNavigate: () async {
                   final prefs = await SharedPreferences.getInstance();
                   await prefs.clear(); // Clear user data on logout
-                  Get.to(() => const Logout());
+                  Get.to(() =>Logout());
                 },
               ),
               const SizedBox(height: 20),

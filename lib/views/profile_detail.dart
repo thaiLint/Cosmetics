@@ -204,4 +204,3 @@ class _ProfileDetailState extends State<ProfileDetail> {
     );
   }
 }
-
