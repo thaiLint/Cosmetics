@@ -1,24 +1,13 @@
-<<<<<<< HEAD
-import 'dart:typed_data';
-import 'package:cosmetics/views/help_center.dart';
-import 'package:cosmetics/views/language.dart';
-import 'package:cosmetics/views/All%20Connection/logout.dart';
-import 'package:cosmetics/views/profile_detail.dart';
-import 'package:cosmetics/views/All%20Connection/resetpaswor_profile.dart';
-import 'package:cosmetics/views/condition.dart';
-import 'package:cosmetics/views/quiz_screen.dart';
-
-=======
 import 'dart:io';
->>>>>>> 374b6400dd4b5b020c6af360d243930bc99bc6df
+import 'package:cosmetics/views/logout.dart';
+import 'package:cosmetics/views/updatepassword_profile.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart' hide Condition;
 import 'package:shared_preferences/shared_preferences.dart';
 import 'profile_detail.dart';
 import 'help_center.dart';
 import 'language.dart';
-import 'All Connection/logout.dart';
-import 'All Connection/resetpaswor_profile.dart';
+
 import 'condition.dart';
 
 class ProfileSetting extends StatefulWidget {
@@ -33,16 +22,12 @@ class _ProfileSettingState extends State<ProfileSetting> {
   String _userName = 'User Name';
   String _userEmail = 'user@example.com';
   int _selectedMenuIndex = -1;
-<<<<<<< HEAD
-  Uint8List? _image;
-=======
 
   @override
   void initState() {
     super.initState();
     _loadProfileFromPrefs();
   }
->>>>>>> 374b6400dd4b5b020c6af360d243930bc99bc6df
 
   Future<void> _loadProfileFromPrefs() async {
     final prefs = await SharedPreferences.getInstance();
@@ -103,51 +88,6 @@ class _ProfileSettingState extends State<ProfileSetting> {
                 ),
               ),
               const SizedBox(height: 20),
-<<<<<<< HEAD
-              Row(
-                children: [
-                  Stack(
-                    children: [
-                      _image != null
-                          ? SizedBox(
-                              width: 50,
-                              height: 50,
-                              child: ClipOval(
-                                child: Image.memory(_image!, fit: BoxFit.cover),
-                              ),
-                            )
-                          : SizedBox(
-                              width: 50,
-                              height: 50,
-                              child: ClipOval(
-                                child: Image.network(
-                                  "https://i.pinimg.com/736x/10/89/d2/1089d2ad6538747479e1f18a26ea462d.jpg",
-                                  fit: BoxFit.cover,
-                                ),
-                              ),
-                            ),
-                    ],
-                  ),
-                  const SizedBox(width: 15),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: const [
-                      Text(
-                        "Kim Minji",
-                        style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      Text(
-                        "pammin@gmail.com",
-                        style: TextStyle(color: Colors.grey),
-                      ),
-                    ],
-                  ),
-                ],
-=======
               GestureDetector(
                 onTap: _editProfile,
                 child: Row(
@@ -164,7 +104,6 @@ class _ProfileSettingState extends State<ProfileSetting> {
                     ),
                   ],
                 ),
->>>>>>> 374b6400dd4b5b020c6af360d243930bc99bc6df
               ),
               const SizedBox(height: 20),
               const Divider(),
@@ -172,59 +111,11 @@ class _ProfileSettingState extends State<ProfileSetting> {
                 padding: const EdgeInsets.symmetric(vertical: 15),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
-<<<<<<< HEAD
-                  children: [
-                    Material(
-                      color: Colors.transparent,
-                      child: InkWell(
-                        onTap: () {
-                          // My Order action
-                          // Replace with navigation if needed
-                        },
-                        borderRadius: BorderRadius.circular(15),
-                        child: const ActionIcon(
-                          icon: Icons.shopping_bag,
-                          label: "My Order",
-                          color: Colors.pinkAccent,
-                        ),
-                      ),
-                    ),
-                    Material(
-                      color: Colors.transparent,
-                      child: InkWell(
-                        onTap: () {
-                          // Wishlist action
-                        },
-                        borderRadius: BorderRadius.circular(15),
-                        child: const ActionIcon(
-                          icon: Icons.favorite,
-                          label: "Wishlist",
-                          color: Colors.redAccent,
-                        ),
-                      ),
-                    ),
-                    Material(
-                      color: Colors.transparent,
-                      child: InkWell(
-                        onTap: () {
-                          
-                          Get.to(QuizScreen());
-                        },
-                        borderRadius: BorderRadius.circular(15),
-                        child: const ActionIcon(
-                          icon: Icons.quiz,
-                          label: "Skin Quiz",
-                          color: Colors.orangeAccent,
-                        ),
-                      ),
-                    ),
-=======
                   children: const [
                     ActionIcon(icon: Icons.shopping_bag, label: "My Order", color: Colors.pinkAccent),
                     ActionIcon(icon: Icons.favorite, label: "Wishlist", color: Colors.redAccent),
                     ActionIcon(icon: Icons.shopping_cart, label: "Cart", color: Colors.amber),
                     ActionIcon(icon: Icons.quiz, label: "Skin Quiz", color: Colors.orangeAccent),
->>>>>>> 374b6400dd4b5b020c6af360d243930bc99bc6df
                   ],
                 ),
               ),
@@ -243,11 +134,7 @@ class _ProfileSettingState extends State<ProfileSetting> {
                 index: 1,
                 selectedIndex: _selectedMenuIndex,
                 onTap: (i) => setState(() => _selectedMenuIndex = i),
-<<<<<<< HEAD
-                onNavigate: () => Get.to(UpdatePasswordScreen()),
-=======
-                onNavigate: () => Get.to(() => const UpdatePasswordScreen()),
->>>>>>> 374b6400dd4b5b020c6af360d243930bc99bc6df
+                onNavigate: () => Get.to(() =>  UpdatePasswordProfile()),
               ),
               MenuItem(
                 icon: Icons.language,
@@ -263,11 +150,7 @@ class _ProfileSettingState extends State<ProfileSetting> {
                 index: 3,
                 selectedIndex: _selectedMenuIndex,
                 onTap: (i) => setState(() => _selectedMenuIndex = i),
-<<<<<<< HEAD
-                onNavigate: () => Get.to(Condition()),
-=======
                 onNavigate: () => Get.to(() => const Condition()),
->>>>>>> 374b6400dd4b5b020c6af360d243930bc99bc6df
               ),
               MenuItem(
                 icon: Icons.help_outline,
@@ -286,7 +169,7 @@ class _ProfileSettingState extends State<ProfileSetting> {
                 onNavigate: () async {
                   final prefs = await SharedPreferences.getInstance();
                   await prefs.clear(); // Clear user data on logout
-                  Get.to(() => const Logout());
+                  Get.to(() =>Logout());
                 },
               ),
               const SizedBox(height: 20),
@@ -302,17 +185,7 @@ class ActionIcon extends StatelessWidget {
   final IconData icon;
   final String label;
   final Color color;
-<<<<<<< HEAD
-
-  const ActionIcon({
-    required this.icon,
-    required this.label,
-    required this.color,
-    super.key,
-  });
-=======
   const ActionIcon({required this.icon, required this.label, required this.color, super.key});
->>>>>>> 374b6400dd4b5b020c6af360d243930bc99bc6df
 
   @override
   Widget build(BuildContext context) {

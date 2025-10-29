@@ -1,8 +1,12 @@
 
-import 'package:cosmetics/model/category.dart';
-import 'package:cosmetics/views/dataCategories/screen_type2.dart';
+import 'dart:async';
+import 'package:cosmetics/views/SignIn.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:cosmetics/model/category.dart';
+import 'package:cosmetics/views/Sign_up.dart';
+import 'package:cosmetics/views/dataCategories/screen_type2.dart';
+
 
 class Categories extends StatelessWidget {
   const Categories({super.key});
@@ -144,7 +148,7 @@ class _SplashScreenState extends State<SplashScreen>
       Navigator.pushReplacement(
         context,
         PageRouteBuilder(
-          pageBuilder: (_, __, ___) =>  Signup(),
+          pageBuilder: (_, __, ___) =>  Login(),
           transitionDuration: const Duration(milliseconds: 800),
           transitionsBuilder: (_, animation, __, child) {
             return FadeTransition(opacity: animation, child: child);

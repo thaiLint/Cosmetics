@@ -1,5 +1,4 @@
 
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -7,7 +6,7 @@ import 'package:cosmetics/main.dart';
 import 'package:cosmetics/services/login.dart';
 import 'package:cosmetics/views/forget_password.dart';
 import 'package:cosmetics/views/Sign_up.dart';
-
+import 'package:cosmetics/views/bottom_bar_controller.dart';
 class Login extends StatefulWidget {
   const Login({super.key});
 
@@ -76,7 +75,7 @@ class _LoginState extends State<Login> {
   );
 
   // Navigate to main screen
-  Get.offAll(() => BottomBarController());
+  Get.offAll(() => const BottomBarController());
 }
 
   }
@@ -292,4 +291,3 @@ class _LoginState extends State<Login> {
     );
   }
 }
-

@@ -1,9 +1,11 @@
+import 'package:cosmetics/views/addcart_screen.dart';
+import 'package:cosmetics/views/brand_screen.dart';
+import 'package:cosmetics/views/brand_type.dart';
 import 'package:flutter/material.dart';
 import 'package:cosmetics/views/homescreen.dart';
 import 'package:cosmetics/views/track_screen.dart';
-import 'package:cosmetics/views/order_screen.dart';
+
 import 'package:cosmetics/views/profile_setting.dart';
-import 'package:cosmetics/views/search_screen.dart';
 
 class BottomBarController extends StatefulWidget {
   const BottomBarController({super.key});
@@ -17,9 +19,9 @@ class _BottomBarControllerState extends State<BottomBarController> {
 
   final List<Widget> _pages = [
     Homescreen(),
-    SearchScreen(),
+    BrandType(),
+    AddcartScreen(),
     TrackScreen(),
-    OrderScreen(),
     ProfileSetting(),
   ];
 
@@ -62,7 +64,7 @@ class _BottomBarControllerState extends State<BottomBarController> {
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             _buildNavItem(Icons.home, "Home", 0),
-            _buildNavItem(Icons.search, "Search", 1),
+            _buildNavItem(Icons.branding_watermark_rounded, "Brand", 1),
             const SizedBox(width: 40), // space for center button
             _buildNavItem(Icons.shopping_cart_outlined, "Cart", 3),
             _buildNavItem(Icons.person, "Profile", 4),

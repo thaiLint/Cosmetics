@@ -3,17 +3,17 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
-class OrderScreen extends StatefulWidget {
-  const OrderScreen({super.key});
+class BrandType extends StatefulWidget {
+  const BrandType({super.key});
 
   @override
-  State<OrderScreen> createState() => _OrderScreenState();
+  State<BrandType> createState() => _BrandTypeState();
 }
 
-class _OrderScreenState extends State<OrderScreen> {
+class _BrandTypeState extends State<BrandType> {
   @override
   Widget build(BuildContext context) {
-    return DefaultTabController(
+     return DefaultTabController(
       length: 2, // Active + Completed
       child: Scaffold(
         backgroundColor: Colors.white,
@@ -115,7 +115,6 @@ class _OrderScreenState extends State<OrderScreen> {
     );
   }
 }
-
 Widget ActiveOrder({
   required String name,
   required double price,

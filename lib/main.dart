@@ -1,3 +1,4 @@
+import 'package:cosmetics/views/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -25,11 +26,9 @@ class MyApp extends StatelessWidget {
         scaffoldBackgroundColor: Colors.white,
         useMaterial3: true,
       ),
-
       home: FirebaseAuth.instance.currentUser == null
-          ? Login()
-          :  BottomBarController(),
-
+          ? SplashScreen()
+          : BottomBarController(),
       routes: {
         '/signin': (context) => Login(),
         '/signup': (context) => SignUp(),
